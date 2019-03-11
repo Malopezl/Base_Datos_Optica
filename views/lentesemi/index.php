@@ -31,8 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Graduacion_Base',
             'Material',
             'Precio_Compra',
-            //'Existencia',
-            //'Lente_Semiterminadocol',
+            'Existencia',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
