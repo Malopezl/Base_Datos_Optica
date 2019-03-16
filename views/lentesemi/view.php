@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'Material',
             'Precio_Compra',
             'Existencia',
-            'Lente_Semiterminadocol',
         ],
     ]) ?>
 

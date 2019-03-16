@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentesemi;
+use app\models\Telefono;
 
 /**
- * LentesemiSearch represents the model behind the search form of `app\models\Lentesemi`.
+ * TelefonoSearch represents the model behind the search form of `app\models\Telefono`.
  */
-class LentesemiSearch extends Lentesemi
+class TelefonoSearch extends Telefono
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,7 @@ class LentesemiSearch extends Lentesemi
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['ID', 'Telefono_Proveedor', 'ID_Proveedor', 'ID_Cliente'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class LentesemiSearch extends Lentesemi
      */
     public function search($params)
     {
-        $query = Lentesemi::find();
+        $query = Telefono::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +57,11 @@ class LentesemiSearch extends Lentesemi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
+            'ID' => $this->ID,
+            'Telefono_Proveedor' => $this->Telefono_Proveedor,
+            'ID_Proveedor' => $this->ID_Proveedor,
+            'ID_Cliente' => $this->ID_Cliente,
         ]);
-
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }

@@ -28,9 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Precio_Compra') ?>
 
-    <?php // echo $form->field($model, 'Existencia') ?>
-
-    <?php // echo $form->field($model, 'Lente_Semiterminadocol') ?>
+    <?= $form->field($model, 'Existencia') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
