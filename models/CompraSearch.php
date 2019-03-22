@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentesemi;
+use app\models\Compra;
 
 /**
- * LentesemiSearch represents the model behind the search form of `app\models\Lentesemi`.
+ * CompraSearch represents the model behind the search form of `app\models\Compra`.
  */
-class LentesemiSearch extends Lentesemi
+class CompraSearch extends Compra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class LentesemiSearch extends Lentesemi
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['ID', 'ID_proveedores'], 'integer'],
+            [['No_Factura', 'Fecha'], 'safe'],
+            [['Monto_Efectivo', 'Credito', 'Total'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LentesemiSearch extends Lentesemi
      */
     public function search($params)
     {
-        $query = Lentesemi::find();
+        $query = Compra::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,15 @@ class LentesemiSearch extends Lentesemi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
+            'ID' => $this->ID,
+            'ID_proveedores' => $this->ID_proveedores,
+            'Fecha' => $this->Fecha,
+            'Monto_Efectivo' => $this->Monto_Efectivo,
+            'Credito' => $this->Credito,
+            'Total' => $this->Total,
         ]);
 
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }

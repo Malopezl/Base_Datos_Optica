@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentesemi;
+use app\models\Venta;
 
 /**
- * LentesemiSearch represents the model behind the search form of `app\models\Lentesemi`.
+ * VentaSearch represents the model behind the search form of `app\models\Venta`.
  */
-class LentesemiSearch extends Lentesemi
+class VentaSearch extends Venta
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class LentesemiSearch extends Lentesemi
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['idVenta', 'ID_Paciente', 'ID_Orden'], 'integer'],
+            [['Fecha', 'No_Factura'], 'safe'],
+            [['Total', 'Adelanto'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LentesemiSearch extends Lentesemi
      */
     public function search($params)
     {
-        $query = Lentesemi::find();
+        $query = Venta::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,15 @@ class LentesemiSearch extends Lentesemi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
+            'idVenta' => $this->idVenta,
+            'ID_Paciente' => $this->ID_Paciente,
+            'ID_Orden' => $this->ID_Orden,
+            'Fecha' => $this->Fecha,
+            'Total' => $this->Total,
+            'Adelanto' => $this->Adelanto,
         ]);
 
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }

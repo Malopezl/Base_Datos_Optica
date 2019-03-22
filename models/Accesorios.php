@@ -45,7 +45,7 @@ class Accesorios extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idAccesorio' => 'Id Accesorio',
+            'idAccesorio' => 'ID Accesorio',
             'Nombre' => 'Nombre',
             'Descripcion' => 'Descripcion',
             'Precio_Costo' => 'Precio Costo',

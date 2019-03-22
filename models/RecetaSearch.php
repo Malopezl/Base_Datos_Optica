@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentesemi;
+use app\models\Receta;
 
 /**
- * LentesemiSearch represents the model behind the search form of `app\models\Lentesemi`.
+ * RecetaSearch represents the model behind the search form of `app\models\Receta`.
  */
-class LentesemiSearch extends Lentesemi
+class RecetaSearch extends Receta
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class LentesemiSearch extends Lentesemi
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['idReceta', 'ID_Paciente', 'Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI'], 'integer'],
+            [['Fecha', 'AdicionOD', 'AdicionOI'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class LentesemiSearch extends Lentesemi
      */
     public function search($params)
     {
-        $query = Lentesemi::find();
+        $query = Receta::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +58,19 @@ class LentesemiSearch extends Lentesemi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
+            'idReceta' => $this->idReceta,
+            'ID_Paciente' => $this->ID_Paciente,
+            'Fecha' => $this->Fecha,
+            'Esfera_OD' => $this->Esfera_OD,
+            'Esfera_OI' => $this->Esfera_OI,
+            'Eje_OD' => $this->Eje_OD,
+            'Eje_OI' => $this->Eje_OI,
+            'Cilindro_OD' => $this->Cilindro_OD,
+            'Cilindro_OI' => $this->Cilindro_OI,
         ]);
 
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material]);
+        $query->andFilterWhere(['like', 'AdicionOD', $this->AdicionOD])
+            ->andFilterWhere(['like', 'AdicionOI', $this->AdicionOI]);
 
         return $dataProvider;
     }
