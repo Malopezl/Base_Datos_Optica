@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\AccesoriosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ingreso Accesorios';
+$this->title = 'Accesorios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="accesorios-index">

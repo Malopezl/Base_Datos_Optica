@@ -13,14 +13,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aro-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Aro</h1>
+    <h1>ID: <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idAro], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idAro], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->idAro], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->idAro], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Estás seguro de que quieres borrar este elemento?',
                 'method' => 'post',
             ],
         ]) ?>
