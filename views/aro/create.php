@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Aro */
 
-$this->title = 'Create Aro';
+$this->title = 'Ingreso Aro';
 $this->params['breadcrumbs'][] = ['label' => 'Aros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
