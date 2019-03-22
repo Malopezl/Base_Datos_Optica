@@ -102,7 +102,7 @@ class SiteController extends Controller
      * Displays contact page.
      *
      * @return Response|string
-     */
+     
     public function actionContact()
     {
         $model = new ContactForm();
@@ -115,14 +115,16 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    */
 
     /**
      * Displays about page.
      *
      * @return string
-     */
+     
     public function actionAbout()
     {
         return $this->render('about');
     }
+    */
 }
