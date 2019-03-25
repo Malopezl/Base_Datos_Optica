@@ -35,13 +35,20 @@ class AccesoriosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AccesoriosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new AccesoriosSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
     }
 
     /**
@@ -52,9 +59,16 @@ class AccesoriosController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+        }
+ 
     }
 
     /**
@@ -64,15 +78,22 @@ class AccesoriosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Accesorios();
+           if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+                    $model = new Accesorios();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -84,15 +105,22 @@ class AccesoriosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+           if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+                    $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -104,9 +132,16 @@ class AccesoriosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+           if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+                    $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+           return $this->redirect(['index']);
+        }
+
     }
 
     /**
@@ -118,6 +153,7 @@ class AccesoriosController extends Controller
      */
     protected function findModel($id)
     {
+      
         if (($model = Accesorios::findOne($id)) !== null) {
             return $model;
         }

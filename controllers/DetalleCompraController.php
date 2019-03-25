@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Telefono;
-use app\models\TelefonoSearch;
+use app\models\DetalleCompra;
+use app\models\DetalleCompraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TelefonoController implements the CRUD actions for Telefono model.
+ * DetalleCompraController implements the CRUD actions for DetalleCompra model.
  */
-class TelefonoController extends Controller
+class DetalleCompraController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,60 +30,60 @@ class TelefonoController extends Controller
     }
 
     /**
-     * Lists all Telefono models.
+     * Lists all DetalleCompra models.
      * @return mixed
      */
     public function actionIndex()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-             $searchModel = new TelefonoSearch();
+            $searchModel = new DetalleCompraSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-            }
         }
-     
+        
+    }
 
     /**
-     * Displays a single Telefono model.
+     * Displays a single DetalleCompra model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
             return $this->render('view', [
-            'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
             ]);
         }
         
     }
 
     /**
-     * Creates a new Telefono model.
+     * Creates a new DetalleCompra model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $model = new Telefono();
+             $model = new DetalleCompra();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->ID]);
@@ -93,11 +93,11 @@ class TelefonoController extends Controller
                 'model' => $model,
             ]);
         }
-        
+       
     }
 
     /**
-     * Updates an existing Telefono model.
+     * Updates an existing DetalleCompra model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +105,7 @@ class TelefonoController extends Controller
      */
     public function actionUpdate($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
@@ -119,13 +119,12 @@ class TelefonoController extends Controller
             return $this->render('update', [
                 'model' => $model,
             ]);
-
         }
-      
+        
     }
 
     /**
-     * Deletes an existing Telefono model.
+     * Deletes an existing DetalleCompra model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -133,28 +132,28 @@ class TelefonoController extends Controller
      */
     public function actionDelete($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-              $this->findModel($id)->delete();
+             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
         }
-      
+       
     }
 
     /**
-     * Finds the Telefono model based on its primary key value.
+     * Finds the DetalleCompra model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Telefono the loaded model
+     * @return DetalleCompra the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Telefono::findOne($id)) !== null) {
+        if (($model = DetalleCompra::findOne($id)) !== null) {
             return $model;
         }
 

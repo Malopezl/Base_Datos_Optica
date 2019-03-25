@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Telefono;
-use app\models\TelefonoSearch;
+use app\models\LenteSemiterminado;
+use app\models\LenteSemiterminadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TelefonoController implements the CRUD actions for Telefono model.
+ * LenteSemiterminadoController implements the CRUD actions for LenteSemiterminado model.
  */
-class TelefonoController extends Controller
+class LenteSemiterminadoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,74 +30,74 @@ class TelefonoController extends Controller
     }
 
     /**
-     * Lists all Telefono models.
+     * Lists all LenteSemiterminado models.
      * @return mixed
      */
     public function actionIndex()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-             $searchModel = new TelefonoSearch();
+            $searchModel = new LenteSemiterminadoSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-            }
         }
-     
+        
+    }
 
     /**
-     * Displays a single Telefono model.
+     * Displays a single LenteSemiterminado model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
             return $this->render('view', [
-            'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
             ]);
         }
         
     }
 
     /**
-     * Creates a new Telefono model.
+     * Creates a new LenteSemiterminado model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $model = new Telefono();
+             $model = new LenteSemiterminado();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->ID]);
+                return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
             }
 
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
-        
+       
     }
 
     /**
-     * Updates an existing Telefono model.
+     * Updates an existing LenteSemiterminado model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +105,7 @@ class TelefonoController extends Controller
      */
     public function actionUpdate($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
@@ -113,19 +113,18 @@ class TelefonoController extends Controller
             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->ID]);
+                return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
             }
 
             return $this->render('update', [
                 'model' => $model,
             ]);
-
         }
-      
+        
     }
 
     /**
-     * Deletes an existing Telefono model.
+     * Deletes an existing LenteSemiterminado model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -133,7 +132,7 @@ class TelefonoController extends Controller
      */
     public function actionDelete($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
@@ -146,18 +145,18 @@ class TelefonoController extends Controller
     }
 
     /**
-     * Finds the Telefono model based on its primary key value.
+     * Finds the LenteSemiterminado model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Telefono the loaded model
+     * @return LenteSemiterminado the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Telefono::findOne($id)) !== null) {
+        if (($model = LenteSemiterminado::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
