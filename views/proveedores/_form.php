@@ -12,14 +12,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Direccion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'NIT')->textInput() ?>
+     <div class="col-sm-8"><?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?></div>
+     <div class="col-sm-4"><?= $form->field($model, 'NIT')->textInput() ?></div>
+	 <div class="col-sm-12"><?= $form->field($model, 'Direccion')->textInput(['maxlength' => true]) ?></div>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
