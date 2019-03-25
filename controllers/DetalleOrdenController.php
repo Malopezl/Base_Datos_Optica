@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Cliente;
-use app\models\ClienteSearch;
+use app\models\DetalleOrden;
+use app\models\DetalleOrdenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ClienteController implements the CRUD actions for Cliente model.
+ * DetalleOrdenController implements the CRUD actions for DetalleOrden model.
  */
-class ClienteController extends Controller
+class DetalleOrdenController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,17 +30,17 @@ class ClienteController extends Controller
     }
 
     /**
-     * Lists all Cliente models.
+     * Lists all DetalleOrden models.
      * @return mixed
      */
     public function actionIndex()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $searchModel = new ClienteSearch();
+             $searchModel = new DetalleOrdenSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -48,45 +48,45 @@ class ClienteController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
-        
+       
     }
 
     /**
-     * Displays a single Cliente model.
+     * Displays a single DetalleOrden model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-                return $this->render('view', [
-            'model' => $this->findModel($id),
-             ]);
+             return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
         }
-    
+       
     }
 
     /**
-     * Creates a new Cliente model.
+     * Creates a new DetalleOrden model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $model = new Cliente();
+            $model = new DetalleOrden();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idPaciente]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('create', [
@@ -97,7 +97,7 @@ class ClienteController extends Controller
     }
 
     /**
-     * Updates an existing Cliente model.
+     * Updates an existing DetalleOrden model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,7 +105,7 @@ class ClienteController extends Controller
      */
     public function actionUpdate($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
@@ -113,7 +113,7 @@ class ClienteController extends Controller
              $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idPaciente]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('update', [
@@ -124,7 +124,7 @@ class ClienteController extends Controller
     }
 
     /**
-     * Deletes an existing Cliente model.
+     * Deletes an existing DetalleOrden model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -132,31 +132,31 @@ class ClienteController extends Controller
      */
     public function actionDelete($id)
     {
-           if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-              $this->findModel($id)->delete();
+            $this->findModel($id)->delete();
 
-             return $this->redirect(['index']);
+            return $this->redirect(['index']);
         }
-      
+        
     }
 
     /**
-     * Finds the Cliente model based on its primary key value.
+     * Finds the DetalleOrden model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Cliente the loaded model
+     * @return DetalleOrden the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Cliente::findOne($id)) !== null) {
+        if (($model = DetalleOrden::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }
