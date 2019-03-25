@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\LentesemiSearch */
+/* @var $searchModel app\models\DetalleCompraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ingreso Lente Semiterminado';
+$this->title = Yii::t('app', 'Detalle Compras');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="lentesemi-index">
+<div class="detalle-compra-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Ingreasar Lentesemi', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Detalle Compra'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,13 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idLente_Semiterminado',
-            'Tipo_Lente',
-            'Graduacion_Base',
-            'Material',
-            'Precio_Compra',
-            //'Existencia',
-            //'Lente_Semiterminadocol',
+            'ID',
+            'ID_Compra',
+            'ID_Accesorio',
+            'ID_L_Terminado',
+            'ID_L_STerminado',
+            //'ID_Aro',
+            //'Precio_Compra',
+            //'Cantidad',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

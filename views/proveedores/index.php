@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AccesoriosSearch */
+/* @var $searchModel app\models\ProveedoresSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Accesorios';
+$this->title = Yii::t('app', 'Proveedores');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="accesorios-index">
+<div class="proveedores-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Ingresar Accesorio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Proveedores'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,11 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idAccesorio',
+            'ID',
+            'Direccion',
             'Nombre',
-            'Descripcion:ntext',
-            'Precio_Costo',
-            'Existencia',
+            'NIT',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

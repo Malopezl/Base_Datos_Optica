@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Lentetermi */
+/* @var $model app\models\LenteTerminado */
 
 $this->title = $model->idLente_Terminado;
-$this->params['breadcrumbs'][] = ['label' => 'Lentetermis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Lente Terminados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="lentetermi-view">
+<div class="lente-terminado-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

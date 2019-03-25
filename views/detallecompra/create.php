@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Aro */
+/* @var $model app\models\DetalleCompra */
 
-$this->title = 'Ingreso Aro';
-$this->params['breadcrumbs'][] = ['label' => 'Aros', 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Detalle Compra');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalle Compras'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="aro-create">
+<div class="detalle-compra-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

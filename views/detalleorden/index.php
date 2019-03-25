@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AccesoriosSearch */
+/* @var $searchModel app\models\DetalleOrdenSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Accesorios';
+$this->title = Yii::t('app', 'Detalle Ordens');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="accesorios-index">
+<div class="detalle-orden-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Ingresar Accesorio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Detalle Orden'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,11 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idAccesorio',
-            'Nombre',
-            'Descripcion:ntext',
-            'Precio_Costo',
-            'Existencia',
+            'ID',
+            'ID_Semiterminado',
+            'ID_Terminado',
+            'ID_Orden',
+            'precio',
+            //'cantidad',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

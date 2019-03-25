@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Lentetermi */
+/* @var $model app\models\LenteTerminado */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="lentetermi-form">
+<div class="lente-terminado-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
