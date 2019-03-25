@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Lentetermi */
+/* @var $model app\models\DetalleOrden */
 
-$this->title = 'Create Lentetermi';
-$this->params['breadcrumbs'][] = ['label' => 'Lentetermis', 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Detalle Orden');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalle Ordens'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="lentetermi-create">
+<div class="detalle-orden-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

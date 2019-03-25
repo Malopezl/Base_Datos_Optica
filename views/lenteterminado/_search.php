@@ -4,18 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\LentetermiSearch */
+/* @var $model app\models\LenteTerminadoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="lentetermi-search">
+<div class="lente-terminado-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
     ]); ?>
 
     <?= $form->field($model, 'idLente_Terminado') ?>
