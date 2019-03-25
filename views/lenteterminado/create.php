@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Lentesemi */
+/* @var $model app\models\LenteTerminado */
 
-$this->title = 'Create Lentesemi';
-$this->params['breadcrumbs'][] = ['label' => 'Lentesemis', 'url' => ['index']];
+$this->title = 'Create Lente Terminado';
+$this->params['breadcrumbs'][] = ['label' => 'Lente Terminados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="lentesemi-create">
+<div class="lente-terminado-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

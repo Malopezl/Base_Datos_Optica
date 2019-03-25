@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\LentesemiSearch */
+/* @var $model app\models\LenteSemiterminadoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="lentesemi-search">
+<div class="lente-semiterminado-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

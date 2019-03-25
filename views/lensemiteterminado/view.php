@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Lentetermi */
+/* @var $model app\models\LenteSemiterminado */
 
-$this->title = $model->idLente_Terminado;
-$this->params['breadcrumbs'][] = ['label' => 'Lentetermis', 'url' => ['index']];
+$this->title = $model->idLente_Semiterminado;
+$this->params['breadcrumbs'][] = ['label' => 'Lente Semiterminados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="lentetermi-view">
+<div class="lente-semiterminado-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idLente_Terminado], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idLente_Terminado], [
+        <?= Html::a('Update', ['update', 'id' => $model->idLente_Semiterminado], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->idLente_Semiterminado], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,11 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idLente_Terminado',
-            'Graduacion_Excedente',
+            'idLente_Semiterminado',
+            'Tipo_Lente',
+            'Graduacion_Base',
             'Material',
-            'Graduacion',
-            'Tipo_segun_material',
             'Precio_Compra',
             'Existencia',
         ],
