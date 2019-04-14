@@ -18,7 +18,7 @@ class ProveedoresSearch extends Proveedores
     {
         return [
             [['ID', 'NIT'], 'integer'],
-            [['Direccion', 'Nombre'], 'safe'],
+            [['Direccion', 'Nombre', 'Correo_electronico', 'Telefono1', 'Telefono2'], 'safe'],
         ];
     }
 
@@ -63,7 +63,10 @@ class ProveedoresSearch extends Proveedores
         ]);
 
         $query->andFilterWhere(['like', 'Direccion', $this->Direccion])
-            ->andFilterWhere(['like', 'Nombre', $this->Nombre]);
+            ->andFilterWhere(['like', 'Nombre', $this->Nombre])
+            ->andFilterWhere(['like', 'Correo_electronico', $this->Correo_electronico])
+            ->andFilterWhere(['like', 'Telefono1', $this->Telefono1])
+            ->andFilterWhere(['like', 'Telefono2', $this->Telefono2]);
 
         return $dataProvider;
     }

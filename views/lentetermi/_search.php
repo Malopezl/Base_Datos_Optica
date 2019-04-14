@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AccesoriosSearch */
+/* @var $model app\models\LentetermiSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="accesorios-search">
+<div class="lentetermi-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,15 +18,19 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAccesorio') ?>
+    <?= $form->field($model, 'idLente_Terminado') ?>
 
-    <?= $form->field($model, 'Nombre') ?>
+    <?= $form->field($model, 'Graduacion_Excedente') ?>
 
-    <?= $form->field($model, 'Descripcion') ?>
+    <?= $form->field($model, 'Material') ?>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+    <?= $form->field($model, 'Graduacion') ?>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <?= $form->field($model, 'Tipo_segun_material') ?>
+
+    <?php // echo $form->field($model, 'Precio_Compra') ?>
+
+    <?php // echo $form->field($model, 'Existencia') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

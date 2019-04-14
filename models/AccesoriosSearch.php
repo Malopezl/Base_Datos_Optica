@@ -19,7 +19,7 @@ class AccesoriosSearch extends Accesorios
         return [
             [['idAccesorio'], 'integer'],
             [['Nombre', 'Descripcion', 'Existencia'], 'safe'],
-            [['Precio_Costo'], 'number'],
+            [['Precio_Costo', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -61,6 +61,7 @@ class AccesoriosSearch extends Accesorios
         $query->andFilterWhere([
             'idAccesorio' => $this->idAccesorio,
             'Precio_Costo' => $this->Precio_Costo,
+            'Precio_Venta' => $this->Precio_Venta,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre])

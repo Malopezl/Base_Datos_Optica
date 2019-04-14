@@ -13,6 +13,7 @@ use Yii;
  * @property string $Material
  * @property double $Precio_Costo
  * @property double $Precio_Venta
+ * @property string $Codigo
  *
  * @property DetalleCompra[] $detalleCompras
  * @property DetallesVenta[] $detallesVentas
@@ -36,7 +37,7 @@ class Aro extends \yii\db\ActiveRecord
             [['Existencia'], 'integer'],
             [['Precio_Costo', 'Precio_Venta'], 'number'],
             [['Color'], 'string', 'max' => 20],
-            [['Material'], 'string', 'max' => 45],
+            [['Material', 'Codigo'], 'string', 'max' => 45],
         ];
     }
 
@@ -46,12 +47,13 @@ class Aro extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idAro' => 'Id Aro',
-            'Color' => 'Color',
-            'Existencia' => 'Existencia',
-            'Material' => 'Material',
-            'Precio_Costo' => 'Precio Costo',
-            'Precio_Venta' => 'Precio Venta',
+            'idAro' => Yii::t('app', 'Id Aro'),
+            'Color' => Yii::t('app', 'Color'),
+            'Existencia' => Yii::t('app', 'Existencia'),
+            'Material' => Yii::t('app', 'Material'),
+            'Precio_Costo' => Yii::t('app', 'Precio Costo'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
+            'Codigo' => Yii::t('app', 'Codigo'),
         ];
     }
 

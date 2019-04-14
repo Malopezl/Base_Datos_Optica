@@ -17,7 +17,7 @@ class DetallesVentaSearch extends DetallesVenta
     public function rules()
     {
         return [
-            [['ID', 'ID_Aro', 'ID_Accessorio', 'ID_Venta', 'Cantidad'], 'integer'],
+            [['ID', 'ID_Aro', 'ID_Accessorio', 'ID_Venta', 'Cantidad', 'idLente_Terminado', 'idLente_Semiterminado'], 'integer'],
             [['Precio_Venta'], 'number'],
         ];
     }
@@ -64,6 +64,8 @@ class DetallesVentaSearch extends DetallesVenta
             'ID_Venta' => $this->ID_Venta,
             'Cantidad' => $this->Cantidad,
             'Precio_Venta' => $this->Precio_Venta,
+            'idLente_Terminado' => $this->idLente_Terminado,
+            'idLente_Semiterminado' => $this->idLente_Semiterminado,
         ]);
 
         return $dataProvider;

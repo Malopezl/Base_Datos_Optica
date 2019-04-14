@@ -11,9 +11,11 @@ use Yii;
  * @property string $Correo_Electronico
  * @property string $Nombre
  * @property string $NIT
+ * @property string $Telefono1
+ * @property string $Telefono2
+ * @property string $Correo
  *
  * @property Receta[] $recetas
- * @property Telefono[] $telefonos
  * @property Venta[] $ventas
  */
 class Cliente extends \yii\db\ActiveRecord
@@ -33,6 +35,8 @@ class Cliente extends \yii\db\ActiveRecord
     {
         return [
             [['Correo_Electronico', 'Nombre', 'NIT'], 'string', 'max' => 45],
+            [['Telefono1', 'Telefono2'], 'string', 'max' => 15],
+            [['Correo'], 'string', 'max' => 100],
         ];
     }
 
@@ -46,6 +50,9 @@ class Cliente extends \yii\db\ActiveRecord
             'Correo_Electronico' => Yii::t('app', 'Correo Electronico'),
             'Nombre' => Yii::t('app', 'Nombre'),
             'NIT' => Yii::t('app', 'Nit'),
+            'Telefono1' => Yii::t('app', 'Telefono1'),
+            'Telefono2' => Yii::t('app', 'Telefono2'),
+            'Correo' => Yii::t('app', 'Correo'),
         ];
     }
 
@@ -55,14 +62,6 @@ class Cliente extends \yii\db\ActiveRecord
     public function getRecetas()
     {
         return $this->hasMany(Receta::className(), ['ID_Paciente' => 'idPaciente']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTelefonos()
-    {
-        return $this->hasMany(Telefono::className(), ['ID_Cliente' => 'idPaciente']);
     }
 
     /**

@@ -12,6 +12,7 @@ use Yii;
  * @property string $Descripcion
  * @property double $Precio_Costo
  * @property string $Existencia
+ * @property double $Precio_Venta
  *
  * @property DetalleCompra[] $detalleCompras
  * @property DetallesVenta[] $detallesVentas
@@ -33,7 +34,7 @@ class Accesorios extends \yii\db\ActiveRecord
     {
         return [
             [['Descripcion'], 'string'],
-            [['Precio_Costo'], 'number'],
+            [['Precio_Costo', 'Precio_Venta'], 'number'],
             [['Nombre'], 'string', 'max' => 25],
             [['Existencia'], 'string', 'max' => 45],
         ];
@@ -45,11 +46,12 @@ class Accesorios extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idAccesorio' => 'ID Accesorio',
-            'Nombre' => 'Nombre',
-            'Descripcion' => 'Descripcion',
-            'Precio_Costo' => 'Precio Costo',
-            'Existencia' => 'Existencia',
+            'idAccesorio' => Yii::t('app', 'Id Accesorio'),
+            'Nombre' => Yii::t('app', 'Nombre'),
+            'Descripcion' => Yii::t('app', 'Descripcion'),
+            'Precio_Costo' => Yii::t('app', 'Precio Costo'),
+            'Existencia' => Yii::t('app', 'Existencia'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
         ];
     }
 
