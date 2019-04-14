@@ -18,7 +18,7 @@ class LentesemiSearch extends Lentesemi
     {
         return [
             [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material', 'Lente_Semiterminadocol'], 'safe'],
+            [['Tipo_Lente', 'Material'], 'safe'],
             [['Precio_Compra'], 'number'],
         ];
     }
@@ -66,8 +66,7 @@ class LentesemiSearch extends Lentesemi
         ]);
 
         $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Lente_Semiterminadocol', $this->Lente_Semiterminadocol]);
+            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }

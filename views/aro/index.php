@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\AroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ingreso Aros';
+$this->title = 'Aros';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aro-index">
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Existencia',
             'Material',
             'Precio_Costo',
-            //'Precio_Venta',
+            'Precio_Venta',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

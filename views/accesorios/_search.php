@@ -18,19 +18,19 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAccesorio') ?>
+    <div class="col-fo-2"><?= $form->field($model, 'idAccesorio') ?></div>
 
-    <?= $form->field($model, 'Nombre') ?>
+    <div class="col-fo-2"><?= $form->field($model, 'Nombre') ?></div>
 
-    <?= $form->field($model, 'Descripcion') ?>
+    <div class="col-fo-2"><?= $form->field($model, 'Precio_Costo') ?></div>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+    <div class="col-fo-2"><?= $form->field($model, 'Existencia') ?></div><br><br><br><br>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <div class="col-xs-12"><?= $form->field($model, 'Descripcion') ?></div>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

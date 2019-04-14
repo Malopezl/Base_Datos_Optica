@@ -1,0 +1,81 @@
+1._ir hasta la carpeta basic
+
+	cd /var/www/basic/
+
+2.- crear un migrate con el siguiente codigo 
+
+	sudo php yii migrate/create create_user_table
+
+	darle yes a la hora de que pregunte si se puede crear la tabla
+
+
+3.- desde sublime text ir a la carpeta migration y sustituir el codigo dentro de la clase m00000000, , luego del m los numeros pueden variar,  por 
+
+
+(iniciar a copiar aqui)
+    public function up()
+    {
+        $tableOptions = null;
+ 
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+ 
+        $this->createTable('user', [
+            'id' => $this->primaryKey(),
+            'username' => $this->string()->notNull()->unique(),
+            'auth_key' => $this->string(32)->notNull(),
+            'password_hash' => $this->string()->notNull(),
+            'password_reset_token' => $this->string()->unique(),
+            'email' => $this->string()->notNull()->unique(),
+            'status' => $this->smallInteger()->notNull()->defaultValue(10),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
+        ], $tableOptions);
+    }
+ 
+    public function down()
+    {
+        $this->dropTable('user');
+    }
+  (fin del copiar )
+
+  4.debe quedar parecido a esto 
+
+
+      <?php
+     
+    use yii\db\Migration;
+     
+    class m000000_000000_create_user_table extends Migration
+    {
+     
+        public function up()
+        {
+            $tableOptions = null;
+     
+            if ($this->db->driverName === 'mysql') {
+                $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+            }
+     
+            $this->createTable('user', [
+                'id' => $this->primaryKey(),
+                'username' => $this->string()->notNull()->unique(),
+                'auth_key' => $this->string(32)->notNull(),
+                'password_hash' => $this->string()->notNull(),
+                'password_reset_token' => $this->string()->unique(),
+                'email' => $this->string()->notNull()->unique(),
+                'status' => $this->smallInteger()->notNull()->defaultValue(10),
+                'created_at' => $this->integer()->notNull(),
+                'updated_at' => $this->integer()->notNull(),
+            ], $tableOptions);
+        }
+     
+        public function down()
+        {
+            $this->dropTable('user');
+        }
+     
+    }
+
+  5.- sustituir los archivos
