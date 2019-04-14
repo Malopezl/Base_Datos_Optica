@@ -13,20 +13,20 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="accesorios-view">
 
-    <h1>Accesorio</h1>
-    <h1>ID: <?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <p>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->idAccesorio], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->idAccesorio], [
+        <?= Html::a('Update', ['update', 'id' => $model->idAccesorio], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->idAccesorio], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '¿Estás seguro de que quieres borrar este elemento?',
+                'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
-    <div class="table1"><?= DetailView::widget([
+    <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'idAccesorio',
@@ -35,6 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'Precio_Costo',
             'Existencia',
         ],
-    ]) ?></div>
+    ]) ?>
 
 </div>
