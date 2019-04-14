@@ -5,10 +5,19 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cliente */
 
+<<<<<<< Updated upstream
 $this->title = 'Update Cliente: ' . $model->idPaciente;
 $this->params['breadcrumbs'][] = ['label' => 'Clientes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idPaciente, 'url' => ['view', 'id' => $model->idPaciente]];
 $this->params['breadcrumbs'][] = 'Update';
+=======
+$this->title = Yii::t('app', 'Update Cliente: {name}', [
+    'name' => $model->idPaciente,
+]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Clientes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->idPaciente, 'url' => ['view', 'id' => $model->idPaciente]];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+>>>>>>> Stashed changes
 ?>
 <div class="cliente-update">
 

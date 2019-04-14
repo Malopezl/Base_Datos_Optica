@@ -26,9 +26,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NIT') ?>
 
+    <?= $form->field($model, 'Correo_electronico') ?>
+
+    <?php // echo $form->field($model, 'Telefono1') ?>
+
+    <?php // echo $form->field($model, 'Telefono2') ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+<<<<<<< Updated upstream
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+=======
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

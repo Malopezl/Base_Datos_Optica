@@ -5,8 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Venta */
 
+<<<<<<< Updated upstream
 $this->title = 'Create Venta';
 $this->params['breadcrumbs'][] = ['label' => 'Ventas', 'url' => ['index']];
+=======
+$this->title = Yii::t('app', 'Create Venta');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas'), 'url' => ['index']];
+>>>>>>> Stashed changes
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venta-create">

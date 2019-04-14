@@ -18,8 +18,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NIT')->textInput(['maxlength' => true]) ?>
 
+<<<<<<< Updated upstream
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+=======
+    <?= $form->field($model, 'Telefono1')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Telefono2')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Correo')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

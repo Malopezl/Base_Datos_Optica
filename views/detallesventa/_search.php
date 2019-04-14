@@ -13,9 +13,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+<<<<<<< Updated upstream
         'options' => [
             'data-pjax' => 1
         ],
+=======
+>>>>>>> Stashed changes
     ]); ?>
 
     <?= $form->field($model, 'ID') ?>
@@ -30,9 +33,19 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Precio_Venta') ?>
 
+<<<<<<< Updated upstream
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+=======
+    <?php // echo $form->field($model, 'idLente_Terminado') ?>
+
+    <?php // echo $form->field($model, 'idLente_Semiterminado') ?>
+
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

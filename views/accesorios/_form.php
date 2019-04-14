@@ -20,8 +20,14 @@ use yii\widgets\ActiveForm;
 
     <div><?= $form->field($model, 'Descripcion')->textarea(['rows' => 3]) ?></div>
 
+    <?= $form->field($model, 'Precio_Venta')->textInput() ?>
+
     <div class="form-group">
+<<<<<<< Updated upstream
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+=======
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

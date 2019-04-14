@@ -28,9 +28,16 @@ use yii\widgets\ActiveForm;
 
     <div class="col-xs-12"><?= $form->field($model, 'Descripcion') ?></div>
 
+    <?php // echo $form->field($model, 'Precio_Venta') ?>
+
     <div class="form-group">
+<<<<<<< Updated upstream
         <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
+=======
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

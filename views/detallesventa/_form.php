@@ -22,6 +22,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Precio_Venta')->textInput() ?>
 
+<<<<<<< Updated upstream
+=======
+    <?= $form->field($model, 'idLente_Terminado')->textInput() ?>
+
+    <?= $form->field($model, 'idLente_Semiterminado')->textInput() ?>
+
+>>>>>>> Stashed changes
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
