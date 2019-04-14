@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AccesoriosSearch */
+/* @var $model app\models\VentaSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="accesorios-search">
+<div class="venta-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,31 +18,41 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAccesorio') ?>
+    <?= $form->field($model, 'idVenta') ?>
 
-    <?= $form->field($model, 'Nombre') ?>
+    <?= $form->field($model, 'ID_Paciente') ?>
 
-    <?= $form->field($model, 'Descripcion') ?>
+<<<<<<< Updated upstream
+    <?= $form->field($model, 'ID_Orden') ?>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+=======
+>>>>>>> Stashed changes
+    <?= $form->field($model, 'Fecha') ?>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <?= $form->field($model, 'No_Factura') ?>
 
-    <?php // echo $form->field($model, 'Precio_Venta') ?>
+<<<<<<< Updated upstream
+    <?php // echo $form->field($model, 'Total') ?>
+=======
+    <?= $form->field($model, 'Total') ?>
+
+    <?php // echo $form->field($model, 'Entregado') ?>
+
+    <?php // echo $form->field($model, 'No_caja') ?>
+
+    <?php // echo $form->field($model, 'idReceta') ?>
+>>>>>>> Stashed changes
+
+    <?php // echo $form->field($model, 'Adelanto') ?>
 
     <div class="form-group">
-<<<<<<< HEAD
+<<<<<<< Updated upstream
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-=======
-<<<<<<< Updated upstream
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
 =======
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
 >>>>>>> Stashed changes
->>>>>>> rama
     </div>
 
     <?php ActiveForm::end(); ?>

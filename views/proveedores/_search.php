@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AroSearch */
+/* @var $model app\models\ProveedoresSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="aro-search">
+<div class="proveedores-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,23 +18,27 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAro') ?>
+    <?= $form->field($model, 'ID') ?>
 
-    <?= $form->field($model, 'Color') ?>
+    <?= $form->field($model, 'Direccion') ?>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <?= $form->field($model, 'Nombre') ?>
 
-    <?= $form->field($model, 'Material') ?>
+    <?= $form->field($model, 'NIT') ?>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+    <?= $form->field($model, 'Correo_electronico') ?>
 
-    <?php // echo $form->field($model, 'Precio_Venta') ?>
+    <?php // echo $form->field($model, 'Telefono1') ?>
 
-    <?php // echo $form->field($model, 'Codigo') ?>
+    <?php // echo $form->field($model, 'Telefono2') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+<<<<<<< Updated upstream
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+=======
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+>>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

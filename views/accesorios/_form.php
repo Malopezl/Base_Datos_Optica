@@ -20,8 +20,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Existencia')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'Precio_Venta')->textInput() ?>
+
     <div class="form-group">
+<<<<<<< HEAD
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+=======
+<<<<<<< Updated upstream
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+=======
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+>>>>>>> Stashed changes
+>>>>>>> rama
     </div>
 
     <?php ActiveForm::end(); ?>

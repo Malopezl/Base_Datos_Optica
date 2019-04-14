@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Aro */
 
 $this->title = $model->idAro;
-$this->params['breadcrumbs'][] = ['label' => 'Aros', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Aros'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+<<<<<<< HEAD
         <?= Html::a('Update', ['update', 'id' => $model->idAro], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->idAro], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
+=======
+<<<<<<< Updated upstream
+        <?= Html::a('Actualizar', ['update', 'id' => $model->idAro], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->idAro], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => '¿Estás seguro de que quieres borrar este elemento?',
+=======
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idAro], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idAro], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+>>>>>>> Stashed changes
+>>>>>>> rama
                 'method' => 'post',
             ],
         ]) ?>
@@ -35,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Material',
             'Precio_Costo',
             'Precio_Venta',
+            'Codigo',
         ],
     ]) ?>
 

@@ -4,57 +4,62 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AroSearch */
+/* @var $searchModel app\models\ClienteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-<<<<<<< HEAD
-$this->title = 'Ingreso Aros';
-=======
 <<<<<<< Updated upstream
-$this->title = 'Aros';
+$this->title = 'Clientes';
 =======
-$this->title = Yii::t('app', 'Aros');
+$this->title = Yii::t('app', 'Clientes');
 >>>>>>> Stashed changes
->>>>>>> rama
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="aro-index">
+<div class="cliente-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+<<<<<<< Updated upstream
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Aro'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+=======
+
+    <p>
+        <?= Html::a(Yii::t('app', 'Create Cliente'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+>>>>>>> Stashed changes
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idAro',
-            'Color',
-            'Existencia',
-            'Material',
-            'Precio_Costo',
-<<<<<<< HEAD
-            //'Precio_Venta',
-=======
+            'idPaciente',
+            'Correo_Electronico',
+            'Nombre',
+            'NIT',
 <<<<<<< Updated upstream
-            'Precio_Venta',
 =======
-            //'Precio_Venta',
-            //'Codigo',
+            'Telefono1',
+            //'Telefono2',
+            //'Correo',
 >>>>>>> Stashed changes
->>>>>>> rama
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+<<<<<<< Updated upstream
+    <?php Pjax::end(); ?>
+=======
 
     <?php Pjax::end(); ?>
 
+>>>>>>> Stashed changes
 </div>

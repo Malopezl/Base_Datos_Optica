@@ -4,57 +4,68 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\AccesoriosSearch */
+/* @var $searchModel app\models\VentaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-<<<<<<< HEAD
-$this->title = 'Ingreso Accesorios';
-=======
 <<<<<<< Updated upstream
-$this->title = 'Accesorios';
+$this->title = 'Ventas';
 =======
-$this->title = Yii::t('app', 'Accesorios');
+$this->title = Yii::t('app', 'Ventas');
 >>>>>>> Stashed changes
->>>>>>> rama
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="accesorios-index">
+<div class="venta-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 <<<<<<< Updated upstream
     <?php Pjax::begin(); ?>
-<<<<<<< HEAD
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-=======
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
-=======
->>>>>>> Stashed changes
->>>>>>> rama
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Accesorios'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Venta', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+=======
+
+    <p>
+        <?= Html::a(Yii::t('app', 'Create Venta'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+>>>>>>> Stashed changes
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idAccesorio',
-            'Nombre',
-            'Descripcion:ntext',
-            'Precio_Costo',
-            'Existencia',
-            //'Precio_Venta',
+            'idVenta',
+            'ID_Paciente',
+<<<<<<< Updated upstream
+            'ID_Orden',
+            'Fecha',
+            'No_Factura',
+            //'Total',
+=======
+            'Fecha',
+            'No_Factura',
+            'Total',
+            //'Entregado',
+            //'No_caja',
+            //'idReceta',
+>>>>>>> Stashed changes
+            //'Adelanto',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+<<<<<<< Updated upstream
+    <?php Pjax::end(); ?>
+=======
 
     <?php Pjax::end(); ?>
 
+>>>>>>> Stashed changes
 </div>
