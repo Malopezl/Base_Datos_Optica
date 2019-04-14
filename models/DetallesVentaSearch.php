@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Accesorios;
+use app\models\DetallesVenta;
 
 /**
- * AccesoriosSearch represents the model behind the search form of `app\models\Accesorios`.
+ * DetallesVentaSearch represents the model behind the search form of `app\models\DetallesVenta`.
  */
-class AccesoriosSearch extends Accesorios
+class DetallesVentaSearch extends DetallesVenta
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class AccesoriosSearch extends Accesorios
     public function rules()
     {
         return [
-            [['idAccesorio'], 'integer'],
-            [['Nombre', 'Descripcion', 'Existencia'], 'safe'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['ID', 'ID_Aro', 'ID_Accessorio', 'ID_Venta', 'Cantidad', 'idLente_Terminado', 'idLente_Semiterminado'], 'integer'],
+            [['Precio_Venta'], 'number'],
         ];
     }
 
@@ -41,7 +40,7 @@ class AccesoriosSearch extends Accesorios
      */
     public function search($params)
     {
-        $query = Accesorios::find();
+        $query = DetallesVenta::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +58,15 @@ class AccesoriosSearch extends Accesorios
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAccesorio' => $this->idAccesorio,
-            'Precio_Costo' => $this->Precio_Costo,
+            'ID' => $this->ID,
+            'ID_Aro' => $this->ID_Aro,
+            'ID_Accessorio' => $this->ID_Accessorio,
+            'ID_Venta' => $this->ID_Venta,
+            'Cantidad' => $this->Cantidad,
             'Precio_Venta' => $this->Precio_Venta,
+            'idLente_Terminado' => $this->idLente_Terminado,
+            'idLente_Semiterminado' => $this->idLente_Semiterminado,
         ]);
-
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
-            ->andFilterWhere(['like', 'Existencia', $this->Existencia]);
 
         return $dataProvider;
     }

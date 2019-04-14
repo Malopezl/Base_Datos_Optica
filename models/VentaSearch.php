@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Accesorios;
+use app\models\Venta;
 
 /**
- * AccesoriosSearch represents the model behind the search form of `app\models\Accesorios`.
+ * VentaSearch represents the model behind the search form of `app\models\Venta`.
  */
-class AccesoriosSearch extends Accesorios
+class VentaSearch extends Venta
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class AccesoriosSearch extends Accesorios
     public function rules()
     {
         return [
-            [['idAccesorio'], 'integer'],
-            [['Nombre', 'Descripcion', 'Existencia'], 'safe'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['idVenta', 'ID_Paciente', 'Entregado', 'idReceta'], 'integer'],
+            [['Fecha', 'No_Factura', 'No_caja'], 'safe'],
+            [['Total', 'Adelanto'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AccesoriosSearch extends Accesorios
      */
     public function search($params)
     {
-        $query = Accesorios::find();
+        $query = Venta::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,17 @@ class AccesoriosSearch extends Accesorios
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAccesorio' => $this->idAccesorio,
-            'Precio_Costo' => $this->Precio_Costo,
-            'Precio_Venta' => $this->Precio_Venta,
+            'idVenta' => $this->idVenta,
+            'ID_Paciente' => $this->ID_Paciente,
+            'Fecha' => $this->Fecha,
+            'Total' => $this->Total,
+            'Entregado' => $this->Entregado,
+            'idReceta' => $this->idReceta,
+            'Adelanto' => $this->Adelanto,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
-            ->andFilterWhere(['like', 'Existencia', $this->Existencia]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura])
+            ->andFilterWhere(['like', 'No_caja', $this->No_caja]);
 
         return $dataProvider;
     }

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Accesorios;
+use app\models\LenteSemiterminado;
 
 /**
- * AccesoriosSearch represents the model behind the search form of `app\models\Accesorios`.
+ * LenteSemiterminadoSearch represents the model behind the search form of `app\models\LenteSemiterminado`.
  */
-class AccesoriosSearch extends Accesorios
+class LenteSemiterminadoSearch extends LenteSemiterminado
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class AccesoriosSearch extends Accesorios
     public function rules()
     {
         return [
-            [['idAccesorio'], 'integer'],
-            [['Nombre', 'Descripcion', 'Existencia'], 'safe'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
+            [['Tipo_Lente', 'Material'], 'safe'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AccesoriosSearch extends Accesorios
      */
     public function search($params)
     {
-        $query = Accesorios::find();
+        $query = LenteSemiterminado::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,15 @@ class AccesoriosSearch extends Accesorios
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAccesorio' => $this->idAccesorio,
-            'Precio_Costo' => $this->Precio_Costo,
+            'idLente_Semiterminado' => $this->idLente_Semiterminado,
+            'Graduacion_Base' => $this->Graduacion_Base,
+            'Precio_Compra' => $this->Precio_Compra,
+            'Existencia' => $this->Existencia,
             'Precio_Venta' => $this->Precio_Venta,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
-            ->andFilterWhere(['like', 'Existencia', $this->Existencia]);
+        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
+            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }
