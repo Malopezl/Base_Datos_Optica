@@ -19,7 +19,7 @@ class LenteTerminadoSearch extends LenteTerminado
         return [
             [['idLente_Terminado', 'Existencia'], 'integer'],
             [['Graduacion_Excedente', 'Material', 'Graduacion', 'Tipo_segun_material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -62,6 +62,7 @@ class LenteTerminadoSearch extends LenteTerminado
             'idLente_Terminado' => $this->idLente_Terminado,
             'Precio_Compra' => $this->Precio_Compra,
             'Existencia' => $this->Existencia,
+            'Precio_Venta' => $this->Precio_Venta,
         ]);
 
         $query->andFilterWhere(['like', 'Graduacion_Excedente', $this->Graduacion_Excedente])

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\LenteSemiterminado;
+use app\models\Proveedores;
 
 /**
- * LenteSemiterminadoSearch represents the model behind the search form of `app\models\LenteSemiterminado`.
+ * ProveedoresSearch represents the model behind the search form of `app\models\Proveedores`.
  */
-class LenteSemiterminadoSearch extends LenteSemiterminado
+class ProveedoresSearch extends Proveedores
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class LenteSemiterminadoSearch extends LenteSemiterminado
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material'], 'safe'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['ID', 'NIT'], 'integer'],
+            [['Direccion', 'Nombre', 'Correo_electronico', 'Telefono1', 'Telefono2'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class LenteSemiterminadoSearch extends LenteSemiterminado
      */
     public function search($params)
     {
-        $query = LenteSemiterminado::find();
+        $query = Proveedores::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +58,15 @@ class LenteSemiterminadoSearch extends LenteSemiterminado
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
-            'Precio_Venta' => $this->Precio_Venta,
+            'ID' => $this->ID,
+            'NIT' => $this->NIT,
         ]);
 
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material]);
+        $query->andFilterWhere(['like', 'Direccion', $this->Direccion])
+            ->andFilterWhere(['like', 'Nombre', $this->Nombre])
+            ->andFilterWhere(['like', 'Correo_electronico', $this->Correo_electronico])
+            ->andFilterWhere(['like', 'Telefono1', $this->Telefono1])
+            ->andFilterWhere(['like', 'Telefono2', $this->Telefono2]);
 
         return $dataProvider;
     }

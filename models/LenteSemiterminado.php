@@ -13,7 +13,10 @@ use Yii;
  * @property string $Material
  * @property double $Precio_Compra
  * @property int $Existencia
- * @property string $Lente_Semiterminadocol
+ * @property double $Precio_Venta
+ *
+ * @property DetalleCompra[] $detalleCompras
+ * @property DetallesVenta[] $detallesVentas
  */
 class LenteSemiterminado extends \yii\db\ActiveRecord
 {
@@ -32,8 +35,8 @@ class LenteSemiterminado extends \yii\db\ActiveRecord
     {
         return [
             [['Graduacion_Base', 'Existencia'], 'integer'],
-            [['Precio_Compra'], 'number'],
-            [['Tipo_Lente', 'Lente_Semiterminadocol'], 'string', 'max' => 45],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['Tipo_Lente'], 'string', 'max' => 45],
             [['Material'], 'string', 'max' => 10],
         ];
     }
@@ -44,13 +47,29 @@ class LenteSemiterminado extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idLente_Semiterminado' => 'Id Lente Semiterminado',
-            'Tipo_Lente' => 'Tipo Lente',
-            'Graduacion_Base' => 'Graduacion Base',
-            'Material' => 'Material',
-            'Precio_Compra' => 'Precio Compra',
-            'Existencia' => 'Existencia',
-            'Lente_Semiterminadocol' => 'Lente Semiterminadocol',
+            'idLente_Semiterminado' => Yii::t('app', 'Id Lente Semiterminado'),
+            'Tipo_Lente' => Yii::t('app', 'Tipo Lente'),
+            'Graduacion_Base' => Yii::t('app', 'Graduacion Base'),
+            'Material' => Yii::t('app', 'Material'),
+            'Precio_Compra' => Yii::t('app', 'Precio Compra'),
+            'Existencia' => Yii::t('app', 'Existencia'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDetalleCompras()
+    {
+        return $this->hasMany(DetalleCompra::className(), ['ID_L_STerminado' => 'idLente_Semiterminado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDetallesVentas()
+    {
+        return $this->hasMany(DetallesVenta::className(), ['idLente_Semiterminado' => 'idLente_Semiterminado']);
     }
 }

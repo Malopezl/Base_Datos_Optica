@@ -14,6 +14,10 @@ use Yii;
  * @property string $Tipo_segun_material
  * @property double $Precio_Compra
  * @property int $Existencia
+ * @property double $Precio_Venta
+ *
+ * @property DetalleCompra[] $detalleCompras
+ * @property DetallesVenta[] $detallesVentas
  */
 class LenteTerminado extends \yii\db\ActiveRecord
 {
@@ -31,7 +35,7 @@ class LenteTerminado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Precio_Compra'], 'number'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
             [['Existencia'], 'integer'],
             [['Graduacion_Excedente'], 'string', 'max' => 10],
             [['Material', 'Graduacion', 'Tipo_segun_material'], 'string', 'max' => 45],
@@ -44,13 +48,30 @@ class LenteTerminado extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idLente_Terminado' => 'Id Lente Terminado',
-            'Graduacion_Excedente' => 'Graduacion Excedente',
-            'Material' => 'Material',
-            'Graduacion' => 'Graduacion',
-            'Tipo_segun_material' => 'Tipo Segun Material',
-            'Precio_Compra' => 'Precio Compra',
-            'Existencia' => 'Existencia',
+            'idLente_Terminado' => Yii::t('app', 'Id Lente Terminado'),
+            'Graduacion_Excedente' => Yii::t('app', 'Graduacion Excedente'),
+            'Material' => Yii::t('app', 'Material'),
+            'Graduacion' => Yii::t('app', 'Graduacion'),
+            'Tipo_segun_material' => Yii::t('app', 'Tipo Segun Material'),
+            'Precio_Compra' => Yii::t('app', 'Precio Compra'),
+            'Existencia' => Yii::t('app', 'Existencia'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDetalleCompras()
+    {
+        return $this->hasMany(DetalleCompra::className(), ['ID_L_Terminado' => 'idLente_Terminado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDetallesVentas()
+    {
+        return $this->hasMany(DetallesVenta::className(), ['idLente_Terminado' => 'idLente_Terminado']);
     }
 }
