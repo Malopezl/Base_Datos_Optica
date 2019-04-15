@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\VentaSearch */
+/* @var $searchModel app\models\LenteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Ventas');
+$this->title = Yii::t('app', 'Lentes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="venta-index">
+<div class="lente-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Venta'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Lente'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,13 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idVenta',
-            'ID_Paciente',
-            'Fecha',
-            'No_Factura',
-            'Total',
-            //'Entregado',
-            //'Adelanto',
+            'idLente',
+            'graduacion_base',
+            'Graduacion_Ecxedente',
+            'Precio_Compra',
+            'Precio_Venta',
+            //'Existencia',
+            //'Terminado',
+            //'Tipo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
