@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Venta;
+use app\models\DetalleCompra;
 
 /**
- * VentaSearch represents the model behind the search form of `app\models\Venta`.
+ * DetalleCompraSearch represents the model behind the search form of `app\models\DetalleCompra`.
  */
-class VentaSearch extends Venta
+class DetalleCompraSearch extends DetalleCompra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['idVenta', 'ID_Paciente', 'Entregado'], 'integer'],
-            [['Fecha', 'No_Factura'], 'safe'],
-            [['Total', 'Adelanto'], 'number'],
+            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
+            [['Precio_Compra'], 'number'],
         ];
     }
 
@@ -41,7 +40,7 @@ class VentaSearch extends Venta
      */
     public function search($params)
     {
-        $query = Venta::find();
+        $query = DetalleCompra::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +58,16 @@ class VentaSearch extends Venta
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idVenta' => $this->idVenta,
-            'ID_Paciente' => $this->ID_Paciente,
-            'Fecha' => $this->Fecha,
-            'Total' => $this->Total,
-            'Entregado' => $this->Entregado,
-            'Adelanto' => $this->Adelanto,
+            'ID' => $this->ID,
+            'ID_Compra' => $this->ID_Compra,
+            'ID_Accesorio' => $this->ID_Accesorio,
+            'ID_L_Terminado' => $this->ID_L_Terminado,
+            'ID_L_STerminado' => $this->ID_L_STerminado,
+            'Lente_idLente' => $this->Lente_idLente,
+            'ID_Aro' => $this->ID_Aro,
+            'Precio_Compra' => $this->Precio_Compra,
+            'Cantidad' => $this->Cantidad,
         ]);
-
-        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }

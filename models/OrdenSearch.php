@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Venta;
+use app\models\Orden;
 
 /**
- * VentaSearch represents the model behind the search form of `app\models\Venta`.
+ * OrdenSearch represents the model behind the search form of `app\models\Orden`.
  */
-class VentaSearch extends Venta
+class OrdenSearch extends Orden
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['idVenta', 'ID_Paciente', 'Entregado'], 'integer'],
-            [['Fecha', 'No_Factura'], 'safe'],
-            [['Total', 'Adelanto'], 'number'],
+            [['Orden', 'idVenta', 'idReceta', 'idLente', 'idAro', 'No_Caja'], 'integer'],
+            [['Cantidad_Lentes', 'Fecha_Entrega', 'Total_orden', 'Anotaciones'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class VentaSearch extends Venta
      */
     public function search($params)
     {
-        $query = Venta::find();
+        $query = Orden::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +58,18 @@ class VentaSearch extends Venta
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'Orden' => $this->Orden,
             'idVenta' => $this->idVenta,
-            'ID_Paciente' => $this->ID_Paciente,
-            'Fecha' => $this->Fecha,
-            'Total' => $this->Total,
-            'Entregado' => $this->Entregado,
-            'Adelanto' => $this->Adelanto,
+            'idReceta' => $this->idReceta,
+            'idLente' => $this->idLente,
+            'Fecha_Entrega' => $this->Fecha_Entrega,
+            'idAro' => $this->idAro,
+            'No_Caja' => $this->No_Caja,
         ]);
 
-        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
+        $query->andFilterWhere(['like', 'Cantidad_Lentes', $this->Cantidad_Lentes])
+            ->andFilterWhere(['like', 'Total_orden', $this->Total_orden])
+            ->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }
