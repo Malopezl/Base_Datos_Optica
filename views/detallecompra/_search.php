@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\VentaSearch */
+/* @var $model app\models\DetalleCompraSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="venta-search">
+<div class="detalle-compra-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,19 +18,23 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idVenta') ?>
+    <?= $form->field($model, 'ID') ?>
 
-    <?= $form->field($model, 'ID_Paciente') ?>
+    <?= $form->field($model, 'ID_Compra') ?>
 
-    <?= $form->field($model, 'Fecha') ?>
+    <?= $form->field($model, 'ID_Accesorio') ?>
 
-    <?= $form->field($model, 'No_Factura') ?>
+    <?= $form->field($model, 'ID_L_Terminado') ?>
 
-    <?= $form->field($model, 'Total') ?>
+    <?= $form->field($model, 'ID_L_STerminado') ?>
 
-    <?php // echo $form->field($model, 'Entregado') ?>
+    <?php // echo $form->field($model, 'Lente_idLente') ?>
 
-    <?php // echo $form->field($model, 'Adelanto') ?>
+    <?php // echo $form->field($model, 'ID_Aro') ?>
+
+    <?php // echo $form->field($model, 'Precio_Compra') ?>
+
+    <?php // echo $form->field($model, 'Cantidad') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

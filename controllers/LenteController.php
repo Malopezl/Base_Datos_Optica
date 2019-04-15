@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Orden;
-use app\models\OrdenSearch;
+use app\models\Lente;
+use app\models\LenteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrdenController implements the CRUD actions for Orden model.
+ * LenteController implements the CRUD actions for Lente model.
  */
-class OrdenController extends Controller
+class LenteController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class OrdenController extends Controller
     }
 
     /**
-     * Lists all Orden models.
+     * Lists all Lente models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrdenSearch();
+        $searchModel = new LenteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Displays a single Orden model.
+     * Displays a single Lente model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class OrdenController extends Controller
     }
 
     /**
-     * Creates a new Orden model.
+     * Creates a new Lente model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Orden();
+        $model = new Lente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Orden]);
+            return $this->redirect(['view', 'id' => $model->idLente]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Updates an existing Orden model.
+     * Updates an existing Lente model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class OrdenController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Orden]);
+            return $this->redirect(['view', 'id' => $model->idLente]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Deletes an existing Orden model.
+     * Deletes an existing Lente model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class OrdenController extends Controller
     }
 
     /**
-     * Finds the Orden model based on its primary key value.
+     * Finds the Lente model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Orden the loaded model
+     * @return Lente the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Orden::findOne($id)) !== null) {
+        if (($model = Lente::findOne($id)) !== null) {
             return $model;
         }
 

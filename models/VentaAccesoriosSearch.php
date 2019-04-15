@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Venta;
+use app\models\VentaAccesorios;
 
 /**
- * VentaSearch represents the model behind the search form of `app\models\Venta`.
+ * VentaAccesoriosSearch represents the model behind the search form of `app\models\VentaAccesorios`.
  */
-class VentaSearch extends Venta
+class VentaAccesoriosSearch extends VentaAccesorios
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['idVenta', 'ID_Paciente', 'Entregado'], 'integer'],
-            [['Fecha', 'No_Factura'], 'safe'],
-            [['Total', 'Adelanto'], 'number'],
+            [['ID', 'ID_Accessorio', 'ID_Venta', 'Cantidad'], 'integer'],
+            [['Precio_Venta'], 'number'],
         ];
     }
 
@@ -41,7 +40,7 @@ class VentaSearch extends Venta
      */
     public function search($params)
     {
-        $query = Venta::find();
+        $query = VentaAccesorios::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +58,12 @@ class VentaSearch extends Venta
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idVenta' => $this->idVenta,
-            'ID_Paciente' => $this->ID_Paciente,
-            'Fecha' => $this->Fecha,
-            'Total' => $this->Total,
-            'Entregado' => $this->Entregado,
-            'Adelanto' => $this->Adelanto,
+            'ID' => $this->ID,
+            'ID_Accessorio' => $this->ID_Accessorio,
+            'ID_Venta' => $this->ID_Venta,
+            'Cantidad' => $this->Cantidad,
+            'Precio_Venta' => $this->Precio_Venta,
         ]);
-
-        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }
