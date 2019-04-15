@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Orden;
-use app\models\OrdenSearch;
+use app\models\VentaAccesorios;
+use app\models\VentaAccesoriosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrdenController implements the CRUD actions for Orden model.
+ * VentaAccesoriosController implements the CRUD actions for VentaAccesorios model.
  */
-class OrdenController extends Controller
+class VentaAccesoriosController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class OrdenController extends Controller
     }
 
     /**
-     * Lists all Orden models.
+     * Lists all VentaAccesorios models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new OrdenSearch();
+        $searchModel = new VentaAccesoriosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Displays a single Orden model.
+     * Displays a single VentaAccesorios model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class OrdenController extends Controller
     }
 
     /**
-     * Creates a new Orden model.
+     * Creates a new VentaAccesorios model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Orden();
+        $model = new VentaAccesorios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Orden]);
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Updates an existing Orden model.
+     * Updates an existing VentaAccesorios model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class OrdenController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Orden]);
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class OrdenController extends Controller
     }
 
     /**
-     * Deletes an existing Orden model.
+     * Deletes an existing VentaAccesorios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class OrdenController extends Controller
     }
 
     /**
-     * Finds the Orden model based on its primary key value.
+     * Finds the VentaAccesorios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Orden the loaded model
+     * @return VentaAccesorios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Orden::findOne($id)) !== null) {
+        if (($model = VentaAccesorios::findOne($id)) !== null) {
             return $model;
         }
 
