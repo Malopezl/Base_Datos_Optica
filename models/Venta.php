@@ -13,13 +13,11 @@ use Yii;
  * @property string $No_Factura
  * @property double $Total
  * @property int $Entregado
- * @property string $No_caja
- * @property int $idReceta
  * @property double $Adelanto
  *
- * @property DetallesVenta[] $detallesVentas
+ * @property Orden[] $ordens
  * @property Cliente $paciente
- * @property Receta $receta
+ * @property VentaAccesorios[] $ventaAccesorios
  */
 class Venta extends \yii\db\ActiveRecord
 {
@@ -37,13 +35,11 @@ class Venta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_Paciente', 'Entregado', 'idReceta'], 'integer'],
+            [['ID_Paciente', 'Entregado'], 'integer'],
             [['Fecha'], 'safe'],
             [['Total', 'Adelanto'], 'number'],
             [['No_Factura'], 'string', 'max' => 25],
-            [['No_caja'], 'string', 'max' => 45],
             [['ID_Paciente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['ID_Paciente' => 'idPaciente']],
-            [['idReceta'], 'exist', 'skipOnError' => true, 'targetClass' => Receta::className(), 'targetAttribute' => ['idReceta' => 'idReceta']],
         ];
     }
 
@@ -59,8 +55,6 @@ class Venta extends \yii\db\ActiveRecord
             'No_Factura' => Yii::t('app', 'No Factura'),
             'Total' => Yii::t('app', 'Total'),
             'Entregado' => Yii::t('app', 'Entregado'),
-            'No_caja' => Yii::t('app', 'No Caja'),
-            'idReceta' => Yii::t('app', 'Id Receta'),
             'Adelanto' => Yii::t('app', 'Adelanto'),
         ];
     }
@@ -68,9 +62,9 @@ class Venta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetallesVentas()
+    public function getOrdens()
     {
-        return $this->hasMany(DetallesVenta::className(), ['ID_Venta' => 'idVenta']);
+        return $this->hasMany(Orden::className(), ['idVenta' => 'idVenta']);
     }
 
     /**
@@ -84,8 +78,8 @@ class Venta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReceta()
+    public function getVentaAccesorios()
     {
-        return $this->hasOne(Receta::className(), ['idReceta' => 'idReceta']);
+        return $this->hasMany(VentaAccesorios::className(), ['ID_Venta' => 'idVenta']);
     }
 }

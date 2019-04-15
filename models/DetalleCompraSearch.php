@@ -17,7 +17,7 @@ class DetalleCompraSearch extends DetalleCompra
     public function rules()
     {
         return [
-            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'ID_Aro', 'Cantidad'], 'integer'],
+            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
             [['Precio_Compra'], 'number'],
         ];
     }
@@ -63,6 +63,7 @@ class DetalleCompraSearch extends DetalleCompra
             'ID_Accesorio' => $this->ID_Accesorio,
             'ID_L_Terminado' => $this->ID_L_Terminado,
             'ID_L_STerminado' => $this->ID_L_STerminado,
+            'Lente_idLente' => $this->Lente_idLente,
             'ID_Aro' => $this->ID_Aro,
             'Precio_Compra' => $this->Precio_Compra,
             'Cantidad' => $this->Cantidad,

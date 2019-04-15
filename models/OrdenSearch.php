@@ -17,9 +17,8 @@ class OrdenSearch extends Orden
     public function rules()
     {
         return [
-            [['idOrden', 'ID_Receta', 'No_Caja'], 'integer'],
-            [['Fecha_Entrega'], 'safe'],
-            [['Precio_Total'], 'number'],
+            [['Orden', 'idVenta', 'idReceta', 'idLente', 'idAro', 'No_Caja'], 'integer'],
+            [['Cantidad_Lentes', 'Fecha_Entrega', 'Total_orden', 'Anotaciones'], 'safe'],
         ];
     }
 
@@ -59,12 +58,18 @@ class OrdenSearch extends Orden
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idOrden' => $this->idOrden,
-            'ID_Receta' => $this->ID_Receta,
+            'Orden' => $this->Orden,
+            'idVenta' => $this->idVenta,
+            'idReceta' => $this->idReceta,
+            'idLente' => $this->idLente,
             'Fecha_Entrega' => $this->Fecha_Entrega,
-            'Precio_Total' => $this->Precio_Total,
+            'idAro' => $this->idAro,
             'No_Caja' => $this->No_Caja,
         ]);
+
+        $query->andFilterWhere(['like', 'Cantidad_Lentes', $this->Cantidad_Lentes])
+            ->andFilterWhere(['like', 'Total_orden', $this->Total_orden])
+            ->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }

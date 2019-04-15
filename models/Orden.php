@@ -7,15 +7,21 @@ use Yii;
 /**
  * This is the model class for table "Orden".
  *
- * @property int $idOrden
- * @property int $ID_Receta
+ * @property int $Orden
+ * @property int $idVenta
+ * @property int $idReceta
+ * @property int $idLente
+ * @property string $Cantidad_Lentes
  * @property string $Fecha_Entrega
- * @property double $Precio_Total
+ * @property string $Total_orden
+ * @property int $idAro
+ * @property string $Anotaciones
  * @property int $No_Caja
  *
- * @property DetalleOrden[] $detalleOrdens
+ * @property Aro $aro
+ * @property Lente $lente
  * @property Receta $receta
- * @property Venta[] $ventas
+ * @property Venta $venta
  */
 class Orden extends \yii\db\ActiveRecord
 {
@@ -33,11 +39,14 @@ class Orden extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_Receta'], 'required'],
-            [['ID_Receta', 'No_Caja'], 'integer'],
+            [['idVenta', 'idReceta', 'idLente', 'idAro', 'No_Caja'], 'integer'],
             [['Fecha_Entrega'], 'safe'],
-            [['Precio_Total'], 'number'],
-            [['ID_Receta'], 'exist', 'skipOnError' => true, 'targetClass' => Receta::className(), 'targetAttribute' => ['ID_Receta' => 'idReceta']],
+            [['Anotaciones'], 'string'],
+            [['Cantidad_Lentes', 'Total_orden'], 'string', 'max' => 45],
+            [['idAro'], 'exist', 'skipOnError' => true, 'targetClass' => Aro::className(), 'targetAttribute' => ['idAro' => 'idAro']],
+            [['idLente'], 'exist', 'skipOnError' => true, 'targetClass' => Lente::className(), 'targetAttribute' => ['idLente' => 'idLente']],
+            [['idReceta'], 'exist', 'skipOnError' => true, 'targetClass' => Receta::className(), 'targetAttribute' => ['idReceta' => 'idReceta']],
+            [['idVenta'], 'exist', 'skipOnError' => true, 'targetClass' => Venta::className(), 'targetAttribute' => ['idVenta' => 'idVenta']],
         ];
     }
 
@@ -47,10 +56,15 @@ class Orden extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idOrden' => Yii::t('app', 'Id Orden'),
-            'ID_Receta' => Yii::t('app', 'Id Receta'),
+            'Orden' => Yii::t('app', 'Orden'),
+            'idVenta' => Yii::t('app', 'Id Venta'),
+            'idReceta' => Yii::t('app', 'Id Receta'),
+            'idLente' => Yii::t('app', 'Id Lente'),
+            'Cantidad_Lentes' => Yii::t('app', 'Cantidad Lentes'),
             'Fecha_Entrega' => Yii::t('app', 'Fecha Entrega'),
-            'Precio_Total' => Yii::t('app', 'Precio Total'),
+            'Total_orden' => Yii::t('app', 'Total Orden'),
+            'idAro' => Yii::t('app', 'Id Aro'),
+            'Anotaciones' => Yii::t('app', 'Anotaciones'),
             'No_Caja' => Yii::t('app', 'No Caja'),
         ];
     }
@@ -58,9 +72,17 @@ class Orden extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetalleOrdens()
+    public function getAro()
     {
-        return $this->hasMany(DetalleOrden::className(), ['ID_Orden' => 'idOrden']);
+        return $this->hasOne(Aro::className(), ['idAro' => 'idAro']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLente()
+    {
+        return $this->hasOne(Lente::className(), ['idLente' => 'idLente']);
     }
 
     /**
@@ -68,14 +90,14 @@ class Orden extends \yii\db\ActiveRecord
      */
     public function getReceta()
     {
-        return $this->hasOne(Receta::className(), ['idReceta' => 'ID_Receta']);
+        return $this->hasOne(Receta::className(), ['idReceta' => 'idReceta']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVentas()
+    public function getVenta()
     {
-        return $this->hasMany(Venta::className(), ['ID_Orden' => 'idOrden']);
+        return $this->hasOne(Venta::className(), ['idVenta' => 'idVenta']);
     }
 }
