@@ -20,6 +20,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ID_L_STerminado')->textInput() ?>
 
+    <?= $form->field($model, 'Lente_idLente')->textInput() ?>
+
     <?= $form->field($model, 'ID_Aro')->textInput() ?>
 
     <?= $form->field($model, 'Precio_Compra')->textInput() ?>

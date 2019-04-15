@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orden */
 
-$this->title = $model->idOrden;
-$this->params['breadcrumbs'][] = ['label' => 'Ordens', 'url' => ['index']];
+$this->title = $model->Orden;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ordens'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idOrden], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idOrden], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->Orden], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->Orden], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,10 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idOrden',
-            'ID_Receta',
+            'Orden',
+            'idVenta',
+            'idReceta',
+            'idLente',
+            'Cantidad_Lentes',
             'Fecha_Entrega',
-            'Precio_Total',
+            'Total_orden',
+            'idAro',
+            'Anotaciones:ntext',
             'No_Caja',
         ],
     ]) ?>

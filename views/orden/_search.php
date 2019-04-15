@@ -18,19 +18,29 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idOrden') ?>
+    <?= $form->field($model, 'Orden') ?>
 
-    <?= $form->field($model, 'ID_Receta') ?>
+    <?= $form->field($model, 'idVenta') ?>
 
-    <?= $form->field($model, 'Fecha_Entrega') ?>
+    <?= $form->field($model, 'idReceta') ?>
 
-    <?= $form->field($model, 'Precio_Total') ?>
+    <?= $form->field($model, 'idLente') ?>
 
-    <?= $form->field($model, 'No_Caja') ?>
+    <?= $form->field($model, 'Cantidad_Lentes') ?>
+
+    <?php // echo $form->field($model, 'Fecha_Entrega') ?>
+
+    <?php // echo $form->field($model, 'Total_orden') ?>
+
+    <?php // echo $form->field($model, 'idAro') ?>
+
+    <?php // echo $form->field($model, 'Anotaciones') ?>
+
+    <?php // echo $form->field($model, 'No_Caja') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

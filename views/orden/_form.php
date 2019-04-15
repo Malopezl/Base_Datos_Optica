@@ -12,16 +12,26 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_Receta')->textInput() ?>
+    <?= $form->field($model, 'idVenta')->textInput() ?>
+
+    <?= $form->field($model, 'idReceta')->textInput() ?>
+
+    <?= $form->field($model, 'idLente')->textInput() ?>
+
+    <?= $form->field($model, 'Cantidad_Lentes')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Fecha_Entrega')->textInput() ?>
 
-    <?= $form->field($model, 'Precio_Total')->textInput() ?>
+    <?= $form->field($model, 'Total_orden')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'idAro')->textInput() ?>
+
+    <?= $form->field($model, 'Anotaciones')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'No_Caja')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
