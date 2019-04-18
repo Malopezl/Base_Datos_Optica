@@ -26,11 +26,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Material') ?>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+    <?= $form->field($model, 'Precio_Compra') ?>
 
     <?php // echo $form->field($model, 'Precio_Venta') ?>
 
     <?php // echo $form->field($model, 'Codigo') ?>
+
+    <?php // echo $form->field($model, 'Marca') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

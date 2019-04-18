@@ -7,15 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\AroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-<<<<<<< HEAD
-$this->title = 'Ingreso Aros';
-=======
-<<<<<<< Updated upstream
-$this->title = 'Aros';
-=======
 $this->title = Yii::t('app', 'Aros');
->>>>>>> Stashed changes
->>>>>>> rama
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aro-index">
@@ -39,17 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'Color',
             'Existencia',
             'Material',
-            'Precio_Costo',
-<<<<<<< HEAD
-            //'Precio_Venta',
-=======
-<<<<<<< Updated upstream
-            'Precio_Venta',
-=======
+            'Precio_Compra',
             //'Precio_Venta',
             //'Codigo',
->>>>>>> Stashed changes
->>>>>>> rama
+            //'Marca',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

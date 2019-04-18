@@ -15,8 +15,9 @@ use Yii;
  * @property int $Existencia
  * @property int $Terminado
  * @property string $Tipo
+ * @property string $Material
  *
- * @property DetalleCompra[] $detalleCompras
+ * @property Detallecompra[] $detallecompras
  * @property Orden[] $ordens
  */
 class Lente extends \yii\db\ActiveRecord
@@ -38,7 +39,7 @@ class Lente extends \yii\db\ActiveRecord
             [['graduacion_base', 'Existencia', 'Terminado'], 'integer'],
             [['Precio_Compra', 'Precio_Venta'], 'number'],
             [['Graduacion_Ecxedente'], 'string', 'max' => 45],
-            [['Tipo'], 'string', 'max' => 100],
+            [['Tipo', 'Material'], 'string', 'max' => 100],
         ];
     }
 
@@ -50,21 +51,22 @@ class Lente extends \yii\db\ActiveRecord
         return [
             'idLente' => Yii::t('app', 'Id Lente'),
             'graduacion_base' => Yii::t('app', 'Graduacion Base'),
-            'Graduacion_Ecxedente' => Yii::t('app', 'Graduacion Ecxedente'),
+            'Graduacion_Ecxedente' => Yii::t('app', 'Graduacion Excedente'),
             'Precio_Compra' => Yii::t('app', 'Precio Compra'),
             'Precio_Venta' => Yii::t('app', 'Precio Venta'),
             'Existencia' => Yii::t('app', 'Existencia'),
             'Terminado' => Yii::t('app', 'Terminado'),
             'Tipo' => Yii::t('app', 'Tipo'),
+            'Material' => Yii::t('app', 'Material'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetalleCompras()
+    public function getDetallecompras()
     {
-        return $this->hasMany(DetalleCompra::className(), ['Lente_idLente' => 'idLente']);
+        return $this->hasMany(Detallecompra::className(), ['Lente_idLente' => 'idLente']);
     }
 
     /**

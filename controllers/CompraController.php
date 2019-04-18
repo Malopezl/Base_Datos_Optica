@@ -35,20 +35,13 @@ class CompraController extends Controller
      */
     public function actionIndex()
     {
-           if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-            $searchModel = new CompraSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new CompraSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        }
-        
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
@@ -59,16 +52,9 @@ class CompraController extends Controller
      */
     public function actionView($id)
     {
-           if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-            return $this->render('view', [
+        return $this->render('view', [
             'model' => $this->findModel($id),
-             ]);
-        }
-        
+        ]);
     }
 
     /**
@@ -78,22 +64,15 @@ class CompraController extends Controller
      */
     public function actionCreate()
     {
-           if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-             $model = new Compra();
+        $model = new Compra();
 
-                if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                    return $this->redirect(['view', 'id' => $model->ID]);
-                }
-
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
-       
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -105,22 +84,15 @@ class CompraController extends Controller
      */
     public function actionUpdate($id)
     {
-           if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-            $model = $this->findModel($id);
+        $model = $this->findModel($id);
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->ID]);
-            }
-
-            return $this->render('update', [
-                'model' => $model,
-            ]);    
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
-        
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -132,16 +104,9 @@ class CompraController extends Controller
      */
     public function actionDelete($id)
     {
-           if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-             $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
 
-              return $this->redirect(['index']);    
-        }
-       
+        return $this->redirect(['index']);
     }
 
     /**
@@ -153,7 +118,6 @@ class CompraController extends Controller
      */
     protected function findModel($id)
     {
-        
         if (($model = Compra::findOne($id)) !== null) {
             return $model;
         }

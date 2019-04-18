@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\VentaAccesoriosSearch */
+/* @var $searchModel app\models\VentaaccesoriosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Venta Accesorios');
+$this->title = Yii::t('app', 'Ventaaccesorios');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="venta-accesorios-index">
+<div class="ventaaccesorios-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Venta Accesorios'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Ventaaccesorios'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Existencia',
             //'Terminado',
             //'Tipo',
+            //'Material',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

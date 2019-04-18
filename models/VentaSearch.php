@@ -17,7 +17,7 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['idVenta', 'ID_Paciente', 'Entregado'], 'integer'],
+            [['idVenta', 'ID_Paciente', 'Entregado', 'Finalizado'], 'integer'],
             [['Fecha', 'No_Factura'], 'safe'],
             [['Total', 'Adelanto'], 'number'],
         ];
@@ -65,6 +65,7 @@ class VentaSearch extends Venta
             'Total' => $this->Total,
             'Entregado' => $this->Entregado,
             'Adelanto' => $this->Adelanto,
+            'Finalizado' => $this->Finalizado,
         ]);
 
         $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);

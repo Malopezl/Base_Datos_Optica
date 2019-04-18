@@ -18,22 +18,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Material')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Precio_Costo')->textInput() ?>
+    <?= $form->field($model, 'Precio_Compra')->textInput() ?>
 
     <?= $form->field($model, 'Precio_Venta')->textInput() ?>
 
     <?= $form->field($model, 'Codigo')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'Marca')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
-<<<<<<< HEAD
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-=======
-<<<<<<< Updated upstream
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
-=======
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
->>>>>>> Stashed changes
->>>>>>> rama
     </div>
 
     <?php ActiveForm::end(); ?>

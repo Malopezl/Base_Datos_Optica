@@ -17,8 +17,9 @@ class OrdenSearch extends Orden
     public function rules()
     {
         return [
-            [['Orden', 'idVenta', 'idReceta', 'idLente', 'idAro', 'No_Caja'], 'integer'],
-            [['Cantidad_Lentes', 'Fecha_Entrega', 'Total_orden', 'Anotaciones'], 'safe'],
+            [['Orden', 'idReceta', 'idLentei', 'idAro', 'No_Caja', 'idVenta', 'Entregada', 'idLented'], 'integer'],
+            [['Fecha_Entrega', 'Anotaciones'], 'safe'],
+            [['Total_orden', 'Preciolentei', 'PrecioVentaAros', 'Preciolented'], 'number'],
         ];
     }
 
@@ -59,17 +60,21 @@ class OrdenSearch extends Orden
         // grid filtering conditions
         $query->andFilterWhere([
             'Orden' => $this->Orden,
-            'idVenta' => $this->idVenta,
             'idReceta' => $this->idReceta,
-            'idLente' => $this->idLente,
+            'idLentei' => $this->idLentei,
             'Fecha_Entrega' => $this->Fecha_Entrega,
+            'Total_orden' => $this->Total_orden,
             'idAro' => $this->idAro,
             'No_Caja' => $this->No_Caja,
+            'idVenta' => $this->idVenta,
+            'Preciolentei' => $this->Preciolentei,
+            'PrecioVentaAros' => $this->PrecioVentaAros,
+            'Entregada' => $this->Entregada,
+            'Preciolented' => $this->Preciolented,
+            'idLented' => $this->idLented,
         ]);
 
-        $query->andFilterWhere(['like', 'Cantidad_Lentes', $this->Cantidad_Lentes])
-            ->andFilterWhere(['like', 'Total_orden', $this->Total_orden])
-            ->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
+        $query->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }
