@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Compra;
-use app\models\CompraSearch;
+use app\models\Detallecompra;
+use app\models\DetallecompraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CompraController implements the CRUD actions for Compra model.
+ * DetallecompraController implements the CRUD actions for Detallecompra model.
  */
-class CompraController extends Controller
+class DetallecompraController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class CompraController extends Controller
     }
 
     /**
-     * Lists all Compra models.
+     * Lists all Detallecompra models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompraSearch();
+        $searchModel = new DetallecompraSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class CompraController extends Controller
     }
 
     /**
-     * Displays a single Compra model.
+     * Displays a single Detallecompra model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class CompraController extends Controller
     }
 
     /**
-     * Creates a new Compra model.
+     * Creates a new Detallecompra model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Compra();
+        $model = new Detallecompra();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID]);
@@ -76,7 +76,7 @@ class CompraController extends Controller
     }
 
     /**
-     * Updates an existing Compra model.
+     * Updates an existing Detallecompra model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class CompraController extends Controller
     }
 
     /**
-     * Deletes an existing Compra model.
+     * Deletes an existing Detallecompra model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class CompraController extends Controller
     }
 
     /**
-     * Finds the Compra model based on its primary key value.
+     * Finds the Detallecompra model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Compra the loaded model
+     * @return Detallecompra the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Compra::findOne($id)) !== null) {
+        if (($model = Detallecompra::findOne($id)) !== null) {
             return $model;
         }
 

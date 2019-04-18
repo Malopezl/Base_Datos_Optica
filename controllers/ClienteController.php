@@ -75,6 +75,19 @@ class ClienteController extends Controller
         ]);
     }
 
+    public function actionCreatec()
+    {
+        $model = new Cliente();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['venta/create','id_paciente'=> $model->idPaciente]);
+        }
+
+        return $this->render('createc', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Cliente model.
      * If update is successful, the browser will be redirected to the 'view' page.
