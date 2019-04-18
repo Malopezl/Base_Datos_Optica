@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Orden;
+use app\models\Detallecompra;
 
 /**
- * OrdenSearch represents the model behind the search form of `app\models\Orden`.
+ * DetallecompraSearch represents the model behind the search form of `app\models\Detallecompra`.
  */
-class OrdenSearch extends Orden
+class DetallecompraSearch extends Detallecompra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class OrdenSearch extends Orden
     public function rules()
     {
         return [
-            [['Orden', 'idReceta', 'idLentei', 'idAro', 'No_Caja', 'idVenta', 'Entregada', 'idLented'], 'integer'],
-            [['Fecha_Entrega', 'Anotaciones'], 'safe'],
-            [['Total_orden', 'Preciolentei', 'PrecioVentaAros', 'Preciolented'], 'number'],
+            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
+            [['Precio_Compra'], 'number'],
         ];
     }
 
@@ -41,7 +40,7 @@ class OrdenSearch extends Orden
      */
     public function search($params)
     {
-        $query = Orden::find();
+        $query = Detallecompra::find();
 
         // add conditions that should always apply here
 
@@ -59,22 +58,16 @@ class OrdenSearch extends Orden
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'Orden' => $this->Orden,
-            'idReceta' => $this->idReceta,
-            'idLentei' => $this->idLentei,
-            'Fecha_Entrega' => $this->Fecha_Entrega,
-            'Total_orden' => $this->Total_orden,
-            'idAro' => $this->idAro,
-            'No_Caja' => $this->No_Caja,
-            'idVenta' => $this->idVenta,
-            'Preciolentei' => $this->Preciolentei,
-            'PrecioVentaAros' => $this->PrecioVentaAros,
-            'Entregada' => $this->Entregada,
-            'Preciolented' => $this->Preciolented,
-            'idLented' => $this->idLented,
+            'ID' => $this->ID,
+            'ID_Compra' => $this->ID_Compra,
+            'ID_Accesorio' => $this->ID_Accesorio,
+            'ID_L_Terminado' => $this->ID_L_Terminado,
+            'ID_L_STerminado' => $this->ID_L_STerminado,
+            'Lente_idLente' => $this->Lente_idLente,
+            'ID_Aro' => $this->ID_Aro,
+            'Precio_Compra' => $this->Precio_Compra,
+            'Cantidad' => $this->Cantidad,
         ]);
-
-        $query->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }
