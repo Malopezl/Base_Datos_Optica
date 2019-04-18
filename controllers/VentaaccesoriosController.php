@@ -3,16 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Compra;
-use app\models\CompraSearch;
+use app\models\Ventaaccesorios;
+use app\models\VentaaccesoriosSearch;
+use app\models\Accesorios;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CompraController implements the CRUD actions for Compra model.
+ * VentaaccesoriosController implements the CRUD actions for Ventaaccesorios model.
  */
-class CompraController extends Controller
+class VentaaccesoriosController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +31,12 @@ class CompraController extends Controller
     }
 
     /**
-     * Lists all Compra models.
+     * Lists all Ventaaccesorios models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CompraSearch();
+        $searchModel = new VentaaccesoriosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +46,7 @@ class CompraController extends Controller
     }
 
     /**
-     * Displays a single Compra model.
+     * Displays a single Ventaaccesorios model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,25 +59,33 @@ class CompraController extends Controller
     }
 
     /**
-     * Creates a new Compra model.
+     * Creates a new Ventaaccesorios model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
-        $model = new Compra();
+        $model = new Ventaaccesorios();
+        $model->ID_Venta = $id;
+         $accesorioss = [];
+        $tmp = Accesorios::find()->all();
+        foreach($tmp as $accesorio){
+            $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
 
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+            return $this->redirect(['venta/creates','id' => $model->ID_Venta]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'accesorioss' => $accesorioss,
+            'id'=>$id,
         ]);
     }
 
     /**
-     * Updates an existing Compra model.
+     * Updates an existing Ventaaccesorios model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,18 +94,25 @@ class CompraController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $accesorioss = [];
+        $tmp = Accesorios::find()->all();
+        foreach($tmp as $accesorio){
+            $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
 
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'accesorioss' => $accesorioss,
+            'id'=>$id,
         ]);
     }
 
     /**
-     * Deletes an existing Compra model.
+     * Deletes an existing Ventaaccesorios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +126,15 @@ class CompraController extends Controller
     }
 
     /**
-     * Finds the Compra model based on its primary key value.
+     * Finds the Ventaaccesorios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Compra the loaded model
+     * @return Ventaaccesorios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Compra::findOne($id)) !== null) {
+        if (($model = Ventaaccesorios::findOne($id)) !== null) {
             return $model;
         }
 
