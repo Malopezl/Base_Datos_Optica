@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AroSearch */
+/* @var $model app\models\CompraSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="aro-search">
+<div class="compra-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,21 +18,21 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAro') ?>
+    <?= $form->field($model, 'ID') ?>
 
-    <?= $form->field($model, 'Color') ?>
+    <?= $form->field($model, 'ID_proveedores') ?>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <?= $form->field($model, 'No_Factura') ?>
 
-    <?= $form->field($model, 'Material') ?>
+    <?= $form->field($model, 'Fecha') ?>
 
-    <?= $form->field($model, 'Precio_Compra') ?>
+    <?= $form->field($model, 'Monto_Efectivo') ?>
 
-    <?php // echo $form->field($model, 'Precio_Venta') ?>
+    <?php // echo $form->field($model, 'Credito') ?>
 
-    <?php // echo $form->field($model, 'Codigo') ?>
+    <?php // echo $form->field($model, 'Total') ?>
 
-    <?php // echo $form->field($model, 'Marca') ?>
+    <?php // echo $form->field($model, 'Finalizado') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

@@ -24,25 +24,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Descripcion') ?>
 
-    <?= $form->field($model, 'Precio_Costo') ?>
+    <?= $form->field($model, 'Precio_Compra') ?>
 
     <?= $form->field($model, 'Existencia') ?>
 
     <?php // echo $form->field($model, 'Precio_Venta') ?>
 
     <div class="form-group">
-<<<<<<< HEAD
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-=======
-<<<<<<< Updated upstream
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
-=======
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
->>>>>>> Stashed changes
->>>>>>> rama
     </div>
 
     <?php ActiveForm::end(); ?>

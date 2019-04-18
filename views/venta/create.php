@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Venta */
 
-$this->title = Yii::t('app', 'Create Venta');
+$this->title = Yii::t('app', 'Registrar Venta');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'clientes'=>$clientes
     ]) ?>
 
 </div>

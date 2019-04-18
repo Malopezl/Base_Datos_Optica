@@ -35,17 +35,13 @@ use yii\widgets\ActiveForm;
 =======
     <?= $form->field($model, 'Orden') ?>
 
-    <?= $form->field($model, 'idVenta') ?>
-
     <?= $form->field($model, 'idReceta') ?>
 
-    <?= $form->field($model, 'idLente') ?>
+    <?= $form->field($model, 'idLentei') ?>
 
-    <?= $form->field($model, 'Cantidad_Lentes') ?>
+    <?= $form->field($model, 'Fecha_Entrega') ?>
 
-    <?php // echo $form->field($model, 'Fecha_Entrega') ?>
-
-    <?php // echo $form->field($model, 'Total_orden') ?>
+    <?= $form->field($model, 'Total_orden') ?>
 
     <?php // echo $form->field($model, 'idAro') ?>
 
@@ -53,6 +49,18 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'No_Caja') ?>
 >>>>>>> rama:views/orden/_search.php
+
+    <?php // echo $form->field($model, 'idVenta') ?>
+
+    <?php // echo $form->field($model, 'Preciolentei') ?>
+
+    <?php // echo $form->field($model, 'PrecioVentaAros') ?>
+
+    <?php // echo $form->field($model, 'Entregada') ?>
+
+    <?php // echo $form->field($model, 'Preciolented') ?>
+
+    <?php // echo $form->field($model, 'idLented') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProveedoresSearch */
+/* @var $searchModel app\models\RecetaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Proveedores');
+$this->title = Yii::t('app', 'Recetas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="proveedores-index">
+<div class="receta-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Proveedores'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Receta'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,13 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
-            'Direccion',
-            'Nombre',
-            'NIT',
-            'Correo_electronico',
-            //'Telefono1',
-            //'Telefono2',
+            'idReceta',
+            'Fecha',
+            'Esfera_OD',
+            'Esfera_OI',
+            'Eje_OD',
+            //'Eje_OI',
+            //'Cilindro_OD',
+            //'Cilindro_OI',
+            //'AdicionOD',
+            //'AdicionOI',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

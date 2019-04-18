@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AroSearch */
+/* @var $model app\models\RecetaSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="aro-search">
+<div class="receta-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,21 +18,25 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idAro') ?>
+    <?= $form->field($model, 'idReceta') ?>
 
-    <?= $form->field($model, 'Color') ?>
+    <?= $form->field($model, 'Fecha') ?>
 
-    <?= $form->field($model, 'Existencia') ?>
+    <?= $form->field($model, 'Esfera_OD') ?>
 
-    <?= $form->field($model, 'Material') ?>
+    <?= $form->field($model, 'Esfera_OI') ?>
 
-    <?= $form->field($model, 'Precio_Compra') ?>
+    <?= $form->field($model, 'Eje_OD') ?>
 
-    <?php // echo $form->field($model, 'Precio_Venta') ?>
+    <?php // echo $form->field($model, 'Eje_OI') ?>
 
-    <?php // echo $form->field($model, 'Codigo') ?>
+    <?php // echo $form->field($model, 'Cilindro_OD') ?>
 
-    <?php // echo $form->field($model, 'Marca') ?>
+    <?php // echo $form->field($model, 'Cilindro_OI') ?>
+
+    <?php // echo $form->field($model, 'AdicionOD') ?>
+
+    <?php // echo $form->field($model, 'AdicionOI') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

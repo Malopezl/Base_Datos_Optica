@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProveedoresSearch */
+/* @var $searchModel app\models\CompraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Proveedores');
+$this->title = Yii::t('app', 'Compras');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="proveedores-index">
+<div class="compra-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Proveedores'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Compra'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,12 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID',
-            'Direccion',
-            'Nombre',
-            'NIT',
-            'Correo_electronico',
-            //'Telefono1',
-            //'Telefono2',
+            'ID_proveedores',
+            'No_Factura',
+            'Fecha',
+            'Monto_Efectivo',
+            //'Credito',
+            //'Total',
+            //'Finalizado',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
