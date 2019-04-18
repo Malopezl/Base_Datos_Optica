@@ -12,7 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Correo_Electronico')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
 
@@ -21,6 +20,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Telefono1')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Telefono2')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Correo_Electronico')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Correo')->textInput(['maxlength' => true]) ?>
 
