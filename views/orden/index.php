@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Orden'), ['create'], ['class' => 'btn btn-success']) ?>
+       <!-- <?= Html::a(Yii::t('app', 'Create Orden'), ['create'], ['class' => 'btn btn-success']) ?>-->
+        <?= Html::a(Yii::t('app', 'Ordenes Pendientes'), ['pendientes'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,20 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'Orden',
-            'idVenta',
-            'idReceta',
-            'idLente',
-            'Cantidad_Lentes',
-            //'Fecha_Entrega',
-            //'Total_orden',
+            //'idReceta',
+            //'idLentei',
+            'Fecha_Entrega',
+            'Total_orden',
             //'idAro',
-            //'Anotaciones:ntext',
-            //'No_Caja',
+            'Anotaciones:ntext',
+            'No_Caja',
+            //'idVenta',
+            //'Preciolentei',
+            //'PrecioVentaAros',
+            //'Entregada',
+            //'Preciolented',
+            //'idLented',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
     <?php Pjax::end(); ?>
-
 </div>

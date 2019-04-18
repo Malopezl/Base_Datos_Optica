@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Monto_Efectivo',
             'Credito',
             'Total',
+            'Finalizado',
         ],
     ]) ?>
 

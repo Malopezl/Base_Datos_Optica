@@ -12,9 +12,9 @@ use kartik\select2\Select2;
 ?>
 
 <div class="orden-form">
-
+    
     <?php $form = ActiveForm::begin(); ?>
-
+<!--
    
         <?= $form->field($model, 'idLentei')->Widget(Select2::classname(),[
         'data' => $lentes,
@@ -45,19 +45,19 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'Anotaciones')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'Fecha_Entrega')->textInput() ?>
-    <!--
+   
      <?= $form->field($model, 'idReceta')->textInput() ?>
 
         
     <?= $form->field($model, 'Total_orden')->textInput() ?>
     
     <?= $form->field($model, 'idVenta')->textInput() ?>
-    
+      -->
     <?= $form->field($model, 'Entregada')->textInput() ?>
-    -->
+  
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Entregar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

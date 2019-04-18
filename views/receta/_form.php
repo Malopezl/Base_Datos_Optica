@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_Paciente')->textInput() ?>
-
     <?= $form->field($model, 'Fecha')->textInput() ?>
 
     <?= $form->field($model, 'Esfera_OD')->textInput() ?>
@@ -33,7 +31,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'AdicionOI')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

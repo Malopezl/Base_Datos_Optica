@@ -5,13 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Accesorios */
 
-<<<<<<< Updated upstream
-$this->title = 'Ingreso Accesorios';
-$this->params['breadcrumbs'][] = ['label' => 'Accesorios', 'url' => ['index']];
-=======
 $this->title = Yii::t('app', 'Create Accesorios');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Accesorios'), 'url' => ['index']];
->>>>>>> Stashed changes
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="accesorios-create">

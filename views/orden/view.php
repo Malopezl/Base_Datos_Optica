@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->Orden], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Entregar'), ['update1', 'id' => $model->Orden], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->Orden], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -26,20 +26,43 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+   <p><li><label>Informacion Orden:</label>:</li> </p>
+     <?= DetailView::widget([
+
         'model' => $model,
         'attributes' => [
-            'Orden',
-            'idVenta',
-            'idReceta',
-            'idLente',
-            'Cantidad_Lentes',
+            //'Orden',
+            //'idReceta',
+            //'idLentei',
             'Fecha_Entrega',
-            'Total_orden',
-            'idAro',
+            //'Total_orden',
+            //'idAro',
             'Anotaciones:ntext',
             'No_Caja',
+            //'idVenta',
+            //'Preciolentei',
+            //'PrecioVentaAros',
+            //'Entregada',
+            //'Preciolented',
+            //'idLented',
         ],
     ]) ?>
+<p><li><label>Informacion Receta:</label>:</li> </p>
+     <?= DetailView::widget([
+        'model' => $model4,
+        'attributes' => [
+            'idReceta',
+            'Fecha',
+            'Esfera_OD',
+            'Esfera_OI',
+            'Eje_OD',
+            'Eje_OI',
+            'Cilindro_OD',
+            'Cilindro_OI',
+            'AdicionOD',
+            'AdicionOI',
+        ],
+    ]) ?>
+
 
 </div>

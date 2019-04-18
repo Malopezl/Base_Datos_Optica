@@ -26,6 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Tipo')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'Material')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

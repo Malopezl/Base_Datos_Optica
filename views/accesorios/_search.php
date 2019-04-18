@@ -18,26 +18,21 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <div class="col-fo-2"><?= $form->field($model, 'idAccesorio') ?></div>
+    <?= $form->field($model, 'idAccesorio') ?>
 
-    <div class="col-fo-2"><?= $form->field($model, 'Nombre') ?></div>
+    <?= $form->field($model, 'Nombre') ?>
 
-    <div class="col-fo-2"><?= $form->field($model, 'Precio_Costo') ?></div>
+    <?= $form->field($model, 'Descripcion') ?>
 
-    <div class="col-fo-2"><?= $form->field($model, 'Existencia') ?></div><br><br><br><br>
+    <?= $form->field($model, 'Precio_Compra') ?>
 
-    <div class="col-xs-12"><?= $form->field($model, 'Descripcion') ?></div>
+    <?= $form->field($model, 'Existencia') ?>
 
     <?php // echo $form->field($model, 'Precio_Venta') ?>
 
     <div class="form-group">
-<<<<<<< Updated upstream
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
-=======
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
->>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -19,13 +19,21 @@ use kartik\select2\Select2;
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
 
-    <?= $form->field($model, 'Fecha')->textInput() ?>
+   
 
     <?= $form->field($model, 'No_Factura')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'Adelanto')->textInput() ?>
+
+  <!--    <?= $form->field($model, 'Entregado')->textInput() ?>
+
+     <?= $form->field($model, 'Fecha')->textInput() ?>
+     <?= $form->field($model, 'Total')->textInput() ?>
+
+    <?= $form->field($model, 'Finalizado')->textInput() ?> -->
+
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Siguiente'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Registrar nuevo cliente'), ['cliente/createc'], ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Finalizar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

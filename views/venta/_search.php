@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Adelanto') ?>
 
+    <?php // echo $form->field($model, 'Finalizado') ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>

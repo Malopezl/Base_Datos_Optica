@@ -20,15 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idReceta') ?>
 
-    <?= $form->field($model, 'ID_Paciente') ?>
-
     <?= $form->field($model, 'Fecha') ?>
 
     <?= $form->field($model, 'Esfera_OD') ?>
 
     <?= $form->field($model, 'Esfera_OI') ?>
 
-    <?php // echo $form->field($model, 'Eje_OD') ?>
+    <?= $form->field($model, 'Eje_OD') ?>
 
     <?php // echo $form->field($model, 'Eje_OI') ?>
 
@@ -41,8 +39,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'AdicionOI') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

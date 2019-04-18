@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orden */
 
@@ -13,8 +13,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= DetailView::widget([
+        'model' => $model1,
+        'attributes' => [
+            //'idReceta',
+            //'Fecha',
+            'Esfera_OD',
+            'Eje_OD',
+            'Cilindro_OD',
+            'AdicionOD',
+            'Esfera_OI',
+            'Eje_OI',
+            'Cilindro_OI',
+            'AdicionOI',
+        ],
+    ]) ?>
+
     <?= $this->render('_form', [
         'model' => $model,
+         'aros'=>$aros,
+         'lentes'=>$lentes,
     ]) ?>
 
 </div>
