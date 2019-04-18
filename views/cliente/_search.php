@@ -18,29 +18,23 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'idPaciente') ?>
-
-    <?= $form->field($model, 'Correo_Electronico') ?>
+    <?= // $form->field($model, 'idPaciente') ?>
 
     <?= $form->field($model, 'Nombre') ?>
 
     <?= $form->field($model, 'NIT') ?>
 
-<<<<<<< Updated upstream
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
-=======
+    <?= $form->field($model, 'Correo_Electronico') ?>
+
     <?= $form->field($model, 'Telefono1') ?>
 
     <?php // echo $form->field($model, 'Telefono2') ?>
 
-    <?php // echo $form->field($model, 'Correo') ?>
+    <?php  echo $form->field($model, 'Correo') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
->>>>>>> Stashed changes
     </div>
 
     <?php ActiveForm::end(); ?>
