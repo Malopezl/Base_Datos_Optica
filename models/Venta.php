@@ -14,10 +14,11 @@ use Yii;
  * @property double $Total
  * @property int $Entregado
  * @property double $Adelanto
+ * @property int $Finalizado
  *
  * @property Orden[] $ordens
  * @property Cliente $paciente
- * @property VentaAccesorios[] $ventaAccesorios
+ * @property Ventaaccesorios[] $ventaaccesorios
  */
 class Venta extends \yii\db\ActiveRecord
 {
@@ -35,7 +36,7 @@ class Venta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_Paciente', 'Entregado'], 'integer'],
+            [['ID_Paciente', 'Entregado', 'Finalizado'], 'integer'],
             [['Fecha'], 'safe'],
             [['Total', 'Adelanto'], 'number'],
             [['No_Factura'], 'string', 'max' => 25],
@@ -56,6 +57,7 @@ class Venta extends \yii\db\ActiveRecord
             'Total' => Yii::t('app', 'Total'),
             'Entregado' => Yii::t('app', 'Entregado'),
             'Adelanto' => Yii::t('app', 'Adelanto'),
+            'Finalizado' => Yii::t('app', 'Finalizado'),
         ];
     }
 
@@ -78,8 +80,8 @@ class Venta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVentaAccesorios()
+    public function getVentaaccesorios()
     {
-        return $this->hasMany(VentaAccesorios::className(), ['ID_Venta' => 'idVenta']);
+        return $this->hasMany(Ventaaccesorios::className(), ['ID_Venta' => 'idVenta']);
     }
 }

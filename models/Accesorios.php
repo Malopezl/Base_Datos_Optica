@@ -10,12 +10,12 @@ use Yii;
  * @property int $idAccesorio
  * @property string $Nombre
  * @property string $Descripcion
- * @property double $Precio_Costo
- * @property string $Existencia
+ * @property double $Precio_Compra
+ * @property int $Existencia
  * @property double $Precio_Venta
  *
  * @property DetalleCompra[] $detalleCompras
- * @property DetallesVenta[] $detallesVentas
+ * @property VentaAccesorios[] $ventaAccesorios
  */
 class Accesorios extends \yii\db\ActiveRecord
 {
@@ -34,9 +34,9 @@ class Accesorios extends \yii\db\ActiveRecord
     {
         return [
             [['Descripcion'], 'string'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['Existencia'], 'integer'],
             [['Nombre'], 'string', 'max' => 25],
-            [['Existencia'], 'string', 'max' => 45],
         ];
     }
 
@@ -49,7 +49,7 @@ class Accesorios extends \yii\db\ActiveRecord
             'idAccesorio' => Yii::t('app', 'Id Accesorio'),
             'Nombre' => Yii::t('app', 'Nombre'),
             'Descripcion' => Yii::t('app', 'Descripcion'),
-            'Precio_Costo' => Yii::t('app', 'Precio Costo'),
+            'Precio_Compra' => Yii::t('app', 'Precio Compra'),
             'Existencia' => Yii::t('app', 'Existencia'),
             'Precio_Venta' => Yii::t('app', 'Precio Venta'),
         ];
@@ -66,8 +66,8 @@ class Accesorios extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetallesVentas()
+    public function getVentaAccesorios()
     {
-        return $this->hasMany(DetallesVenta::className(), ['ID_Accessorio' => 'idAccesorio']);
+        return $this->hasMany(VentaAccesorios::className(), ['ID_Accessorio' => 'idAccesorio']);
     }
 }

@@ -18,7 +18,7 @@ class LenteSearch extends Lente
     {
         return [
             [['idLente', 'graduacion_base', 'Existencia', 'Terminado'], 'integer'],
-            [['Graduacion_Ecxedente', 'Tipo'], 'safe'],
+            [['Graduacion_Ecxedente', 'Tipo', 'Material'], 'safe'],
             [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
@@ -68,7 +68,8 @@ class LenteSearch extends Lente
         ]);
 
         $query->andFilterWhere(['like', 'Graduacion_Ecxedente', $this->Graduacion_Ecxedente])
-            ->andFilterWhere(['like', 'Tipo', $this->Tipo]);
+            ->andFilterWhere(['like', 'Tipo', $this->Tipo])
+            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }

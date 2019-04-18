@@ -17,7 +17,7 @@ class RecetaSearch extends Receta
     public function rules()
     {
         return [
-            [['idReceta', 'ID_Paciente', 'Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI'], 'integer'],
+            [['idReceta', 'Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI'], 'integer'],
             [['Fecha', 'AdicionOD', 'AdicionOI'], 'safe'],
         ];
     }
@@ -59,7 +59,6 @@ class RecetaSearch extends Receta
         // grid filtering conditions
         $query->andFilterWhere([
             'idReceta' => $this->idReceta,
-            'ID_Paciente' => $this->ID_Paciente,
             'Fecha' => $this->Fecha,
             'Esfera_OD' => $this->Esfera_OD,
             'Esfera_OI' => $this->Esfera_OI,

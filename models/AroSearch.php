@@ -18,8 +18,8 @@ class AroSearch extends Aro
     {
         return [
             [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo'], 'safe'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -61,13 +61,14 @@ class AroSearch extends Aro
         $query->andFilterWhere([
             'idAro' => $this->idAro,
             'Existencia' => $this->Existencia,
-            'Precio_Costo' => $this->Precio_Costo,
+            'Precio_Compra' => $this->Precio_Compra,
             'Precio_Venta' => $this->Precio_Venta,
         ]);
 
         $query->andFilterWhere(['like', 'Color', $this->Color])
             ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo]);
+            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
+            ->andFilterWhere(['like', 'Marca', $this->Marca]);
 
         return $dataProvider;
     }

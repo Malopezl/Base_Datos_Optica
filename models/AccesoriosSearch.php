@@ -17,9 +17,9 @@ class AccesoriosSearch extends Accesorios
     public function rules()
     {
         return [
-            [['idAccesorio'], 'integer'],
-            [['Nombre', 'Descripcion', 'Existencia'], 'safe'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['idAccesorio', 'Existencia'], 'integer'],
+            [['Nombre', 'Descripcion'], 'safe'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -60,13 +60,13 @@ class AccesoriosSearch extends Accesorios
         // grid filtering conditions
         $query->andFilterWhere([
             'idAccesorio' => $this->idAccesorio,
-            'Precio_Costo' => $this->Precio_Costo,
+            'Precio_Compra' => $this->Precio_Compra,
+            'Existencia' => $this->Existencia,
             'Precio_Venta' => $this->Precio_Venta,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion])
-            ->andFilterWhere(['like', 'Existencia', $this->Existencia]);
+            ->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
 
         return $dataProvider;
     }

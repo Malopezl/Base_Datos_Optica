@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Orden;
+use app\models\Compra;
 
 /**
- * OrdenSearch represents the model behind the search form of `app\models\Orden`.
+ * CompraSearch represents the model behind the search form of `app\models\Compra`.
  */
-class OrdenSearch extends Orden
+class CompraSearch extends Compra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class OrdenSearch extends Orden
     public function rules()
     {
         return [
-            [['Orden', 'idReceta', 'idLentei', 'idAro', 'No_Caja', 'idVenta', 'Entregada', 'idLented'], 'integer'],
-            [['Fecha_Entrega', 'Anotaciones'], 'safe'],
-            [['Total_orden', 'Preciolentei', 'PrecioVentaAros', 'Preciolented'], 'number'],
+            [['ID', 'ID_proveedores', 'Finalizado'], 'integer'],
+            [['No_Factura', 'Fecha'], 'safe'],
+            [['Monto_Efectivo', 'Credito', 'Total'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class OrdenSearch extends Orden
      */
     public function search($params)
     {
-        $query = Orden::find();
+        $query = Compra::find();
 
         // add conditions that should always apply here
 
@@ -59,22 +59,16 @@ class OrdenSearch extends Orden
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'Orden' => $this->Orden,
-            'idReceta' => $this->idReceta,
-            'idLentei' => $this->idLentei,
-            'Fecha_Entrega' => $this->Fecha_Entrega,
-            'Total_orden' => $this->Total_orden,
-            'idAro' => $this->idAro,
-            'No_Caja' => $this->No_Caja,
-            'idVenta' => $this->idVenta,
-            'Preciolentei' => $this->Preciolentei,
-            'PrecioVentaAros' => $this->PrecioVentaAros,
-            'Entregada' => $this->Entregada,
-            'Preciolented' => $this->Preciolented,
-            'idLented' => $this->idLented,
+            'ID' => $this->ID,
+            'ID_proveedores' => $this->ID_proveedores,
+            'Fecha' => $this->Fecha,
+            'Monto_Efectivo' => $this->Monto_Efectivo,
+            'Credito' => $this->Credito,
+            'Total' => $this->Total,
+            'Finalizado' => $this->Finalizado,
         ]);
 
-        $query->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }
