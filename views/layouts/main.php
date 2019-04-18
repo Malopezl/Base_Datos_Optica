@@ -1,35 +1,7 @@
 <?php
 
-/* @var $this \yii\web\View ['label' => 'About', 'url' => */
+/* @var $this \yii\web\View */
 /* @var $content string */
-/* ['label' => 'Home', 'url' => ['/site/index']],['/site/about']],['label' => 'Contact', 'url' => ['/site/contact']]
-'brandLabel' => Yii::$app->name,
-echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Ingresar', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-
-    
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']]
-        ],
-    ]);
-*/
 
 use app\widgets\Alert;
 use yii\helpers\Html;
@@ -57,9 +29,44 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
+        'brandLabel' => 'Óptica Diaz',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            array('label' => 'Home', 'url' => ['/site/index']),
+            array('label'=>'Opciones',
+                'items'=>array(
+                    array('label'=>'Clientes', 'url'=>array('/cliente/index')),
+                    array('label'=>'Compras', 'url'=>array('/compra/index')),
+                    array('label'=>'Inventario',
+                        'items'=>array(
+                            array('label'=>'Accesorios', 'url'=>array('/accesorios/index')),
+                            array('label'=>'Aros', 'url'=>array('/aro/index')),
+                            array('label'=>'Lente', 'url'=>array('/lente/index')),
+                        ), 
+                    ),
+                    array('label'=>'Proveedores', 'url'=>array('/proveedores/index')),
+                    array('label'=>'Ordenes', 'url'=>array('/orden/index')),
+                    array('label'=>'Ventas', 'url'=>array('/venta/index')),
+                ),
+            ),     
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
         ],
     ]);
     NavBar::end();
