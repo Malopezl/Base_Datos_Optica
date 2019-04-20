@@ -11,19 +11,19 @@ use kartik\select2\Select2;
 <div class="detallecompra-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'ID_Accesorio')->Widget(Select2::classname(),[
-        'data' => $accesorioss,
-        'options'=>['placeholder'=>'Seleccione el accesorio'],
-        'pluginOptions'=>['allowClear=>true'],
-    ]) ?>
 <!--
     <?= $form->field($model, 'ID_Compra')->textInput() ?>
 
-    <?= $form->field($model, 'Lente_idLente')->textInput() ?>
+    <?= $form->field($model, 'ID_Accesorio')->textInput() ?>
 
-    <?= $form->field($model, 'ID_Aro')->textInput() ?>
+    <?= $form->field($model, 'Lente_idLente')->textInput() ?>
 -->
+    <?= $form->field($model, 'ID_Aro')->Widget(Select2::classname(),[
+        'data' => $aros,
+        'options'=>['placeholder'=>'Seleccione el Aro'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+
     <?= $form->field($model, 'Precio_Compra')->textInput() ?>
 
     <?= $form->field($model, 'Cantidad')->textInput() ?>
@@ -31,8 +31,8 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'Precio_Venta')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Registrar nuevo producto'), ['accesorios/createc','id'=>$id], ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Agregar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Registrar nuevo producto'), ['aro/createc','id'=>$id], ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
