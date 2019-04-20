@@ -10,7 +10,7 @@ use Yii;
  * @property int $ID
  * @property string $Direccion
  * @property string $Nombre
- * @property int $NIT
+ * @property string $NIT
  * @property string $Correo_electronico
  * @property string $Telefono1
  * @property string $Telefono2
@@ -33,10 +33,10 @@ class Proveedores extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['NIT'], 'integer'],
-            [['Direccion', 'Nombre', 'Telefono2'], 'string', 'max' => 45],
-            [['Correo_electronico'], 'string', 'max' => 100],
+            [['Direccion', 'Correo_electronico'], 'string', 'max' => 100],
+            [['Nombre', 'NIT'], 'string', 'max' => 50],
             [['Telefono1'], 'string', 'max' => 15],
+            [['Telefono2'], 'string', 'max' => 45],
         ];
     }
 
