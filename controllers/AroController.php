@@ -74,7 +74,20 @@ class AroController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionCreatec($id)
+    {
+        $model = new Aro();
+        $model->Existencia=0;
+        $model->Precio_Compra=0;
+        $model->Precio_Venta=0;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['detallecompra/createa','id'=>$id , 'ida' => $model->idAro]);
+        }
 
+        return $this->render('createc', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Updates an existing Aro model.
      * If update is successful, the browser will be redirected to the 'view' page.
