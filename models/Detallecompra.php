@@ -10,12 +10,11 @@ use Yii;
  * @property int $ID
  * @property int $ID_Compra
  * @property int $ID_Accesorio
- * @property int $ID_L_Terminado
- * @property int $ID_L_STerminado
  * @property int $Lente_idLente
  * @property int $ID_Aro
  * @property double $Precio_Compra
  * @property int $Cantidad
+ * @property double $Precio_Venta
  *
  * @property Accesorios $accesorio
  * @property Compra $compra
@@ -39,8 +38,8 @@ class Detallecompra extends \yii\db\ActiveRecord
     {
         return [
             [['ID_Compra'], 'required'],
-            [['ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
-            [['Precio_Compra'], 'number'],
+            [['ID_Compra', 'ID_Accesorio', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
             [['ID_Accesorio'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['ID_Accesorio' => 'idAccesorio']],
             [['ID_Compra'], 'exist', 'skipOnError' => true, 'targetClass' => Compra::className(), 'targetAttribute' => ['ID_Compra' => 'ID']],
             [['ID_Aro'], 'exist', 'skipOnError' => true, 'targetClass' => Aro::className(), 'targetAttribute' => ['ID_Aro' => 'idAro']],
@@ -57,12 +56,11 @@ class Detallecompra extends \yii\db\ActiveRecord
             'ID' => Yii::t('app', 'ID'),
             'ID_Compra' => Yii::t('app', 'Id Compra'),
             'ID_Accesorio' => Yii::t('app', 'Id Accesorio'),
-            'ID_L_Terminado' => Yii::t('app', 'Id L Terminado'),
-            'ID_L_STerminado' => Yii::t('app', 'Id L S Terminado'),
             'Lente_idLente' => Yii::t('app', 'Lente Id Lente'),
             'ID_Aro' => Yii::t('app', 'Id Aro'),
             'Precio_Compra' => Yii::t('app', 'Precio Compra'),
             'Cantidad' => Yii::t('app', 'Cantidad'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
         ];
     }
 

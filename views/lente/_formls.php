@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'graduacion_base')->textInput() ?>
 
-    <?= $form->field($model, 'Graduacion_Ecxedente')->textInput(['maxlength' => true]) ?>
+    
 
     <!--
     <?= $form->field($model, 'Precio_Compra')->textInput() ?>
@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Existencia')->textInput() ?>
     
     <?= $form->field($model, 'Terminado')->textInput() ?>
+
+    <?= $form->field($model, 'Graduacion_Ecxedente')->textInput(['maxlength' => true]) ?>
     -->
     <?= $form->field($model, 'Tipo')->textInput(['maxlength' => true]) ?>
 

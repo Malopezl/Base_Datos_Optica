@@ -62,18 +62,38 @@ class LenteController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Lente();
-
+        $model->Precio_Compra=0;
+        $model->Precio_Venta =0;
+        $model->Existencia=0;
+        $model->Terminado= 1;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLente]);
+            return $this->redirect(['detallecompra/createlt', 'id' => $id, 'idlen'=>$model->idLente]);
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+    public function actionCreatels($id)
+    {
+        $model = new Lente();
+        $model->Precio_Compra=0;
+        $model->Precio_Venta =0;
+        $model->Existencia=0;
+        $model->Graduacion_Ecxedente = "0";
+        $model->Terminado=0;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['detallecompra/createls', 'id' => $id, 'idlen'=>$model->idLente]);
+        }
+
+        return $this->render('createls', [
+            'model' => $model,
+        ]);
+    }
+
 
     /**
      * Updates an existing Lente model.

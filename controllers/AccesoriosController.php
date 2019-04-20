@@ -74,7 +74,20 @@ class AccesoriosController extends Controller
             'model' => $model,
         ]);
     }
+     public function actionCreatec($id)
+    {
+        $model = new Accesorios();
+        $model->Precio_Compra=0;
+        $model->Existencia=0;
+        $model->Precio_Venta=0;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['detallecompra/create','id'=>$id , 'ida' => $model->idAccesorio]);
+        }
 
+        return $this->render('createc', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Updates an existing Accesorios model.
      * If update is successful, the browser will be redirected to the 'view' page.
