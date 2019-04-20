@@ -17,8 +17,8 @@ class ProveedoresSearch extends Proveedores
     public function rules()
     {
         return [
-            [['ID', 'NIT'], 'integer'],
-            [['Direccion', 'Nombre', 'Correo_electronico', 'Telefono1', 'Telefono2'], 'safe'],
+            [['ID'], 'integer'],
+            [['Direccion', 'Nombre', 'NIT', 'Correo_electronico', 'Telefono1', 'Telefono2'], 'safe'],
         ];
     }
 
@@ -59,11 +59,11 @@ class ProveedoresSearch extends Proveedores
         // grid filtering conditions
         $query->andFilterWhere([
             'ID' => $this->ID,
-            'NIT' => $this->NIT,
         ]);
 
         $query->andFilterWhere(['like', 'Direccion', $this->Direccion])
             ->andFilterWhere(['like', 'Nombre', $this->Nombre])
+            ->andFilterWhere(['like', 'NIT', $this->NIT])
             ->andFilterWhere(['like', 'Correo_electronico', $this->Correo_electronico])
             ->andFilterWhere(['like', 'Telefono1', $this->Telefono1])
             ->andFilterWhere(['like', 'Telefono2', $this->Telefono2]);
