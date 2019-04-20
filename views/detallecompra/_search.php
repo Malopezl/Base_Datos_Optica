@@ -24,17 +24,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ID_Accesorio') ?>
 
-    <?= $form->field($model, 'ID_L_Terminado') ?>
+    <?= $form->field($model, 'Lente_idLente') ?>
 
-    <?= $form->field($model, 'ID_L_STerminado') ?>
-
-    <?php // echo $form->field($model, 'Lente_idLente') ?>
-
-    <?php // echo $form->field($model, 'ID_Aro') ?>
+    <?= $form->field($model, 'ID_Aro') ?>
 
     <?php // echo $form->field($model, 'Precio_Compra') ?>
 
     <?php // echo $form->field($model, 'Cantidad') ?>
+
+    <?php // echo $form->field($model, 'Precio_Venta') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

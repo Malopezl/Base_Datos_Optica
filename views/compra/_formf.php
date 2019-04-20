@@ -24,10 +24,10 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'Monto_Efectivo')->textInput() ?>
 
     <?= $form->field($model, 'Credito')->textInput() ?>
-<!--
-    <?= $form->field($model, 'Fecha')->textInput() ?>
 
     <?= $form->field($model, 'Total')->textInput() ?>
+<!--
+    <?= $form->field($model, 'Fecha')->textInput() ?>
 
     <?= $form->field($model, 'Finalizado')->textInput() ?>
 -->

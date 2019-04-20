@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'NIT')->textInput() ?>
+    <?= $form->field($model, 'NIT')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Correo_electronico')->textInput(['maxlength' => true]) ?>
 
