@@ -17,7 +17,7 @@ class RecetaSearch extends Receta
     public function rules()
     {
         return [
-            [['idReceta', 'Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI'], 'integer'],
+            [['idReceta', 'Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI', 'idPaciente'], 'integer'],
             [['Fecha', 'AdicionOD', 'AdicionOI'], 'safe'],
         ];
     }
@@ -66,6 +66,7 @@ class RecetaSearch extends Receta
             'Eje_OI' => $this->Eje_OI,
             'Cilindro_OD' => $this->Cilindro_OD,
             'Cilindro_OI' => $this->Cilindro_OI,
+            'idPaciente' => $this->idPaciente,
         ]);
 
         $query->andFilterWhere(['like', 'AdicionOD', $this->AdicionOD])
