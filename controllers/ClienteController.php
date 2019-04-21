@@ -5,6 +5,10 @@ namespace app\controllers;
 use Yii;
 use app\models\Cliente;
 use app\models\ClienteSearch;
+use app\models\Venta;
+use app\models\VentaSearch;
+use app\models\Receta;
+use app\models\RecetaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,8 +56,21 @@ class ClienteController extends Controller
      */
     public function actionView($id)
     {
+        $model=$this->findModel($id);
+        $searchModel = new VentaSearch();
+         $searchModel->ID_Paciente = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $searchModelo = new RecetaSearch();
+        $searchModelo->idPaciente = $id;
+        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelo' => $searchModelo,
+            'dataProvidero' => $dataProvidero,
         ]);
     }
 
@@ -80,7 +97,7 @@ class ClienteController extends Controller
         $model = new Cliente();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['venta/create','id_paciente'=> $model->idPaciente]);
+            return $this->redirect(['venta/create','id'=> $model->idPaciente]);
         }
 
         return $this->render('createc', [

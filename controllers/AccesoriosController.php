@@ -86,6 +86,7 @@ class AccesoriosController extends Controller
 
         return $this->render('createc', [
             'model' => $model,
+            'id'=>$id,
         ]);
     }
     /**

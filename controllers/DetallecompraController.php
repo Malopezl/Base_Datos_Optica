@@ -55,11 +55,43 @@ class DetallecompraController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->Lente_idLente);
+        $model2 = Accesorios::findOne($model->ID_Accesorio);
+        $model3 = Aro::findOne($model->ID_Aro);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
         ]);
     }
-
+    public function actionViewi($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->Lente_idLente);
+        $model2 = Accesorios::findOne($model->ID_Accesorio);
+        $model3 = Aro::findOne($model->ID_Aro);
+        return $this->render('viewi', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+        ]);
+    }
+    public function actionViewip($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->Lente_idLente);
+        $model2 = Accesorios::findOne($model->ID_Accesorio);
+        $model3 = Aro::findOne($model->ID_Aro);
+        return $this->render('viewip', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+        ]);
+    }
     /**
      * Creates a new Detallecompra model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -73,6 +105,9 @@ class DetallecompraController extends Controller
         {
             $model->ID_Accesorio=$ida;
         }
+        $model->Cantidad=0;
+        $model->Precio_Compra=0;
+        $model->Precio_Venta=0;
         $model->ID_Compra = $id;
         $accesorioss = [];
         $tmp = Accesorios::find()->all();
@@ -99,6 +134,9 @@ class DetallecompraController extends Controller
         {
             $model->Lente_idLente=$idlen;
         }
+        $model->Cantidad=0;
+        $model->Precio_Compra=0;
+        $model->Precio_Venta=0;
         $model->ID_Compra = $id;
         $lentes =[];
         $tmp = Lente::find()->all();
@@ -122,11 +160,15 @@ class DetallecompraController extends Controller
 
     public function actionCreatels($id, $idlen)
     {
+
         $model = new Detallecompra();
         if($idlen != 0)
         {
             $model->Lente_idLente=$idlen;
         }
+        $model->Cantidad=0;
+        $model->Precio_Compra=0;
+        $model->Precio_Venta=0;
         $model->ID_Compra = $id;
         $lentes =[];
         $tmp = Lente::find()->all();
@@ -155,6 +197,11 @@ class DetallecompraController extends Controller
         {
             $model->ID_Aro = $ida;
         }
+        //$model->Lente_idLente=0;
+        //$model->ID_Accesorio=0;
+        $model->Cantidad=0;
+        $model->Precio_Compra=0;
+        $model->Precio_Venta=0;
         $model->ID_Compra = $id;
         $aros= [];
         $tmp1 = Aro::find()->all();
@@ -184,13 +231,36 @@ class DetallecompraController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $lentes =[];
+        $tmp = Lente::find()->all();
+        foreach($tmp as $len){
+            
+
+                 $lentes[$len->idLente]="Material:".$len->Material."; Tipo:".$len->Tipo."Precio Venta: ".$len->Precio_Venta."; Graduacion: ".$len->graduacion_base."; Excedente: ".$len->Graduacion_Ecxedente;
+            
+        }
+        $accesorioss = [];
+        $tmp2 = Accesorios::find()->all();
+        foreach($tmp2 as $accesorio){
+            $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
+
+        }
+        $aros= [];
+        $tmp3 = Aro::find()->all();
+        foreach($tmp3 as $ar){
+            $aros[$ar->idAro]="Marca: ".$ar->Marca."; Material: ".$ar->Material."; Precio: ".$ar->Precio_Venta."; Codigo: ".$ar->Codigo;
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+            return $this->redirect(['compra/creates', 'id' => $model->idCompra]);
         }
 
         return $this->render('update', [
             'model' => $model,
+             'lentes' => $lentes,
+            'id'=>$model->ID_Compra,
+            'aros'=>$aros,
+            'accesorioss'=>$accesorioss,
         ]);
     }
 

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Proveedores;
+use app\models\Compra;
+use app\models\CompraSearch;
 use app\models\ProveedoresSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -52,8 +54,14 @@ class ProveedoresController extends Controller
      */
     public function actionView($id)
     {
+        $model=$this->findModel($id);
+        $searchModel = new CompraSearch();
+         $searchModel->ID_proveedores = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -75,6 +83,18 @@ class ProveedoresController extends Controller
         ]);
     }
 
+    public function actionCreatec()
+    {
+        $model = new Proveedores();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['compra/create', 'id' => $model->ID]);
+        }
+
+        return $this->render('createc', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Updates an existing Proveedores model.
      * If update is successful, the browser will be redirected to the 'view' page.

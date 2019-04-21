@@ -56,6 +56,12 @@ class RecetaController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    public function actionViewc($id)
+    {
+        return $this->render('viewc', [
+            'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Creates a new Receta model.
@@ -65,14 +71,6 @@ class RecetaController extends Controller
     public function actionCreate()
     {
         $model = new Receta();
-        $model->Esfera_OD=0;
-        $model->Esfera_OI=0;
-        $model->Eje_OD=0;
-        $model->Eje_OI=0;
-        $model->Cilindro_OD=0;
-        $model->Cilindro_OI=0;
-        $model->AdicionOD="0";
-        $model->AdicionOI="0";
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idReceta]);
@@ -82,10 +80,8 @@ class RecetaController extends Controller
             'model' => $model,
         ]);
     }
-    public function actionCreatev($id)
+    public function actionCreatev($id, $idc)
     {
-        
-        $model = new Receta();
         $model = new Receta();
         $model->Esfera_OD=0;
         $model->Esfera_OI=0;
@@ -95,12 +91,14 @@ class RecetaController extends Controller
         $model->Cilindro_OI=0;
         $model->AdicionOD="0";
         $model->AdicionOI="0";
+        $model->idPaciente=$idc;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['orden/create', 'idrec' => $model->idReceta,'id'=>$id]);
         }
 
         return $this->render('createv', [
             'model' => $model,
+            'id'=>$id,
         ]);
     }
 
@@ -121,6 +119,20 @@ class RecetaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+    public function actionUpdateco($idrec, $id)
+    {
+        $model = $this->findModel($idrec);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['orden/create', 'idrec' => $idrec, 'id'=>$id]);
+        }
+
+        return $this->render('updateco', [
+            'model' => $model,
+            'id'=>$id,
+            'idrec'=>$idrec,
         ]);
     }
 
