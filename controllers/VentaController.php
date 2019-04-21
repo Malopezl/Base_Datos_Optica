@@ -57,8 +57,42 @@ class VentaController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $model1 = Cliente::findOne($model->ID_Paciente);
+         $searchModel = new VentaaccesoriosSearch();
+         $searchModel->ID_Venta = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $searchModelo = new OrdenSearch();
+        $searchModelo->idVenta = $id;
+        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelo' => $searchModelo,
+            'dataProvidero' => $dataProvidero,
+            'model1'=>$model1,
+        ]);
+    }
+    public function actionViewc($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Cliente::findOne($model->ID_Paciente);
+         $searchModel = new VentaaccesoriosSearch();
+         $searchModel->ID_Venta = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $searchModelo = new OrdenSearch();
+        $searchModelo->idVenta = $id;
+        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+        return $this->render('viewc', [
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelo' => $searchModelo,
+            'dataProvidero' => $dataProvidero,
+            'model1'=>$model1,
         ]);
     }
 
@@ -67,9 +101,13 @@ class VentaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Venta();
+        if($id != 0)
+        {
+            $model->ID_Paciente=$id;
+        }
         $model->Entregado=0;
         $model->Finalizado=0;
         $model->Adelanto=0;

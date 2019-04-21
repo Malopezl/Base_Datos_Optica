@@ -6,6 +6,7 @@ use Yii;
 use app\models\Compra;
 use app\models\CompraSearch;
 use app\models\Proveedores;
+use app\models\Detallecompra;
 use app\models\DetallecompraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -39,10 +40,11 @@ class CompraController extends Controller
     {
         $searchModel = new CompraSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $id=0;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'id'=>$id,
         ]);
     }
 
@@ -54,8 +56,30 @@ class CompraController extends Controller
      */
     public function actionView($id)
     {
+        $model =  $this->findModel($id);
+        $model1 = Proveedores::findOne($model->ID_proveedores);
+           $searchModel = new DetallecompraSearch();
+         $searchModel->ID_Compra = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' =>$model,
+            'model1'=>$model1,
+            'searchModel'=>$searchModel,
+            'dataProvider'=>$dataProvider,
+        ]);
+    }
+    public function actionViewip($id)
+    {
+        $model =  $this->findModel($id);
+        $model1 = Proveedores::findOne($model->ID_proveedores);
+           $searchModel = new DetallecompraSearch();
+         $searchModel->ID_Compra = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('viewip', [
+            'model' =>$model,
+            'model1'=>$model1,
+            'searchModel'=>$searchModel,
+            'dataProvider'=>$dataProvider,
         ]);
     }
 
@@ -64,16 +88,22 @@ class CompraController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Compra();
+        if($id!=0){
+            $model->ID_proveedores=$id;
+        }
         $model->Finalizado=0;
+        $model->No_Factura="0";
+        $model->Monto_Efectivo=0;
+        $model->Credito=0;
         $model->Total = 0;
         $proveedoress = [];
         $tmp = Proveedores::find()->all();
         foreach($tmp as $proveedor){
             $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
-
+            
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['creates', 'id' => $model->ID]);
