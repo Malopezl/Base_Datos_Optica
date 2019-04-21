@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="orden-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <p>
+       <?= Html::a(Yii::t('app', 'Editar Receta'), ['receta/updateco','idrec'=>$idrec,'id'=>$id], ['class' => 'btn btn-success'])?>
+    </p>
     <?= DetailView::widget([
         'model' => $model1,
         'attributes' => [
@@ -33,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
          'aros'=>$aros,
          'lentes'=>$lentes,
+         'id'=>$id,
     ]) ?>
 
 </div>

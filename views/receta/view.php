@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Cilindro_OI',
             'AdicionOD',
             'AdicionOI',
+            'idPaciente',
         ],
     ]) ?>
 

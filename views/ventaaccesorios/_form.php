@@ -25,7 +25,8 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'Precio_Venta')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Agregar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['venta/creates','id'=>$id], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

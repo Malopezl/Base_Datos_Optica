@@ -16,8 +16,31 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php if($model->ID_Accesorio != null)
+    	{
+    		echo $this->render('_form', [
+        	'model' => $model,
+        	'accesorioss'=>$accesorioss,
+        	'id'=>$id,
+    		]);
+    	}
+    	else if($model->Lente_idLente!= null)
+    	{
+    		echo $this->render('_formls', [
+        	'model' => $model,
+        	'lentes'=>$lentes,
+        	'id'=>$id,
+    		]);
+    	}
+
+    	else if($model->ID_Aro!= null)
+    	{
+    		echo $this->render('_forma', [
+        	'model' => $model,
+        	'aros'=>$aros,
+        	'id'=>$id,
+    		]);
+    	}
+    	?>
 
 </div>

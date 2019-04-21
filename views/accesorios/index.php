@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Accesorios'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Registrar Nuevo Accesorio'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idAccesorio',
+            //'idAccesorio',
             'Nombre',
             'Descripcion:ntext',
-            'Precio_Compra',
             'Existencia',
-            //'Precio_Venta',
+            'Precio_Compra',
+            'Precio_Venta',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

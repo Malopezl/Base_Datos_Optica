@@ -16,14 +16,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Descripcion')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'Precio_Compra')->textInput() ?>
-
     <?= $form->field($model, 'Existencia')->textInput() ?>
+
+    <?= $form->field($model, 'Precio_Compra')->textInput() ?>
 
     <?= $form->field($model, 'Precio_Venta')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['index'], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

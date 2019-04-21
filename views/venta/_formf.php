@@ -34,6 +34,7 @@ use kartik\select2\Select2;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Finalizar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Regresar'), ['venta/creates', 'id'=>$model->idVenta], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

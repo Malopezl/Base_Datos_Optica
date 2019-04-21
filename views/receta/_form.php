@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Fecha')->textInput() ?>
+  
 
     <?= $form->field($model, 'Esfera_OD')->textInput() ?>
 
@@ -29,9 +29,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'AdicionOD')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'AdicionOI')->textInput(['maxlength' => true]) ?>
+<!--
+    <?= $form->field($model, 'Fecha')->textInput() ?>
 
+    <?= $form->field($model, 'idPaciente')->textInput() ?>
+-->
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['venta/creates','id'=>$id], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
