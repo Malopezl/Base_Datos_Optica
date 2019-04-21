@@ -101,6 +101,7 @@ class RecetaController extends Controller
 
         return $this->render('createv', [
             'model' => $model,
+            'id'=>$id,
         ]);
     }
 
