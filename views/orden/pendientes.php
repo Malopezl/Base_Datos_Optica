@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
        <!-- <?= Html::a(Yii::t('app', 'Create Orden'), ['create'], ['class' => 'btn btn-success']) ?>-->
+       <?= Html::a(Yii::t('app', 'Regresar'), ['index'], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,22 +28,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'Orden',
-            'idReceta',
-            'idLentei',
+            //'Orden',
+            //'idReceta',
+            //'idLentei',
             'Fecha_Entrega',
-            'Total_orden',
+            //'Total_orden',
             //'idAro',
             //'Anotaciones:ntext',
-            //'No_Caja',
+            'No_Caja',
             //'idVenta',
             //'Preciolentei',
             //'PrecioVentaAros',
-            'Entregada',
+            //'Entregada',
             //'Preciolented',
             //'idLented',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/orden/viewp?id='.$model->Orden;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver orden'
+                ]);
+            },
+
+            'update' => function ($url, $model) {
+                $url = '/orden/update1?id='.$model->Orden;
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Entregar Orden'),
+                ]);
+            },
+
+          ],],
         ],
     ]); ?>
 

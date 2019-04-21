@@ -24,6 +24,7 @@ use yii\widgets\ActiveForm;
 -->
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['detallecompra/create','id'=>$id, 'ida'=>0], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

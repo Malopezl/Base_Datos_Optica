@@ -17,27 +17,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idVenta], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->idVenta], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idVenta',
-            'ID_Paciente',
+           // 'idVenta',
+           // 'ID_Paciente',
             'Fecha',
             'No_Factura',
-            'Total',
-            'Entregado',
-            'Adelanto',
+           // 'Total',
+           // 'Entregado',
+           // 'Adelanto',
         ],
     ]) ?>
     <p><li><label>Subtotal:</label>:<?= Html::encode($total)?></li> </p>
@@ -59,7 +48,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'Cantidad',
             'Precio_Venta',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update} {delete}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/ventaaccesorios/viewc?id='.$model->ID;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver accesorio'
+                ]);
+            },
+
+            'update' => function ($url, $model) {
+                $url = '/ventaaccesorios/update?id='.$model->ID;
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+            'delete' => function ($url, $model) {
+                $url = '/ventaaccesorios/delete?id='.$model->ID.'&idr='.$model->ID_Venta;
+                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                    'title'        => 'delete',
+            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+            'data-method'  => 'post',
+            ]);
+            }
+
+          ],],
         ],
     ]); ?>
 
@@ -68,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php Pjax::end(); ?>
     <p>
-        <?= Html::a(Yii::t('app', 'Agregar Lentes/Aros'), ['receta/createv', 'id' => $model->idVenta], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Agregar Lentes/Aros'), ['receta/createv', 'id' => $model->idVenta, 'idc'=>$model->ID_Paciente], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Agregar Aros'), ['orden/createa', 'id' =>$model->idVenta], ['class' => 'btn btn-primary']) ?>
     </p>
 
@@ -91,7 +105,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'No_Caja',
 
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update} {delete}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/orden/viewc?id='.$model->Orden;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver Orden'
+                ]);
+            },
+
+            'update' => function ($url, $model) {
+                $url = '/orden/update?id='.$model->Orden;
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar Orden'),
+                ]);
+            },
+            'delete' => function ($url, $model) {
+                $url = '/orden/delete?id='.$model->Orden.'&idr='.$model->idVenta;
+                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                    'title'        => 'delete',
+            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+            'data-method'  => 'post',
+            ]);
+            }
+
+          ],],
         ],
     ]); ?>
 
@@ -101,6 +140,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
     <p>
         <?= Html::a(Yii::t('app', 'Finalizar Venta'), ['venta/createf', 'id' => $model->idVenta], ['class' => 'btn btn-success']) ?>
+       <!--  <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->idVenta], ['class' => 'btn btn-primary']) ?>-->
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['delete', 'id' => $model->idVenta], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Seguro de cancelar la venta?'),
+                'method' => 'post',
+            ],
+        ]) ?>
     </p>
 
 

@@ -12,6 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+
+    <?= $form->field($model, 'Material')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Tipo')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'graduacion_base')->textInput() ?>
 
     <?= $form->field($model, 'Graduacion_Ecxedente')->textInput(['maxlength' => true]) ?>
@@ -25,12 +30,11 @@ use yii\widgets\ActiveForm;
     
     <?= $form->field($model, 'Terminado')->textInput() ?>
     -->
-    <?= $form->field($model, 'Tipo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Material')->textInput(['maxlength' => true]) ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Agregar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['detallecompra/createlt','id'=>$id, 'idlen'=>0], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

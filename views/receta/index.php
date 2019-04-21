@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Cilindro_OI',
             //'AdicionOD',
             //'AdicionOI',
+            //'idPaciente',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

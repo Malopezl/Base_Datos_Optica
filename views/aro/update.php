@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Aro */
 
-$this->title = Yii::t('app', 'Update Aro: {name}', [
+$this->title = Yii::t('app', 'Editar Informacion del Aro: {name}', [
     'name' => $model->idAro,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Aros'), 'url' => ['index']];
