@@ -33,8 +33,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Telefono2')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
->>>>>>> develop
+        <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Regresar'),['compra/create', 'id'=>0], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

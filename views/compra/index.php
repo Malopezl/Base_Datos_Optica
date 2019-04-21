@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Compra'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Compra'), ['create','id'=>$id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,16 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
-            'ID_proveedores',
+            //'ID',
+            //'ID_proveedores',
             'No_Factura',
             'Fecha',
             'Monto_Efectivo',
-            //'Credito',
-            //'Total',
+            'Credito',
+            'Total',
             //'Finalizado',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/compra/view?id='.$model->ID;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver compra'
+                ]);
+            },
+            
+
+          ],],
         ],
     ]); ?>
 

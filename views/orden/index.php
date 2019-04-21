@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\OrdenSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Ordens');
+$this->title = Yii::t('app', 'Ordenes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orden-index">
@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'Orden',
+            //'Orden',
             //'idReceta',
             //'idLentei',
             'Fecha_Entrega',
-            'Total_orden',
+            //'Total_orden',
             //'idAro',
             'Anotaciones:ntext',
             'No_Caja',
@@ -43,7 +43,17 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Preciolented',
             //'idLented',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/orden/view?id='.$model->Orden;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver orden'
+                ]);
+            },
+
+          ],],
         ],
     ]); ?>
 

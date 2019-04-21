@@ -17,8 +17,10 @@ use Yii;
  * @property int $Cilindro_OI
  * @property string $AdicionOD
  * @property string $AdicionOI
+ * @property int $idPaciente
  *
  * @property Orden[] $ordens
+ * @property Cliente $paciente
  */
 class Receta extends \yii\db\ActiveRecord
 {
@@ -37,8 +39,9 @@ class Receta extends \yii\db\ActiveRecord
     {
         return [
             [['Fecha'], 'safe'],
-            [['Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI'], 'integer'],
+            [['Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI', 'idPaciente'], 'integer'],
             [['AdicionOD', 'AdicionOI'], 'string', 'max' => 10],
+            [['idPaciente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['idPaciente' => 'idPaciente']],
         ];
     }
 
@@ -50,14 +53,15 @@ class Receta extends \yii\db\ActiveRecord
         return [
             'idReceta' => Yii::t('app', 'Id Receta'),
             'Fecha' => Yii::t('app', 'Fecha'),
-            'Esfera_OD' => Yii::t('app', 'Esfera Ojo Derecho'),
-            'Esfera_OI' => Yii::t('app', 'Esfera Ojo Izquierdo'),
-            'Eje_OD' => Yii::t('app', 'Eje Ojo Derecho'),
-            'Eje_OI' => Yii::t('app', 'Eje Ojo Izquierdo'),
-            'Cilindro_OD' => Yii::t('app', 'Cilindro Ojo Derecho'),
-            'Cilindro_OI' => Yii::t('app', 'Cilindro Ojo Izquirdo'),
-            'AdicionOD' => Yii::t('app', 'Adicion Ojo Derecho'),
-            'AdicionOI' => Yii::t('app', 'Adicion Ojo Izquierdo'),
+            'Esfera_OD' => Yii::t('app', 'Esfera Od'),
+            'Esfera_OI' => Yii::t('app', 'Esfera Oi'),
+            'Eje_OD' => Yii::t('app', 'Eje Od'),
+            'Eje_OI' => Yii::t('app', 'Eje Oi'),
+            'Cilindro_OD' => Yii::t('app', 'Cilindro Od'),
+            'Cilindro_OI' => Yii::t('app', 'Cilindro Oi'),
+            'AdicionOD' => Yii::t('app', 'Adicion Od'),
+            'AdicionOI' => Yii::t('app', 'Adicion Oi'),
+            'idPaciente' => Yii::t('app', 'Id Paciente'),
         ];
     }
 
@@ -67,5 +71,13 @@ class Receta extends \yii\db\ActiveRecord
     public function getOrdens()
     {
         return $this->hasMany(Orden::className(), ['idReceta' => 'idReceta']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPaciente()
+    {
+        return $this->hasOne(Cliente::className(), ['idPaciente' => 'idPaciente']);
     }
 }

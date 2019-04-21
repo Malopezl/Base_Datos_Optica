@@ -78,6 +78,67 @@ class OrdenController extends Controller
             'model4' => $model4,
         ]);
     }
+    public function actionViewc($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->idLentei);
+        $model2 = Lente::findOne($model->idLented);
+        $model3 = Aro::findOne($model->idAro);
+        $model4 = Receta::findOne($model->idReceta);
+        return $this->render('viewc', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+            'model4' => $model4,
+            'id'=>$id,
+        ]);
+    }
+    public function actionViewp($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->idLentei);
+        $model2 = Lente::findOne($model->idLented);
+        $model3 = Aro::findOne($model->idAro);
+        $model4 = Receta::findOne($model->idReceta);
+        return $this->render('viewp', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+            'model4' => $model4,
+        ]);
+    }
+    public function actionViewi($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->idLentei);
+        $model2 = Lente::findOne($model->idLented);
+        $model3 = Aro::findOne($model->idAro);
+        $model4 = Receta::findOne($model->idReceta);
+        return $this->render('viewi', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+            'model4' => $model4,
+        ]);
+    }
+    public function actionViewcl($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Lente::findOne($model->idLentei);
+        $model2 = Lente::findOne($model->idLented);
+        $model3 = Aro::findOne($model->idAro);
+        $model4 = Receta::findOne($model->idReceta);
+        return $this->render('viewcl', [
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'model3' => $model3,
+            'model4' => $model4,
+        ]);
+    }
 
     /**
      * Creates a new Orden model.
@@ -110,6 +171,8 @@ class OrdenController extends Controller
             'model' => $model,
             'aros'=>$aros,
             'lentes'=>$lentes,
+            'id'=>$id,
+            'idrec'=>$idrec,
         ]);
     }
 
@@ -120,7 +183,7 @@ class OrdenController extends Controller
         $model->Entregada = 1;
         $model->Preciolentei = 1;
         $model->Preciolented = 1;
-        $model->No_caja = 1;
+        $model->No_Caja = 0;
         $aros =[];
         $tmp1 = Aro::find()->all();
         foreach($tmp1 as $ar){
@@ -133,6 +196,7 @@ class OrdenController extends Controller
         return $this->render('createa', [
             'model' => $model,
             'aros'=>$aros,
+            'id'=>$id,
         ]);
     }
 
@@ -148,30 +212,25 @@ class OrdenController extends Controller
         $model = $this->findModel($id);
         $lentes =[];
         $tmp = Lente::find()->all();
+         $model4 = Receta::findOne($model->idReceta);
         foreach($tmp as $len){
             $lentes[$len->idLente]="Precio: ".$len->Precio_Venta."; Graduacion: ".$len->graduacion_base."; Excedente: ".$len->Graduacion_Ecxedente." Material:".$len->Material."; Tipo:".$len->Tipo;
             }
         $aros =[];
         $tmp1 = Aro::find()->all();
-        $model1 = Lente::findOne($model->idLentei);
-        $model2 = Lente::findOne($model->idLented);
-        $model3 = Aro::findOne($model->idAro);
-        $model4 = Receta::findOne($model->idReceta);
         foreach($tmp1 as $ar){
             $aros[$ar->idAro]="Marca: ".$ar->Marca."; Material: ".$ar->Material."; Precio: ".$ar->Precio_Venta."; Codigo: ".$ar->Codigo;
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Orden]);
+            return $this->redirect(['venta/creates', 'id' => $model->idVenta]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'model1' => $model1,
-            'model2' => $model2,
-            'model3' => $model3,
-            'model4' => $model4,
             'aros'=>$aros,
             'lentes'=>$lentes,
+            'model4'=>$model4,
+            'id'=>$id,
         ]);
     }
     public function actionUpdate1($id)
@@ -196,7 +255,7 @@ class OrdenController extends Controller
             return $this->redirect(['view', 'id' => $model->Orden]);
         }
 
-        return $this->render('update', [
+        return $this->render('updatep', [
             'model' => $model,
             'model1' => $model1,
             'model2' => $model2,
@@ -213,11 +272,11 @@ class OrdenController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $idr)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['venta/creates','id'=>$idr]);
     }
 
     /**

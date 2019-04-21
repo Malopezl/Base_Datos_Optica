@@ -57,6 +57,33 @@ class VentaaccesoriosController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    public function actionViewc($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Accesorios::findOne($model->ID_Accessorio);
+        return $this->render('viewc', [
+            'model' => $model,
+            'model1'=>$model1,
+        ]);
+    }
+    public function actionViewi($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Accesorios::findOne($model->ID_Accessorio);
+        return $this->render('viewi', [
+            'model' => $model,
+            'model1'=>$model1,
+        ]);
+    }
+    public function actionViewcl($id)
+    {
+        $model = $this->findModel($id);
+        $model1 = Accesorios::findOne($model->ID_Accessorio);
+        return $this->render('viewcl', [
+            'model' => $model,
+            'model1'=>$model1,
+        ]);
+    }
 
     /**
      * Creates a new Ventaaccesorios model.
@@ -67,6 +94,8 @@ class VentaaccesoriosController extends Controller
     {
         $model = new Ventaaccesorios();
         $model->ID_Venta = $id;
+        $model->Cantidad = 0;
+        $model->Precio_Venta=0;
          $accesorioss = [];
         $tmp = Accesorios::find()->all();
         foreach($tmp as $accesorio){
@@ -101,7 +130,7 @@ class VentaaccesoriosController extends Controller
 
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+            return $this->redirect(['venta/creates', 'id' => $model->idVenta]);
         }
 
         return $this->render('update', [
@@ -118,11 +147,11 @@ class VentaaccesoriosController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $idr)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['venta/creates','id'=>$idr]);
     }
 
     /**

@@ -39,5 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Marca',
         ],
     ]) ?>
-
+    <p>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['index'], ['class' => 'btn btn-danger']) ?>
+    </p>
 </div>
