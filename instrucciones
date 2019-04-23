@@ -79,3 +79,15 @@
     }
 
   5.- sustituir los archivos
+
+------------------------------------------------------------------------------------------------------------------------------
+
+INSTALAR SELECT 2
+
+composer require kartik-v/yii2-widget-select2 "dev-master"
+
+ composer require --prefer-dist yiisoft/yii2-jui
+
+sudo composer require 2amigos/yii2-date-time-picker-widget:~1.0
+
+
