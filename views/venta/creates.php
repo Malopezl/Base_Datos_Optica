@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'idReceta',
             //'idLente',
             'Fecha_Entrega',
-            'Total_orden',
+            //'Total_orden',
             //'idAro',
             'Anotaciones:ntext',
             'No_Caja',

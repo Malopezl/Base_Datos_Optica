@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
-
+use dosamigos\datetimepicker\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Orden */
@@ -42,9 +42,23 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'No_Caja')->textInput() ?>
 
+    <?= $form->field($model, 'Fecha_Entrega')->widget(DateTimePicker::className(), [
+                                                                        'language' => 'es',
+                                                                        'size' => 'ms',
+                                                                        //'template' => '{input}',
+                                                                        'pickButtonIcon' => 'glyphicon glyphicon-time',
+                                                                        'inline' => false,
+                                                                        'clientOptions' => [
+                                                                          //'startView' => 1,
+                                                                           // 'minView' => 0,
+                                                                            //'maxView' => 1,
+                                                                            'autoclose' => true,
+                                                                            'linkFormat' => 'HH:ii P', // if inline = true
+                                                                            // 'format' => 'HH:ii P', // if inline = false
+                                                                            'todayBtn' => true
+                                                                        ]]) ?>
     <?= $form->field($model, 'Anotaciones')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'Fecha_Entrega')->textInput() ?>
     <!--
      <?= $form->field($model, 'idReceta')->textInput() ?>
 
