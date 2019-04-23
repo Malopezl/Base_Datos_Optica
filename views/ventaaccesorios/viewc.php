@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -19,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Regresar'), ['venta/creates', 'id' => $model->ID_Venta], ['class' => 'btn btn-success'])?>
     </p>
 <p><li><label>Detalle Venta:</label>:</li> </p>
-    <?= DetailView::widget([
+    <?php
+     echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             //'ID',
@@ -30,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 <p><li><label>Informacion del Accesorio:</label>:</li> </p>
-    <?= DetailView::widget([
+    <?php
+    if($model->ID_Accessorio != null)
+    {
+
+
+     echo DetailView::widget([
         'model' => $model1,
         'attributes' => [
             //'idAccesorio',
@@ -40,5 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'Existencia',
             'Precio_Venta',
         ],
-    ]) ?>
+    ]);
+    } ?>
 </div>
