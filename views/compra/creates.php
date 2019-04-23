@@ -22,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'ID',
-            'ID_proveedores',
+            //'ID',
+            //'ID_proveedores',
             'No_Factura',
             'Fecha',
             'Monto_Efectivo',
             'Credito',
             'Total',
-            'Finalizado',
+            //'Finalizado',
         ],
     ]) ?>
     <p>
@@ -46,13 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
-            'ID_Compra',
+            //'ID',
+            //'ID_Compra',
             'ID_Accesorio',
             'Lente_idLente',
-            //'ID_Aro',
-            //'Precio_Compra',
-            //'Cantidad',
+            'ID_Aro',
+            'Precio_Compra',
+            'Cantidad',
 
             ['class' => 'yii\grid\ActionColumn',
             'template'=>'{view} {update} {delete}',
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
             },
             'delete' => function ($url, $model) {
-                $url = '/detallecompra/delete?id='.$model->ID;
+                $url = '/detallecompra/delete?id='.$model->ID.'&idc='.$model->ID_Compra;
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                     'title'        => 'delete',
             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
