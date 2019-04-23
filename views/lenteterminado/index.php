@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\DetallesVentaSearch */
+/* @var $searchModel app\models\LenteTerminadoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Detalles Ventas');
+$this->title = Yii::t('app', 'Lente Terminados');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="detalles-venta-index">
+<div class="lente-terminado-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Detalles Venta'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Lente Terminado'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,14 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
-            'ID_Aro',
-            'ID_Accessorio',
-            'ID_Venta',
-            'Cantidad',
+            'idLente_Terminado',
+            'Graduacion_Excedente',
+            'Material',
+            'Graduacion',
+            'Tipo_segun_material',
+            //'Precio_Compra',
+            //'Existencia',
             //'Precio_Venta',
-            //'idLente_Terminado',
-            //'idLente_Semiterminado',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

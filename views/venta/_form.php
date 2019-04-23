@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
-
+use dosamigos\datetimepicker\DateTimePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Venta */
 /* @var $form yii\widgets\ActiveForm */
@@ -19,8 +19,22 @@ use kartik\select2\Select2;
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
 
-    <!--<?= $form->field($model, 'Fecha')->textInput() ?>
--->
+    <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
+                                                                        'language' => 'es',
+                                                                        'size' => 'ms',
+                                                                        //'template' => '{input}',
+                                                                        'pickButtonIcon' => 'glyphicon glyphicon-time',
+                                                                        'inline' => false,
+                                                                        'clientOptions' => [
+                                                                          //'startView' => 1,
+                                                                           // 'minView' => 0,
+                                                                            //'maxView' => 1,
+                                                                            'autoclose' => true,
+                                                                            'linkFormat' => 'HH:ii P', // if inline = true
+                                                                            // 'format' => 'HH:ii P', // if inline = false
+                                                                            'todayBtn' => true
+                                                                        ]]) ?>
+
     <?= $form->field($model, 'No_Factura')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
