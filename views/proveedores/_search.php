@@ -8,11 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<<<<<<< HEAD
-<div class="proveedores-buscar"> // proveedores-search
-=======
 <div class="proveedores-search">
->>>>>>> develop
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -30,11 +26,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'NIT') ?>
 
-<<<<<<< HEAD
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?> //app, search
-        <?= Html::resetButton(Yii::t('app', 'Eliminar'), ['class' => 'btn btn-default']) ?> // reset
-=======
     <?= $form->field($model, 'Correo_electronico') ?>
 
     <?php // echo $form->field($model, 'Telefono1') ?>

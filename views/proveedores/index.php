@@ -13,9 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="proveedores-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-<<<<<<< HEAD
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Registrar Nuevo Proveedor'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -41,11 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<<<<<<< HEAD
-    <?php Pjax::end(); ?>
-=======
 
     <?php Pjax::end(); ?>
 
->>>>>>> develop
 </div>

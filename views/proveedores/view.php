@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
->>>>>>> develop
                 'method' => 'post',
             ],
         ]) ?>
@@ -36,12 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'Direccion',
             'Nombre',
             'NIT',
-<<<<<<< HEAD
-=======
             'Correo_electronico',
             'Telefono1',
             'Telefono2',
->>>>>>> develop
         ],
     ]) ?>
     <?php Pjax::begin(); ?>
