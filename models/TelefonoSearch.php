@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\DetalleCompra;
+use app\models\Telefono;
 
 /**
- * DetalleCompraSearch represents the model behind the search form of `app\models\DetalleCompra`.
+ * TelefonoSearch represents the model behind the search form of `app\models\Telefono`.
  */
-class DetalleCompraSearch extends DetalleCompra
+class TelefonoSearch extends Telefono
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,7 @@ class DetalleCompraSearch extends DetalleCompra
     public function rules()
     {
         return [
-            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
-            [['Precio_Compra'], 'number'],
+            [['ID', 'Telefono_Proveedor', 'ID_Proveedor', 'ID_Cliente'], 'integer'],
         ];
     }
 
@@ -40,7 +39,7 @@ class DetalleCompraSearch extends DetalleCompra
      */
     public function search($params)
     {
-        $query = DetalleCompra::find();
+        $query = Telefono::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +58,9 @@ class DetalleCompraSearch extends DetalleCompra
         // grid filtering conditions
         $query->andFilterWhere([
             'ID' => $this->ID,
-            'ID_Compra' => $this->ID_Compra,
-            'ID_Accesorio' => $this->ID_Accesorio,
-            'ID_L_Terminado' => $this->ID_L_Terminado,
-            'ID_L_STerminado' => $this->ID_L_STerminado,
-            'Lente_idLente' => $this->Lente_idLente,
-            'ID_Aro' => $this->ID_Aro,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Cantidad' => $this->Cantidad,
+            'Telefono_Proveedor' => $this->Telefono_Proveedor,
+            'ID_Proveedor' => $this->ID_Proveedor,
+            'ID_Cliente' => $this->ID_Cliente,
         ]);
 
         return $dataProvider;

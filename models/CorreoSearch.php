@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\VentaAccesorios;
+use app\models\Correo;
 
 /**
- * VentaAccesoriosSearch represents the model behind the search form of `app\models\VentaAccesorios`.
+ * CorreoSearch represents the model behind the search form of `app\models\Correo`.
  */
-class VentaAccesoriosSearch extends VentaAccesorios
+class CorreoSearch extends Correo
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class VentaAccesoriosSearch extends VentaAccesorios
     public function rules()
     {
         return [
-            [['ID', 'ID_Accessorio', 'ID_Venta', 'Cantidad'], 'integer'],
-            [['Precio_Venta'], 'number'],
+            [['ID', 'ID_Proveedor'], 'integer'],
+            [['Correo_Proveedor'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class VentaAccesoriosSearch extends VentaAccesorios
      */
     public function search($params)
     {
-        $query = VentaAccesorios::find();
+        $query = Correo::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,10 @@ class VentaAccesoriosSearch extends VentaAccesorios
         // grid filtering conditions
         $query->andFilterWhere([
             'ID' => $this->ID,
-            'ID_Accessorio' => $this->ID_Accessorio,
-            'ID_Venta' => $this->ID_Venta,
-            'Cantidad' => $this->Cantidad,
-            'Precio_Venta' => $this->Precio_Venta,
+            'ID_Proveedor' => $this->ID_Proveedor,
         ]);
+
+        $query->andFilterWhere(['like', 'Correo_Proveedor', $this->Correo_Proveedor]);
 
         return $dataProvider;
     }
