@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\Detallecompra;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * DetallecompraSearch represents the model behind the search form of `app\models\Detallecompra`.
  */
-class AroSearch extends Aro
+class DetallecompraSearch extends Detallecompra
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,7 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
+            [['ID', 'ID_Compra', 'ID_Accesorio', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
             [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
@@ -41,7 +40,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = Detallecompra::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +58,15 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
+            'ID' => $this->ID,
+            'ID_Compra' => $this->ID_Compra,
+            'ID_Accesorio' => $this->ID_Accesorio,
+            'Lente_idLente' => $this->Lente_idLente,
+            'ID_Aro' => $this->ID_Aro,
             'Precio_Compra' => $this->Precio_Compra,
+            'Cantidad' => $this->Cantidad,
             'Precio_Venta' => $this->Precio_Venta,
         ]);
-
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
 
         return $dataProvider;
     }

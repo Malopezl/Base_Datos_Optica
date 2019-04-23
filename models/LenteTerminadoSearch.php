@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\LenteTerminado;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * LenteTerminadoSearch represents the model behind the search form of `app\models\LenteTerminado`.
  */
-class AroSearch extends Aro
+class LenteTerminadoSearch extends LenteTerminado
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
+            [['idLente_Terminado', 'Existencia'], 'integer'],
+            [['Graduacion_Excedente', 'Material', 'Graduacion', 'Tipo_segun_material'], 'safe'],
             [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
@@ -41,7 +41,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = LenteTerminado::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,16 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
+            'idLente_Terminado' => $this->idLente_Terminado,
             'Precio_Compra' => $this->Precio_Compra,
+            'Existencia' => $this->Existencia,
             'Precio_Venta' => $this->Precio_Venta,
         ]);
 
-        $query->andFilterWhere(['like', 'Color', $this->Color])
+        $query->andFilterWhere(['like', 'Graduacion_Excedente', $this->Graduacion_Excedente])
             ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
+            ->andFilterWhere(['like', 'Graduacion', $this->Graduacion])
+            ->andFilterWhere(['like', 'Tipo_segun_material', $this->Tipo_segun_material]);
 
         return $dataProvider;
     }

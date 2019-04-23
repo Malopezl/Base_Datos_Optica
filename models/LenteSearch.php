@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentetermi;
+use app\models\Lente;
 
 /**
- * LentetermiSearch represents the model behind the search form of `app\models\Lentetermi`.
+ * LenteSearch represents the model behind the search form of `app\models\Lente`.
  */
-class LentetermiSearch extends Lentetermi
+class LenteSearch extends Lente
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class LentetermiSearch extends Lentetermi
     public function rules()
     {
         return [
-            [['idLente_Terminado', 'Existencia'], 'integer'],
-            [['Graduacion_Excedente', 'Material', 'Graduacion', 'Tipo_segun_material'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['idLente', 'graduacion_base', 'Existencia', 'Terminado'], 'integer'],
+            [['Graduacion_Ecxedente', 'Tipo', 'Material'], 'safe'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LentetermiSearch extends Lentetermi
      */
     public function search($params)
     {
-        $query = Lentetermi::find();
+        $query = Lente::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,17 @@ class LentetermiSearch extends Lentetermi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Terminado' => $this->idLente_Terminado,
+            'idLente' => $this->idLente,
+            'graduacion_base' => $this->graduacion_base,
             'Precio_Compra' => $this->Precio_Compra,
+            'Precio_Venta' => $this->Precio_Venta,
             'Existencia' => $this->Existencia,
+            'Terminado' => $this->Terminado,
         ]);
 
-        $query->andFilterWhere(['like', 'Graduacion_Excedente', $this->Graduacion_Excedente])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Graduacion', $this->Graduacion])
-            ->andFilterWhere(['like', 'Tipo_segun_material', $this->Tipo_segun_material]);
+        $query->andFilterWhere(['like', 'Graduacion_Ecxedente', $this->Graduacion_Ecxedente])
+            ->andFilterWhere(['like', 'Tipo', $this->Tipo])
+            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }

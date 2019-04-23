@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Lentesemi;
-use app\models\LentesemiSearch;
+use app\models\LenteTerminado;
+use app\models\LenteTerminadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LentesemiController implements the CRUD actions for Lentesemi model.
+ * LenteTerminadoController implements the CRUD actions for LenteTerminado model.
  */
-class LentesemiController extends Controller
+class LenteTerminadoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Lists all Lentesemi models.
+     * Lists all LenteTerminado models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LentesemiSearch();
+        $searchModel = new LenteTerminadoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Displays a single Lentesemi model.
+     * Displays a single LenteTerminado model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Creates a new Lentesemi model.
+     * Creates a new LenteTerminado model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Lentesemi();
+        $model = new LenteTerminado();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
+            return $this->redirect(['view', 'id' => $model->idLente_Terminado]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Updates an existing Lentesemi model.
+     * Updates an existing LenteTerminado model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class LentesemiController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
+            return $this->redirect(['view', 'id' => $model->idLente_Terminado]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Deletes an existing Lentesemi model.
+     * Deletes an existing LenteTerminado model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,18 +110,18 @@ class LentesemiController extends Controller
     }
 
     /**
-     * Finds the Lentesemi model based on its primary key value.
+     * Finds the LenteTerminado model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Lentesemi the loaded model
+     * @return LenteTerminado the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Lentesemi::findOne($id)) !== null) {
+        if (($model = LenteTerminado::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

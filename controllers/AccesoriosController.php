@@ -35,13 +35,20 @@ class AccesoriosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AccesoriosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+             $searchModel = new AccesoriosSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+           
     }
 
     /**
@@ -52,9 +59,16 @@ class AccesoriosController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+         if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        
     }
 
     /**
@@ -64,17 +78,45 @@ class AccesoriosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Accesorios();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAccesorio]);
+         if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Accesorios();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+            
     }
+     public function actionCreatec($id)
+    {
+         if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = new Accesorios();
+            $model->Precio_Compra=0;
+            $model->Existencia=0;
+            $model->Precio_Venta=0;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/create','id'=>$id , 'ida' => $model->idAccesorio]);
+            }
 
+            return $this->render('createc', [
+                'model' => $model,
+                'id'=>$id,
+            ]);
+        }
+        
+    }
     /**
      * Updates an existing Accesorios model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -84,15 +126,22 @@ class AccesoriosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAccesorio]);
+         if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAccesorio]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        
     }
 
     /**
@@ -122,6 +171,6 @@ class AccesoriosController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

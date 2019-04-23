@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Aro;
-use app\models\AroSearch;
+use app\models\Correo;
+use app\models\CorreoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AroController implements the CRUD actions for Aro model.
+ * CorreoController implements the CRUD actions for Correo model.
  */
-class AroController extends Controller
+class CorreoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,17 +30,17 @@ class AroController extends Controller
     }
 
     /**
-     * Lists all Aro models.
+     * Lists all Correo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->isGuest) {
+           if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $searchModel = new AroSearch();
+            $searchModel = new CorreoSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -48,77 +48,56 @@ class AroController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
-            
+        
     }
 
     /**
-     * Displays a single Aro model.
+     * Displays a single Correo model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        if (Yii::$app->user->isGuest) {
+           if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
             return $this->render('view', [
-                'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
             ]);
         }
-            
+        
     }
 
     /**
-     * Creates a new Aro model.
+     * Creates a new Correo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        if (Yii::$app->user->isGuest) {
+           if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $model = new Aro();
+            $model = new Correo();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idAro]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
-            
-    }
-    public function actionCreatec($id)
-    {
-        if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-            $model = new Aro();
-            $model->Existencia=0;
-            $model->Precio_Compra=0;
-            $model->Precio_Venta=0;
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['detallecompra/createa','id'=>$id , 'ida' => $model->idAro]);
-            }
-
-            return $this->render('createc', [
-                'model' => $model,
-                'id' => $id,
-            ]);
-        }
         
     }
+
     /**
-     * Updates an existing Aro model.
+     * Updates an existing Correo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -126,26 +105,26 @@ class AroController extends Controller
      */
     public function actionUpdate($id)
     {
-        if (Yii::$app->user->isGuest) {
+           if (Yii::$app->user->isGuest) {
             return $this-> goHome();
         }
         else 
         {
-            $model = $this->findModel($id);
+             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idAro]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('update', [
                 'model' => $model,
             ]);
         }
-            
+       
     }
 
     /**
-     * Deletes an existing Aro model.
+     * Deletes an existing Correo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -153,22 +132,28 @@ class AroController extends Controller
      */
     public function actionDelete($id)
     {
-        
-        $this->findModel($id)->delete();
+           if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+                  $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+  
     }
 
     /**
-     * Finds the Aro model based on its primary key value.
+     * Finds the Correo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Aro the loaded model
+     * @return Correo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Aro::findOne($id)) !== null) {
+        if (($model = Correo::findOne($id)) !== null) {
             return $model;
         }
 

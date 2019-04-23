@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 <p><li><label>Informacion del Accesorio:</label>:</li> </p>
-    <?= DetailView::widget([
+    <?php
+    if($model->ID_Accessorio != null)
+    {
+
+    echo DetailView::widget([
         'model' => $model1,
         'attributes' => [
             //'idAccesorio',
@@ -40,5 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'Existencia',
             'Precio_Venta',
         ],
-    ]) ?>
+    ]);} ?>
 </div>

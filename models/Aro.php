@@ -11,11 +11,13 @@ use Yii;
  * @property string $Color
  * @property int $Existencia
  * @property string $Material
- * @property double $Precio_Costo
+ * @property double $Precio_Compra
  * @property double $Precio_Venta
+ * @property string $Codigo
+ * @property string $Marca
  *
- * @property DetalleCompra[] $detalleCompras
- * @property DetallesVenta[] $detallesVentas
+ * @property Detallecompra[] $detallecompras
+ * @property Orden[] $ordens
  */
 class Aro extends \yii\db\ActiveRecord
 {
@@ -34,9 +36,10 @@ class Aro extends \yii\db\ActiveRecord
     {
         return [
             [['Existencia'], 'integer'],
-            [['Precio_Costo', 'Precio_Venta'], 'number'],
+            [['Precio_Compra', 'Precio_Venta'], 'number'],
             [['Color'], 'string', 'max' => 20],
-            [['Material'], 'string', 'max' => 45],
+            [['Material', 'Codigo'], 'string', 'max' => 45],
+            [['Marca'], 'string', 'max' => 100],
         ];
     }
 
@@ -46,28 +49,30 @@ class Aro extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idAro' => 'Id Aro',
-            'Color' => 'Color',
-            'Existencia' => 'Existencia',
-            'Material' => 'Material',
-            'Precio_Costo' => 'Precio Costo',
-            'Precio_Venta' => 'Precio Venta',
+            'idAro' => Yii::t('app', 'Id Aro'),
+            'Color' => Yii::t('app', 'Color'),
+            'Existencia' => Yii::t('app', 'Existencia'),
+            'Material' => Yii::t('app', 'Material'),
+            'Precio_Compra' => Yii::t('app', 'Precio Compra'),
+            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
+            'Codigo' => Yii::t('app', 'Codigo'),
+            'Marca' => Yii::t('app', 'Marca'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetalleCompras()
+    public function getDetallecompras()
     {
-        return $this->hasMany(DetalleCompra::className(), ['ID_Aro' => 'idAro']);
+        return $this->hasMany(Detallecompra::className(), ['ID_Aro' => 'idAro']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetallesVentas()
+    public function getOrdens()
     {
-        return $this->hasMany(DetallesVenta::className(), ['ID_Aro' => 'idAro']);
+        return $this->hasMany(Orden::className(), ['idAro' => 'idAro']);
     }
 }

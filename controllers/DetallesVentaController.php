@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Lentetermi;
-use app\models\LentetermiSearch;
+use app\models\DetallesVenta;
+use app\models\DetallesVentaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LentetermiController implements the CRUD actions for Lentetermi model.
+ * DetallesVentaController implements the CRUD actions for DetallesVenta model.
  */
-class LentetermiController extends Controller
+class DetallesVentaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Lists all Lentetermi models.
+     * Lists all DetallesVenta models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LentetermiSearch();
+        $searchModel = new DetallesVentaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Displays a single Lentetermi model.
+     * Displays a single DetallesVenta model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Creates a new Lentetermi model.
+     * Creates a new DetallesVenta model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Lentetermi();
+        $model = new DetallesVenta();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLente_Terminado]);
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Updates an existing Lentetermi model.
+     * Updates an existing DetallesVenta model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class LentetermiController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idLente_Terminado]);
+            return $this->redirect(['view', 'id' => $model->ID]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Deletes an existing Lentetermi model.
+     * Deletes an existing DetallesVenta model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,18 +110,18 @@ class LentetermiController extends Controller
     }
 
     /**
-     * Finds the Lentetermi model based on its primary key value.
+     * Finds the DetallesVenta model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Lentetermi the loaded model
+     * @return DetallesVenta the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Lentetermi::findOne($id)) !== null) {
+        if (($model = DetallesVenta::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Aro;
-use app\models\AroSearch;
+use app\models\DetalleOrden;
+use app\models\DetalleOrdenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AroController implements the CRUD actions for Aro model.
+ * DetalleOrdenController implements the CRUD actions for DetalleOrden model.
  */
-class AroController extends Controller
+class DetalleOrdenController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,7 +30,7 @@ class AroController extends Controller
     }
 
     /**
-     * Lists all Aro models.
+     * Lists all DetalleOrden models.
      * @return mixed
      */
     public function actionIndex()
@@ -40,7 +40,7 @@ class AroController extends Controller
         }
         else 
         {
-            $searchModel = new AroSearch();
+             $searchModel = new DetalleOrdenSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
             return $this->render('index', [
@@ -48,11 +48,11 @@ class AroController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
-            
+       
     }
 
     /**
-     * Displays a single Aro model.
+     * Displays a single DetalleOrden model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -64,15 +64,15 @@ class AroController extends Controller
         }
         else 
         {
-            return $this->render('view', [
+             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
         }
-            
+       
     }
 
     /**
-     * Creates a new Aro model.
+     * Creates a new DetalleOrden model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -83,42 +83,21 @@ class AroController extends Controller
         }
         else 
         {
-            $model = new Aro();
+            $model = new DetalleOrden();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idAro]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
-            
-    }
-    public function actionCreatec($id)
-    {
-        if (Yii::$app->user->isGuest) {
-            return $this-> goHome();
-        }
-        else 
-        {
-            $model = new Aro();
-            $model->Existencia=0;
-            $model->Precio_Compra=0;
-            $model->Precio_Venta=0;
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['detallecompra/createa','id'=>$id , 'ida' => $model->idAro]);
-            }
-
-            return $this->render('createc', [
-                'model' => $model,
-                'id' => $id,
-            ]);
-        }
         
     }
+
     /**
-     * Updates an existing Aro model.
+     * Updates an existing DetalleOrden model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -131,21 +110,21 @@ class AroController extends Controller
         }
         else 
         {
-            $model = $this->findModel($id);
+             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->idAro]);
+                return $this->redirect(['view', 'id' => $model->ID]);
             }
 
             return $this->render('update', [
                 'model' => $model,
             ]);
         }
-            
+       
     }
 
     /**
-     * Deletes an existing Aro model.
+     * Deletes an existing DetalleOrden model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -153,22 +132,28 @@ class AroController extends Controller
      */
     public function actionDelete($id)
     {
-        
-        $this->findModel($id)->delete();
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        
     }
 
     /**
-     * Finds the Aro model based on its primary key value.
+     * Finds the DetalleOrden model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Aro the loaded model
+     * @return DetalleOrden the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Aro::findOne($id)) !== null) {
+        if (($model = DetalleOrden::findOne($id)) !== null) {
             return $model;
         }
 

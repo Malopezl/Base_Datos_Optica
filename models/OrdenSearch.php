@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Lentesemi;
+use app\models\Orden;
 
 /**
- * LentesemiSearch represents the model behind the search form of `app\models\Lentesemi`.
+ * OrdenSearch represents the model behind the search form of `app\models\Orden`.
  */
-class LentesemiSearch extends Lentesemi
+class OrdenSearch extends Orden
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class LentesemiSearch extends Lentesemi
     public function rules()
     {
         return [
-            [['idLente_Semiterminado', 'Graduacion_Base', 'Existencia'], 'integer'],
-            [['Tipo_Lente', 'Material', 'Lente_Semiterminadocol'], 'safe'],
-            [['Precio_Compra'], 'number'],
+            [['Orden', 'idReceta', 'idLentei', 'idAro', 'No_Caja', 'idVenta', 'Entregada', 'idLented'], 'integer'],
+            [['Fecha_Entrega', 'Anotaciones'], 'safe'],
+            [['Total_orden', 'Preciolentei', 'PrecioVentaAros', 'Preciolented'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LentesemiSearch extends Lentesemi
      */
     public function search($params)
     {
-        $query = Lentesemi::find();
+        $query = Orden::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,22 @@ class LentesemiSearch extends Lentesemi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idLente_Semiterminado' => $this->idLente_Semiterminado,
-            'Graduacion_Base' => $this->Graduacion_Base,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Existencia' => $this->Existencia,
+            'Orden' => $this->Orden,
+            'idReceta' => $this->idReceta,
+            'idLentei' => $this->idLentei,
+            'Fecha_Entrega' => $this->Fecha_Entrega,
+            'Total_orden' => $this->Total_orden,
+            'idAro' => $this->idAro,
+            'No_Caja' => $this->No_Caja,
+            'idVenta' => $this->idVenta,
+            'Preciolentei' => $this->Preciolentei,
+            'PrecioVentaAros' => $this->PrecioVentaAros,
+            'Entregada' => $this->Entregada,
+            'Preciolented' => $this->Preciolented,
+            'idLented' => $this->idLented,
         ]);
 
-        $query->andFilterWhere(['like', 'Tipo_Lente', $this->Tipo_Lente])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Lente_Semiterminadocol', $this->Lente_Semiterminadocol]);
+        $query->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }
