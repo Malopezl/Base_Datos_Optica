@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\Orden;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * OrdenSearch represents the model behind the search form of `app\models\Orden`.
  */
-class AroSearch extends Aro
+class OrdenSearch extends Orden
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['Orden', 'idReceta', 'idLentei', 'idAro', 'No_Caja', 'idVenta', 'Entregada', 'idLented'], 'integer'],
+            [['Fecha_Entrega', 'Anotaciones'], 'safe'],
+            [['Total_orden', 'Preciolentei', 'PrecioVentaAros', 'Preciolented'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = Orden::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,22 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
+            'Orden' => $this->Orden,
+            'idReceta' => $this->idReceta,
+            'idLentei' => $this->idLentei,
+            'Fecha_Entrega' => $this->Fecha_Entrega,
+            'Total_orden' => $this->Total_orden,
             'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Precio_Venta' => $this->Precio_Venta,
+            'No_Caja' => $this->No_Caja,
+            'idVenta' => $this->idVenta,
+            'Preciolentei' => $this->Preciolentei,
+            'PrecioVentaAros' => $this->PrecioVentaAros,
+            'Entregada' => $this->Entregada,
+            'Preciolented' => $this->Preciolented,
+            'idLented' => $this->idLented,
         ]);
 
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
+        $query->andFilterWhere(['like', 'Anotaciones', $this->Anotaciones]);
 
         return $dataProvider;
     }

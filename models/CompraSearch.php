@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\Compra;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * CompraSearch represents the model behind the search form of `app\models\Compra`.
  */
-class AroSearch extends Aro
+class CompraSearch extends Compra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['ID', 'ID_proveedores', 'Finalizado'], 'integer'],
+            [['No_Factura', 'Fecha'], 'safe'],
+            [['Monto_Efectivo', 'Credito', 'Total'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = Compra::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,16 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Precio_Venta' => $this->Precio_Venta,
+            'ID' => $this->ID,
+            'ID_proveedores' => $this->ID_proveedores,
+            'Fecha' => $this->Fecha,
+            'Monto_Efectivo' => $this->Monto_Efectivo,
+            'Credito' => $this->Credito,
+            'Total' => $this->Total,
+            'Finalizado' => $this->Finalizado,
         ]);
 
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }

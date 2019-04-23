@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\Venta;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * VentaSearch represents the model behind the search form of `app\models\Venta`.
  */
-class AroSearch extends Aro
+class VentaSearch extends Venta
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['idVenta', 'ID_Paciente', 'Entregado', 'Finalizado'], 'integer'],
+            [['Fecha', 'No_Factura'], 'safe'],
+            [['Total', 'Adelanto'], 'number'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = Venta::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,16 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
-            'Precio_Compra' => $this->Precio_Compra,
-            'Precio_Venta' => $this->Precio_Venta,
+            'idVenta' => $this->idVenta,
+            'ID_Paciente' => $this->ID_Paciente,
+            'Fecha' => $this->Fecha,
+            'Total' => $this->Total,
+            'Entregado' => $this->Entregado,
+            'Adelanto' => $this->Adelanto,
+            'Finalizado' => $this->Finalizado,
         ]);
 
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
+        $query->andFilterWhere(['like', 'No_Factura', $this->No_Factura]);
 
         return $dataProvider;
     }

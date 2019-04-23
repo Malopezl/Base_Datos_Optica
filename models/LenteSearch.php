@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\Lente;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * LenteSearch represents the model behind the search form of `app\models\Lente`.
  */
-class AroSearch extends Aro
+class LenteSearch extends Lente
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
+            [['idLente', 'graduacion_base', 'Existencia', 'Terminado'], 'integer'],
+            [['Graduacion_Ecxedente', 'Tipo', 'Material'], 'safe'],
             [['Precio_Compra', 'Precio_Venta'], 'number'],
         ];
     }
@@ -41,7 +41,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = Lente::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,17 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
+            'idLente' => $this->idLente,
+            'graduacion_base' => $this->graduacion_base,
             'Precio_Compra' => $this->Precio_Compra,
             'Precio_Venta' => $this->Precio_Venta,
+            'Existencia' => $this->Existencia,
+            'Terminado' => $this->Terminado,
         ]);
 
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
+        $query->andFilterWhere(['like', 'Graduacion_Ecxedente', $this->Graduacion_Ecxedente])
+            ->andFilterWhere(['like', 'Tipo', $this->Tipo])
+            ->andFilterWhere(['like', 'Material', $this->Material]);
 
         return $dataProvider;
     }

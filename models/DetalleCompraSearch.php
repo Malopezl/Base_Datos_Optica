@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Aro;
+use app\models\DetalleCompra;
 
 /**
- * AroSearch represents the model behind the search form of `app\models\Aro`.
+ * DetalleCompraSearch represents the model behind the search form of `app\models\DetalleCompra`.
  */
-class AroSearch extends Aro
+class DetalleCompraSearch extends DetalleCompra
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class AroSearch extends Aro
     public function rules()
     {
         return [
-            [['idAro', 'Existencia'], 'integer'],
-            [['Color', 'Material', 'Codigo', 'Marca'], 'safe'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
+            [['ID', 'ID_Compra', 'ID_Accesorio', 'ID_L_Terminado', 'ID_L_STerminado', 'Lente_idLente', 'ID_Aro', 'Cantidad'], 'integer'],
+            [['Precio_Compra'], 'number'],
         ];
     }
 
@@ -41,7 +40,7 @@ class AroSearch extends Aro
      */
     public function search($params)
     {
-        $query = Aro::find();
+        $query = DetalleCompra::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +58,16 @@ class AroSearch extends Aro
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idAro' => $this->idAro,
-            'Existencia' => $this->Existencia,
+            'ID' => $this->ID,
+            'ID_Compra' => $this->ID_Compra,
+            'ID_Accesorio' => $this->ID_Accesorio,
+            'ID_L_Terminado' => $this->ID_L_Terminado,
+            'ID_L_STerminado' => $this->ID_L_STerminado,
+            'Lente_idLente' => $this->Lente_idLente,
+            'ID_Aro' => $this->ID_Aro,
             'Precio_Compra' => $this->Precio_Compra,
-            'Precio_Venta' => $this->Precio_Venta,
+            'Cantidad' => $this->Cantidad,
         ]);
-
-        $query->andFilterWhere(['like', 'Color', $this->Color])
-            ->andFilterWhere(['like', 'Material', $this->Material])
-            ->andFilterWhere(['like', 'Codigo', $this->Codigo])
-            ->andFilterWhere(['like', 'Marca', $this->Marca]);
 
         return $dataProvider;
     }
