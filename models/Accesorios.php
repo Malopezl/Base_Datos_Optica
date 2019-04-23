@@ -10,12 +10,11 @@ use Yii;
  * @property int $idAccesorio
  * @property string $Nombre
  * @property string $Descripcion
- * @property double $Precio_Compra
- * @property int $Existencia
- * @property double $Precio_Venta
+ * @property double $Precio_Costo
+ * @property string $Existencia
  *
  * @property DetalleCompra[] $detalleCompras
- * @property VentaAccesorios[] $ventaAccesorios
+ * @property DetallesVenta[] $detallesVentas
  */
 class Accesorios extends \yii\db\ActiveRecord
 {
@@ -34,9 +33,9 @@ class Accesorios extends \yii\db\ActiveRecord
     {
         return [
             [['Descripcion'], 'string'],
-            [['Precio_Compra', 'Precio_Venta'], 'number'],
-            [['Existencia'], 'integer'],
+            [['Precio_Costo'], 'number'],
             [['Nombre'], 'string', 'max' => 25],
+            [['Existencia'], 'string', 'max' => 45],
         ];
     }
 
@@ -46,12 +45,11 @@ class Accesorios extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idAccesorio' => Yii::t('app', 'Id Accesorio'),
-            'Nombre' => Yii::t('app', 'Nombre'),
-            'Descripcion' => Yii::t('app', 'Descripcion'),
-            'Precio_Compra' => Yii::t('app', 'Precio Compra'),
-            'Existencia' => Yii::t('app', 'Existencia'),
-            'Precio_Venta' => Yii::t('app', 'Precio Venta'),
+            'idAccesorio' => 'Id Accesorio',
+            'Nombre' => 'Nombre',
+            'Descripcion' => 'Descripcion',
+            'Precio_Costo' => 'Precio Costo',
+            'Existencia' => 'Existencia',
         ];
     }
 
@@ -66,8 +64,8 @@ class Accesorios extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVentaAccesorios()
+    public function getDetallesVentas()
     {
-        return $this->hasMany(VentaAccesorios::className(), ['ID_Accessorio' => 'idAccesorio']);
+        return $this->hasMany(DetallesVenta::className(), ['ID_Accessorio' => 'idAccesorio']);
     }
 }
