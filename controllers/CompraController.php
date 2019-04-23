@@ -38,14 +38,21 @@ class CompraController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CompraSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $id=0;
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'id'=>$id,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new CompraSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $id=0;
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'id'=>$id,
+            ]);
+        }
+            
     }
 
     /**
@@ -56,31 +63,45 @@ class CompraController extends Controller
      */
     public function actionView($id)
     {
-        $model =  $this->findModel($id);
-        $model1 = Proveedores::findOne($model->ID_proveedores);
-           $searchModel = new DetallecompraSearch();
-         $searchModel->ID_Compra = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('view', [
-            'model' =>$model,
-            'model1'=>$model1,
-            'searchModel'=>$searchModel,
-            'dataProvider'=>$dataProvider,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model =  $this->findModel($id);
+            $model1 = Proveedores::findOne($model->ID_proveedores);
+            $searchModel = new DetallecompraSearch();
+            $searchModel->ID_Compra = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('view', [
+                'model' =>$model,
+                'model1'=>$model1,
+                'searchModel'=>$searchModel,
+                'dataProvider'=>$dataProvider,
+            ]);
+        }
+            
     }
     public function actionViewip($id)
     {
-        $model =  $this->findModel($id);
-        $model1 = Proveedores::findOne($model->ID_proveedores);
-           $searchModel = new DetallecompraSearch();
-         $searchModel->ID_Compra = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('viewip', [
-            'model' =>$model,
-            'model1'=>$model1,
-            'searchModel'=>$searchModel,
-            'dataProvider'=>$dataProvider,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model =  $this->findModel($id);
+            $model1 = Proveedores::findOne($model->ID_proveedores);
+            $searchModel = new DetallecompraSearch();
+            $searchModel->ID_Compra = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('viewip', [
+                'model' =>$model,
+                'model1'=>$model1,
+                'searchModel'=>$searchModel,
+                'dataProvider'=>$dataProvider,
+            ]);
+        }
+        
     }
 
     /**
@@ -90,64 +111,85 @@ class CompraController extends Controller
      */
     public function actionCreate($id)
     {
-        $model = new Compra();
-        if($id!=0){
-            $model->ID_proveedores=$id;
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        $model->Finalizado=0;
-        $model->No_Factura="0";
-        $model->Monto_Efectivo=0;
-        $model->Credito=0;
-        $model->Total = 0;
-        $proveedoress = [];
-        $tmp = Proveedores::find()->all();
-        foreach($tmp as $proveedor){
-            $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
-            
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['creates', 'id' => $model->ID]);
-        }
+        else 
+        {
+            $model = new Compra();
+            if($id!=0){
+                $model->ID_proveedores=$id;
+            }
+            $model->Finalizado=0;
+            $model->No_Factura="0";
+            $model->Monto_Efectivo=0;
+            $model->Credito=0;
+            $model->Total = 0;
+            $proveedoress = [];
+            $tmp = Proveedores::find()->all();
+            foreach($tmp as $proveedor){
+                $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
+                
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['creates', 'id' => $model->ID]);
+            }
 
-        return $this->render('create', [
-            'model' => $model,
-            'proveedoress'=>$proveedoress,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+                'proveedoress'=>$proveedoress,
+            ]);
+        }
+            
     }
     public function actionCreates($id)
     {
-        $idlen=0;
-        $searchModel = new DetallecompraSearch();
-         $searchModel->ID_Compra = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('creates', [
-            'model' => $this->findModel($id),
-            'searchModel'=>$searchModel,
-            'dataProvider'=>$dataProvider,
-            'idlen'=>$idlen,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $idlen=0;
+            $searchModel = new DetallecompraSearch();
+             $searchModel->ID_Compra = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('creates', [
+                'model' => $this->findModel($id),
+                'searchModel'=>$searchModel,
+                'dataProvider'=>$dataProvider,
+                'idlen'=>$idlen,
+            ]);
+        }
+            
     }
      public function actionCreatef($id)
     {
-        $model = $this->findModel($id);
-        $model->Finalizado=1;
-         $v1=$model->Monto_Efectivo;
-        $v2=$model->Credito;
-        $model->Total = $v1 + $v2;
-        $proveedoress = [];
-        $tmp = Proveedores::find()->all();
-        foreach($tmp as $proveedor){
-            $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
-
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
-        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model->Finalizado=1;
+             $v1=$model->Monto_Efectivo;
+            $v2=$model->Credito;
+            $model->Total = $v1 + $v2;
+            $proveedoress = [];
+            $tmp = Proveedores::find()->all();
+            foreach($tmp as $proveedor){
+                $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
 
-        return $this->render('createf', [
-            'model' => $model,
-            'proveedoress'=>$proveedoress,
-        ]);
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID]);
+            }
+
+            return $this->render('createf', [
+                'model' => $model,
+                'proveedoress'=>$proveedoress,
+            ]);
+        }
+            
     }
 
 
@@ -160,21 +202,28 @@ class CompraController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $proveedoress = [];
-        $tmp = Proveedores::find()->all();
-        foreach($tmp as $proveedor){
-            $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
-
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
-        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $proveedoress = [];
+            $tmp = Proveedores::find()->all();
+            foreach($tmp as $proveedor){
+                $proveedoress[$proveedor->ID]="Nit: ".$proveedor->NIT.";  Nombre: ".$proveedor->Nombre;
 
-        return $this->render('update', [
-            'model' => $model,
-            'proveedoress'=>$proveedoress,
-        ]);
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'proveedoress'=>$proveedoress,
+            ]);
+        }
+            
     }
 
     /**

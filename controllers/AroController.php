@@ -35,13 +35,20 @@ class AroController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AroSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new AroSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -52,9 +59,16 @@ class AroController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+            
     }
 
     /**
@@ -64,30 +78,44 @@ class AroController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Aro();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAro]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Aro();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAro]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+            
     }
     public function actionCreatec($id)
     {
-        $model = new Aro();
-        $model->Existencia=0;
-        $model->Precio_Compra=0;
-        $model->Precio_Venta=0;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['detallecompra/createa','id'=>$id , 'ida' => $model->idAro]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Aro();
+            $model->Existencia=0;
+            $model->Precio_Compra=0;
+            $model->Precio_Venta=0;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/createa','id'=>$id , 'ida' => $model->idAro]);
+            }
 
-        return $this->render('createc', [
-            'model' => $model,
-            'id' => $id,
-        ]);
+            return $this->render('createc', [
+                'model' => $model,
+                'id' => $id,
+            ]);
+        }
+        
     }
     /**
      * Updates an existing Aro model.
@@ -98,15 +126,22 @@ class AroController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAro]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idAro]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**
@@ -118,6 +153,7 @@ class AroController extends Controller
      */
     public function actionDelete($id)
     {
+        
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
