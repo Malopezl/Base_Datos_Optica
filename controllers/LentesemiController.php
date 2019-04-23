@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Aro;
-use app\models\AroSearch;
+use app\models\Lentesemi;
+use app\models\LentesemiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AroController implements the CRUD actions for Aro model.
+ * LentesemiController implements the CRUD actions for Lentesemi model.
  */
-class AroController extends Controller
+class LentesemiController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class AroController extends Controller
     }
 
     /**
-     * Lists all Aro models.
+     * Lists all Lentesemi models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AroSearch();
+        $searchModel = new LentesemiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class AroController extends Controller
     }
 
     /**
-     * Displays a single Aro model.
+     * Displays a single Lentesemi model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class AroController extends Controller
     }
 
     /**
-     * Creates a new Aro model.
+     * Creates a new Lentesemi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Aro();
+        $model = new Lentesemi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAro]);
+            return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class AroController extends Controller
     }
 
     /**
-     * Updates an existing Aro model.
+     * Updates an existing Lentesemi model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class AroController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idAro]);
+            return $this->redirect(['view', 'id' => $model->idLente_Semiterminado]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class AroController extends Controller
     }
 
     /**
-     * Deletes an existing Aro model.
+     * Deletes an existing Lentesemi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class AroController extends Controller
     }
 
     /**
-     * Finds the Aro model based on its primary key value.
+     * Finds the Lentesemi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Aro the loaded model
+     * @return Lentesemi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Aro::findOne($id)) !== null) {
+        if (($model = Lentesemi::findOne($id)) !== null) {
             return $model;
         }
 

@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Óptica Diaz',
+        'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,23 +38,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            array('label' => 'Home', 'url' => ['/site/index']),
-            array('label'=>'Opciones',
-                'items'=>array(
-                    array('label'=>'Clientes', 'url'=>array('/cliente/index')),
-                    array('label'=>'Compras', 'url'=>array('/compra/index')),
-                    array('label'=>'Inventario',
-                        'items'=>array(
-                            array('label'=>'Accesorios', 'url'=>array('/accesorios/index')),
-                            array('label'=>'Aros', 'url'=>array('/aro/index')),
-                            array('label'=>'Lente', 'url'=>array('/lente/index')),
-                        ), 
-                    ),
-                    array('label'=>'Proveedores', 'url'=>array('/proveedores/index')),
-                    array('label'=>'Ordenes', 'url'=>array('/orden/index')),
-                    array('label'=>'Ventas', 'url'=>array('/venta/index')),
-                ),
-            ),     
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
