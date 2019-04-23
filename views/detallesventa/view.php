@@ -35,11 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_Venta',
             'Cantidad',
             'Precio_Venta',
-<<<<<<< Updated upstream
-=======
             'idLente_Terminado',
             'idLente_Semiterminado',
->>>>>>> Stashed changes
         ],
     ]) ?>
 

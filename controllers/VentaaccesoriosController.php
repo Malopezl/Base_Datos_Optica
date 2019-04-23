@@ -36,13 +36,20 @@ class VentaaccesoriosController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new VentaaccesoriosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new VentaaccesoriosSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -53,36 +60,64 @@ class VentaaccesoriosController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+            
     }
     public function actionViewc($id)
     {
-        $model = $this->findModel($id);
-        $model1 = Accesorios::findOne($model->ID_Accessorio);
-        return $this->render('viewc', [
-            'model' => $model,
-            'model1'=>$model1,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model1 = Accesorios::findOne($model->ID_Accessorio);
+            return $this->render('viewc', [
+                'model' => $model,
+                'model1'=>$model1,
+            ]);
+        }
+            
     }
     public function actionViewi($id)
     {
-        $model = $this->findModel($id);
-        $model1 = Accesorios::findOne($model->ID_Accessorio);
-        return $this->render('viewi', [
-            'model' => $model,
-            'model1'=>$model1,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model1 = Accesorios::findOne($model->ID_Accessorio);
+            return $this->render('viewi', [
+                'model' => $model,
+                'model1'=>$model1,
+            ]);
+        }   
+            
     }
     public function actionViewcl($id)
     {
-        $model = $this->findModel($id);
-        $model1 = Accesorios::findOne($model->ID_Accessorio);
-        return $this->render('viewcl', [
-            'model' => $model,
-            'model1'=>$model1,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model1 = Accesorios::findOne($model->ID_Accessorio);
+            return $this->render('viewcl', [
+                'model' => $model,
+                'model1'=>$model1,
+            ]);
+        }
+            
     }
 
     /**
@@ -92,25 +127,32 @@ class VentaaccesoriosController extends Controller
      */
     public function actionCreate($id)
     {
-        $model = new Ventaaccesorios();
-        $model->ID_Venta = $id;
-        $model->Cantidad = 0;
-        $model->Precio_Venta=0;
-         $accesorioss = [];
-        $tmp = Accesorios::find()->all();
-        foreach($tmp as $accesorio){
-            $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
-
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['venta/creates','id' => $model->ID_Venta]);
-        }
+        else 
+        {
+            $model = new Ventaaccesorios();
+            $model->ID_Venta = $id;
+            $model->Cantidad = 0;
+            $model->Precio_Venta=0;
+             $accesorioss = [];
+            $tmp = Accesorios::find()->all();
+            foreach($tmp as $accesorio){
+                $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
 
-        return $this->render('create', [
-            'model' => $model,
-            'accesorioss' => $accesorioss,
-            'id'=>$id,
-        ]);
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['venta/creates','id' => $model->ID_Venta]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+                'accesorioss' => $accesorioss,
+                'id'=>$id,
+            ]);
+        }
+            
     }
 
     /**
@@ -122,22 +164,29 @@ class VentaaccesoriosController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $accesorioss = [];
-        $tmp = Accesorios::find()->all();
-        foreach($tmp as $accesorio){
-            $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
-
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['venta/creates', 'id' => $model->idVenta]);
-        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $accesorioss = [];
+            $tmp = Accesorios::find()->all();
+            foreach($tmp as $accesorio){
+                $accesorioss[$accesorio->idAccesorio]="Nombre: ".$accesorio->Nombre.";  Descripcion: ".$accesorio->Descripcion.";  Existencia: ".$accesorio->Existencia;
 
-        return $this->render('update', [
-            'model' => $model,
-            'accesorioss' => $accesorioss,
-            'id'=>$id,
-        ]);
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['venta/creates', 'id' => $model->idVenta]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'accesorioss' => $accesorioss,
+                'id'=>$id,
+            ]);
+        }
+            
     }
 
     /**

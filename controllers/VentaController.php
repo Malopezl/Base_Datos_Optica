@@ -40,13 +40,20 @@ class VentaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new VentaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new VentaSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -57,43 +64,57 @@ class VentaController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
-        $model1 = Cliente::findOne($model->ID_Paciente);
-         $searchModel = new VentaaccesoriosSearch();
-         $searchModel->ID_Venta = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model1 = Cliente::findOne($model->ID_Paciente);
+            $searchModel = new VentaaccesoriosSearch();
+            $searchModel->ID_Venta = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $searchModelo = new OrdenSearch();
-        $searchModelo->idVenta = $id;
-        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
-        return $this->render('view', [
-            'model' => $model,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'searchModelo' => $searchModelo,
-            'dataProvidero' => $dataProvidero,
-            'model1'=>$model1,
-        ]);
+            $searchModelo = new OrdenSearch();
+            $searchModelo->idVenta = $id;
+            $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+            return $this->render('view', [
+                'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'searchModelo' => $searchModelo,
+                'dataProvidero' => $dataProvidero,
+                'model1'=>$model1,
+            ]);
+        }
+        
     }
     public function actionViewc($id)
     {
-        $model = $this->findModel($id);
-        $model1 = Cliente::findOne($model->ID_Paciente);
-         $searchModel = new VentaaccesoriosSearch();
-         $searchModel->ID_Venta = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model = $this->findModel($id);
+            $model1 = Cliente::findOne($model->ID_Paciente);
+            $searchModel = new VentaaccesoriosSearch();
+            $searchModel->ID_Venta = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $searchModelo = new OrdenSearch();
-        $searchModelo->idVenta = $id;
-        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
-        return $this->render('viewc', [
-            'model' => $model,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'searchModelo' => $searchModelo,
-            'dataProvidero' => $dataProvidero,
-            'model1'=>$model1,
-        ]);
+            $searchModelo = new OrdenSearch();
+            $searchModelo->idVenta = $id;
+            $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+            return $this->render('viewc', [
+                'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'searchModelo' => $searchModelo,
+                'dataProvidero' => $dataProvidero,
+                'model1'=>$model1,
+            ]);
+        }
+            
     }
 
     /**
@@ -103,115 +124,137 @@ class VentaController extends Controller
      */
     public function actionCreate($id)
     {
-        $model = new Venta();
-        if($id != 0)
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
         {
-            $model->ID_Paciente=$id;
-        }
-        $model->Entregado=0;
-        $model->Finalizado=0;
-        $model->Adelanto=0;
-        $clientes = [];
-        $tmp = Cliente::find()->all();
-        foreach($tmp as $cliente){
-            $clientes[$cliente->idPaciente]="Nit: ".$cliente->NIT.";  Nombre: ".$cliente->Nombre;
+            $model = new Venta();
+            if($id != 0)
+            {
+                $model->ID_Paciente=$id;
+            }
+            $model->Entregado=0;
+            $model->Finalizado=0;
+            $model->Adelanto=0;
+            $clientes = [];
+            $tmp = Cliente::find()->all();
+            foreach($tmp as $cliente){
+                $clientes[$cliente->idPaciente]="Nit: ".$cliente->NIT.";  Nombre: ".$cliente->Nombre;
 
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['creates', 'id' => $model->idVenta]);
-        }
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['creates', 'id' => $model->idVenta]);
+            }
 
-        return $this->render('create', [
-            'model' => $model,
-            'clientes'=>$clientes,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+                'clientes'=>$clientes,
+            ]);
+        }
+            
     }
 
     public function actionCreates($id)
-    {   $total=0.0;
-        $var1=Orden::find()->all();
-        foreach($var1 as $var)
-        {
-            if($var->idVenta == $id){
-                $total=$total+$var->Preciolentei;
-                $total=$total+$var->Preciolented;
-                $total=$total+$var->PrecioVentaAros;
-            }
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        $var2=Ventaaccesorios::find()->all();
-        foreach($var2 as $var)
+        else 
         {
-            if($var->ID_Venta == $id){
-                $val1 = $var->Cantidad;
-                $val2=$var->Precio_Venta;
-                $val3=$val1 * $val2;
-                $total=$total+$val3;
-
+            $total=0.0;
+            $var1=Orden::find()->all();
+            foreach($var1 as $var)
+            {
+                if($var->idVenta == $id){
+                    $total=$total+$var->Preciolentei;
+                    $total=$total+$var->Preciolented;
+                    $total=$total+$var->PrecioVentaAros;
+                }
             }
-        }
-         $searchModel = new VentaaccesoriosSearch();
-         $searchModel->ID_Venta = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-         //$dataProvider->pagination->pageParam = 'ID_Venta';
-        //$dataProvider->pagination->pageSizeParam=10;
+            $var2=Ventaaccesorios::find()->all();
+            foreach($var2 as $var)
+            {
+                if($var->ID_Venta == $id){
+                    $val1 = $var->Cantidad;
+                    $val2=$var->Precio_Venta;
+                    $val3=$val1 * $val2;
+                    $total=$total+$val3;
 
-        $searchModelo = new OrdenSearch();
-        $searchModelo->idVenta = $id;
-        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
-        //$dataProvidero->pagination->pageParam = 'orden';
-        //$dataProvidero->pagination->pageSizeParam=10;
-        return $this->render('creates', [
-            'model' => $this->findModel($id),
-             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'searchModelo' => $searchModelo,
-            'dataProvidero' => $dataProvidero,
-            'total'=>$total,
-        ]);
+                }
+            }
+             $searchModel = new VentaaccesoriosSearch();
+             $searchModel->ID_Venta = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+             //$dataProvider->pagination->pageParam = 'ID_Venta';
+            //$dataProvider->pagination->pageSizeParam=10;
+
+            $searchModelo = new OrdenSearch();
+            $searchModelo->idVenta = $id;
+            $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+            //$dataProvidero->pagination->pageParam = 'orden';
+            //$dataProvidero->pagination->pageSizeParam=10;
+            return $this->render('creates', [
+                'model' => $this->findModel($id),
+                 'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'searchModelo' => $searchModelo,
+                'dataProvidero' => $dataProvidero,
+                'total'=>$total,
+            ]);
+        }
+            
 
     }
     public function actionCreatef($id)
-    {   
-         $model = $this->findModel($id);
-         $model->Entregado=0;
-        $model->Finalizado=1;
-        $model->Adelanto=0;
-          $clientes = [];
-        $tmp = Cliente::find()->all();
-        $total = 0.0;
-        foreach($tmp as $cliente){
-            $clientes[$cliente->idPaciente]="Nit: ".$cliente->NIT.";  Nombre: ".$cliente->Nombre;
-
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
-        $var1=Orden::find()->all();
-        foreach($var1 as $var)
+        else 
         {
-            if($var->idVenta == $id){
-                $total=$total+$var->Preciolentei;
-                $total=$total+$var->Preciolented;
-                $total=$total+$var->PrecioVentaAros;
-            }
-        }
-        $var2=Ventaaccesorios::find()->all();
-        foreach($var2 as $var)
-        {
-            if($var->ID_Venta == $id){
-                $val1 = $var->Cantidad;
-                $val2=$var->Precio_Venta;
-                $val3=$val1 * $val2;
-                $total=$total+$val3;
+            $model = $this->findModel($id);
+            $model->Entregado=0;
+            $model->Finalizado=1;
+            $model->Adelanto=0;
+            $clientes = [];
+            $tmp = Cliente::find()->all();
+            $total = 0.0;
+            foreach($tmp as $cliente){
+                $clientes[$cliente->idPaciente]="Nit: ".$cliente->NIT.";  Nombre: ".$cliente->Nombre;
 
             }
-        }
-        $model->Total = $total;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idVenta]);
-        }
+            $var1=Orden::find()->all();
+            foreach($var1 as $var)
+            {
+                if($var->idVenta == $id){
+                    $total=$total+$var->Preciolentei;
+                    $total=$total+$var->Preciolented;
+                    $total=$total+$var->PrecioVentaAros;
+                }
+            }
+            $var2=Ventaaccesorios::find()->all();
+            foreach($var2 as $var)
+            {
+                if($var->ID_Venta == $id){
+                    $val1 = $var->Cantidad;
+                    $val2=$var->Precio_Venta;
+                    $val3=$val1 * $val2;
+                    $total=$total+$val3;
 
-        return $this->render('createf', [
-            'model' => $model,
-            'clientes'=>$clientes,
-        ]);
+                }
+            }
+            $model->Total = $total;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idVenta]);
+            }
+
+            return $this->render('createf', [
+                'model' => $model,
+                'clientes'=>$clientes,
+            ]);
+        }   
+            
 
     }
 
@@ -225,15 +268,22 @@ class VentaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idVenta]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idVenta]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**

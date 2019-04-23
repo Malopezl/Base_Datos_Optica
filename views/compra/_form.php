@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use dosamigos\datetimepicker\DateTimePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Compra */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,6 +13,22 @@ use kartik\select2\Select2;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
+                                                                        'language' => 'es',
+                                                                        'size' => 'ms',
+                                                                        //'template' => '{input}',
+                                                                        'pickButtonIcon' => 'glyphicon glyphicon-time',
+                                                                        'inline' => false,
+                                                                        'clientOptions' => [
+                                                                          //'startView' => 1,
+                                                                           // 'minView' => 0,
+                                                                            //'maxView' => 1,
+                                                                            'autoclose' => true,
+                                                                            'linkFormat' => 'HH:ii P', // if inline = true
+                                                                            // 'format' => 'HH:ii P', // if inline = false
+                                                                            'todayBtn' => true
+                                                                        ]]) ?>
+                                                                        
     <?= $form->field($model, 'ID_proveedores')->Widget(Select2::classname(),[
         'data' => $proveedoress,
         'options'=>['placeholder'=>'Seleccione el proveedor'],
@@ -24,9 +41,11 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'Monto_Efectivo')->textInput() ?>
 
     <?= $form->field($model, 'Credito')->textInput() ?>
-<!--
-    <?= $form->field($model, 'Fecha')->textInput() ?>
 
+    
+
+
+<!--
     <?= $form->field($model, 'Total')->textInput() ?>
 
     <?= $form->field($model, 'Finalizado')->textInput() ?>

@@ -35,18 +35,26 @@ class LenteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new LenteSearch();
-        $searchModel->Terminado=0;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $searchModelo = new LenteSearch();
-        $searchModelo->Terminado=1;
-        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'searchModelo' => $searchModelo,
-            'dataProvidero' => $dataProvidero,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new LenteSearch();
+            $searchModel->Terminado=0;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $searchModelo = new LenteSearch();
+            $searchModelo->Terminado=1;
+            $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'searchModelo' => $searchModelo,
+                'dataProvidero' => $dataProvidero,
+            ]);
+        }
+            
+
     }
 
     /**
@@ -57,21 +65,42 @@ class LenteController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+            
     }
      public function actionViewls($id)
     {
-        return $this->render('viewls', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('viewls', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+            
     }
      public function actionViewlt($id)
     {
-        return $this->render('viewlt', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            return $this->render('viewlt', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        
     }
 
     /**
@@ -81,68 +110,96 @@ class LenteController extends Controller
      */
     public function actionCreate($id)
     {
-        $model = new Lente();
-        $model->Precio_Compra=0;
-        $model->Precio_Venta =0;
-        $model->Existencia=0;
-        $model->Terminado= 1;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['detallecompra/createlt', 'id' => $id, 'idlen'=>$model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Lente();
+            $model->Precio_Compra=0;
+            $model->Precio_Venta =0;
+            $model->Existencia=0;
+            $model->Terminado= 1;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/createlt', 'id' => $id, 'idlen'=>$model->idLente]);
+            }
 
-        return $this->render('create', [
-            'model' => $model,
-            'id'=>$id,
-        ]);
+            return $this->render('create', [
+                'model' => $model,
+                'id'=>$id,
+            ]);
+        }
+           
     }
     public function actionCreatels($id)
     {
-        $model = new Lente();
-        $model->Precio_Compra=0;
-        $model->Precio_Venta =0;
-        $model->Existencia=0;
-        $model->Graduacion_Ecxedente = "0";
-        $model->Terminado=0;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['detallecompra/createls', 'id' => $id, 'idlen'=>$model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Lente();
+            $model->Precio_Compra=0;
+            $model->Precio_Venta =0;
+            $model->Existencia=0;
+            $model->Graduacion_Ecxedente = "0";
+            $model->Terminado=0;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/createls', 'id' => $id, 'idlen'=>$model->idLente]);
+            }
 
-        return $this->render('createls', [
-            'model' => $model,
-            'id' => $id,
-        ]);
+            return $this->render('createls', [
+                'model' => $model,
+                'id' => $id,
+            ]);
+        }
+            
     }
     public function actionCreateils()
     {
-        $model = new Lente();
-        $model->Precio_Compra=0;
-        $model->Precio_Venta =0;
-        $model->Existencia=0;
-        $model->Graduacion_Ecxedente = "0";
-        $model->Terminado=0;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['viewls','id'=>$model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Lente();
+            $model->Precio_Compra=0;
+            $model->Precio_Venta =0;
+            $model->Existencia=0;
+            $model->Graduacion_Ecxedente = "0";
+            $model->Terminado=0;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['viewls','id'=>$model->idLente]);
+            }
 
-        return $this->render('createils', [
-            'model' => $model,
-        ]);
+            return $this->render('createils', [
+                'model' => $model,
+            ]);
+        }
+            
     }
     public function actionCreateilt()
     {
-        $model = new Lente();
-        $model->Precio_Compra=0;
-        $model->Precio_Venta =0;
-        $model->Existencia=0;
-        $model->Graduacion_Ecxedente = "0";
-        $model->Terminado=1;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['viewlt', 'id'=>$model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Lente();
+            $model->Precio_Compra=0;
+            $model->Precio_Venta =0;
+            $model->Existencia=0;
+            $model->Graduacion_Ecxedente = "0";
+            $model->Terminado=1;
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['viewlt', 'id'=>$model->idLente]);
+            }
 
-        return $this->render('createilt', [
-            'model' => $model,
-        ]);
+            return $this->render('createilt', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
 
@@ -155,27 +212,41 @@ class LenteController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['viewls', 'id' => $model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['viewls', 'id' => $model->idLente]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+            
     }
     public function actionUpdatelt($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['viewlt', 'id' => $model->idLente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('updatelt', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['viewlt', 'id' => $model->idLente]);
+            }
+
+            return $this->render('updatelt', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**
