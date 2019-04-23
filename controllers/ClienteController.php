@@ -39,13 +39,20 @@ class ClienteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ClienteSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new ClienteSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -56,22 +63,29 @@ class ClienteController extends Controller
      */
     public function actionView($id)
     {
-        $model=$this->findModel($id);
-        $searchModel = new VentaSearch();
-         $searchModel->ID_Paciente = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model=$this->findModel($id);
+            $searchModel = new VentaSearch();
+             $searchModel->ID_Paciente = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $searchModelo = new RecetaSearch();
-        $searchModelo->idPaciente = $id;
-        $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
-        
-        return $this->render('view', [
-            'model' => $model,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'searchModelo' => $searchModelo,
-            'dataProvidero' => $dataProvidero,
-        ]);
+            $searchModelo = new RecetaSearch();
+            $searchModelo->idPaciente = $id;
+            $dataProvidero = $searchModelo->search(Yii::$app->request->queryParams);
+            
+            return $this->render('view', [
+                'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'searchModelo' => $searchModelo,
+                'dataProvidero' => $dataProvidero,
+            ]);
+        }
+            
     }
 
     /**
@@ -81,28 +95,42 @@ class ClienteController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Cliente();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idPaciente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Cliente();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idPaciente]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     public function actionCreatec()
     {
-        $model = new Cliente();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['venta/create','id'=> $model->idPaciente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Cliente();
 
-        return $this->render('createc', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['venta/create','id'=> $model->idPaciente]);
+            }
+
+            return $this->render('createc', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**
@@ -114,15 +142,22 @@ class ClienteController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idPaciente]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->idPaciente]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**

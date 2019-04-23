@@ -37,13 +37,20 @@ class ProveedoresController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProveedoresSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $searchModel = new ProveedoresSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -54,15 +61,22 @@ class ProveedoresController extends Controller
      */
     public function actionView($id)
     {
-        $model=$this->findModel($id);
-        $searchModel = new CompraSearch();
-         $searchModel->ID_proveedores = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('view', [
-            'model' => $model,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
+        }
+        else 
+        {
+            $model=$this->findModel($id);
+            $searchModel = new CompraSearch();
+            $searchModel->ID_proveedores = $id;
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            return $this->render('view', [
+                'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+            
     }
 
     /**
@@ -72,28 +86,42 @@ class ProveedoresController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Proveedores();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Proveedores();
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     public function actionCreatec()
     {
-        $model = new Proveedores();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['compra/create', 'id' => $model->ID]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = new Proveedores();
 
-        return $this->render('createc', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['compra/create', 'id' => $model->ID]);
+            }
+
+            return $this->render('createc', [
+                'model' => $model,
+            ]);
+        }
+            
     }
     /**
      * Updates an existing Proveedores model.
@@ -104,15 +132,22 @@ class ProveedoresController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
+        if (Yii::$app->user->isGuest) {
+            return $this-> goHome();
         }
+        else 
+        {
+            $model = $this->findModel($id);
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+            
     }
 
     /**
